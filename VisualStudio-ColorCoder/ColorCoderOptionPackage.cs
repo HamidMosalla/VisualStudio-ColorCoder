@@ -20,13 +20,7 @@ using System.Drawing;
 
 namespace VisualStudio_ColorCoder
 {
-    public enum Preset
-    {
-        SuperChargerStyle = 0,
-        ScottHanselmansDream = 1,
-        MoreGirlsInTechPlease = 2
-    }
-    public class ColorCoderOptionPageGrid : DialogPage
+    public class PresetOptionGrid : DialogPage
     {
         private const string PresetSubCategory = "Presets";
 
@@ -35,8 +29,27 @@ namespace VisualStudio_ColorCoder
         [Description("Select from one of the available sets of Presets")]
         public Preset Preset { get; set; }
 
+        public override void LoadSettingsFromStorage()
+        {
+            var settings = Settings.Load();
+            Preset = settings.Preset;
+        }
 
+        public override void SaveSettingsToStorage()
+        {
+            if (Preset == Preset.NoPreset) return;
+
+            var settings = SettingFactory.Create(Preset);
+
+            settings.Save();
+        }
+    }
+
+    public class ChangeColorOptionGrid : DialogPage
+    {
         private const string ColorSubCategory = "Colors";
+
+        //public Preset Preset { get; set; }
 
         [Category(ColorSubCategory)]
         [DisplayName("Interface")]
@@ -101,19 +114,71 @@ namespace VisualStudio_ColorCoder
         [Category(ColorSubCategory)]
         [DisplayName("Parameter")]
         public Color Parameter { get; set; }
+
+
+        public override void LoadSettingsFromStorage()
+        {
+            var settings = Settings.Load();
+
+            //Preset = settings.Preset;
+            Interface = settings.Interface;
+            Class = settings.Class;
+            AbstractClass = settings.AbstractClass;
+            StaticClass = settings.StaticClass;
+            Struct = settings.Struct;
+            Enum = settings.Enum;
+            EnumConstant = settings.EnumConstant;
+            Constructor = settings.Constructor;
+            Attribute = settings.Attribute;
+            Field = settings.Field;
+            Namespace = settings.Namespace;
+            Method = settings.Method;
+            StaticMethod = settings.StaticMethod;
+            ExtensionMethod = settings.ExtensionMethod;
+            AutomaticProperty = settings.AutomaticProperty;
+            Parameter = settings.Parameter;
+        }
+
+        public override void SaveSettingsToStorage()
+        {
+            var settings = new Settings
+            {
+                //TODO: do something here to keep the preset colors and change only the filled colors
+                //Preset = Preset,
+                Interface = Interface,
+                Class = Class,
+                AbstractClass = AbstractClass,
+                StaticClass = StaticClass,
+                Struct = Struct,
+                Enum = Enum,
+                EnumConstant = EnumConstant,
+                Constructor = Constructor,
+                Attribute = Attribute,
+                Field = Field,
+                Namespace = Namespace,
+                Method = Method,
+                StaticMethod = StaticMethod,
+                ExtensionMethod = ExtensionMethod,
+                AutomaticProperty = AutomaticProperty,
+                Parameter = Parameter,
+            };
+            settings.Save();
+        }
     }
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(ColorCoderOptionPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    [ProvideOptionPage(typeof(ColorCoderOptionPageGrid), "ColorCoder", "General", 0, 0, true)]
+    //TODO: fix the option page priority
+    [ProvideOptionPage(typeof(PresetOptionGrid), "ColorCoder", "Presets", 0, 0, true, Sort = 0)]
+    [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 0, 0, true, Sort = 1)]
     public sealed class ColorCoderOptionPackage : Package
     {
         public const string PackageGuidString = "0bf71f6b-990b-49ac-809a-940c37a463f3";
-        
-        public ColorCoderOptionPackage(){ }
-      
-        protected override void Initialize(){ base.Initialize(); }
+
+        public ColorCoderOptionPackage() { }
+
+        protected override void Initialize() { base.Initialize(); }
     }
 }
