@@ -1,14 +1,19 @@
+using System.Drawing;
+
 namespace VisualStudio_ColorCoder
 {
     public class SettingFactory
     {
-        public static Settings Create(Preset preset)
+        public Settings Create(Preset preset)
         {
-            //TODO: it's just a thought now, finish the factory
-            return new Settings
+            if (preset == Preset.Minimalist)
             {
-                Preset = preset
-            };
+                return new Settings
+                {
+                    Field = Color.Orange
+                };
+            }
+            return new Settings();
         }
     }
 }

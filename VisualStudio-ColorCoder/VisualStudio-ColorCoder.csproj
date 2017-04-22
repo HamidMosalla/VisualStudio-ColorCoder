@@ -57,6 +57,7 @@
     <Compile Include="Preset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingFactory.cs" />
+    <Compile Include="SettingIo.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>

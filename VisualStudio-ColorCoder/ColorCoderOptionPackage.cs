@@ -22,6 +22,15 @@ namespace VisualStudio_ColorCoder
 {
     public class PresetOptionGrid : DialogPage
     {
+        private SettingIo settingIo;
+        private SettingFactory settingFactory;
+
+        public PresetOptionGrid()
+        {
+            this.settingFactory = new SettingFactory();
+            this.settingIo = new SettingIo();
+        }
+
         private const string PresetSubCategory = "Presets";
 
         [Category(PresetSubCategory)]
@@ -31,7 +40,8 @@ namespace VisualStudio_ColorCoder
 
         public override void LoadSettingsFromStorage()
         {
-            var settings = Settings.Load();
+            //C:\Users\Hamid\AppData\Roaming\VisualStudioColorCoder
+            var settings = settingIo.Load();
             Preset = settings.Preset;
         }
 
@@ -39,14 +49,23 @@ namespace VisualStudio_ColorCoder
         {
             if (Preset == Preset.NoPreset) return;
 
-            var settings = SettingFactory.Create(Preset);
+            var settings = settingFactory.Create(Preset);
 
-            settings.Save();
+            settingIo.Save(settings);
         }
     }
 
     public class ChangeColorOptionGrid : DialogPage
     {
+        private SettingIo settingIo;
+        private SettingFactory settingFactory;
+
+        public ChangeColorOptionGrid()
+        {
+            this.settingFactory = new SettingFactory();
+            this.settingIo = new SettingIo();
+        }
+
         private const string ColorSubCategory = "Colors";
 
         //public Preset Preset { get; set; }
@@ -118,7 +137,7 @@ namespace VisualStudio_ColorCoder
 
         public override void LoadSettingsFromStorage()
         {
-            var settings = Settings.Load();
+            var settings = settingIo.Load();
 
             //Preset = settings.Preset;
             Interface = settings.Interface;
@@ -144,6 +163,7 @@ namespace VisualStudio_ColorCoder
             var settings = new Settings
             {
                 //TODO: do something here to keep the preset colors and change only the filled colors
+                //for this you can create to separate setting file on disk and load them separately, first apply the preset and then apply the custom colors
                 //Preset = Preset,
                 Interface = Interface,
                 Class = Class,
@@ -162,7 +182,7 @@ namespace VisualStudio_ColorCoder
                 AutomaticProperty = AutomaticProperty,
                 Parameter = Parameter,
             };
-            settings.Save();
+            settingIo.Save(settings);
         }
     }
 
