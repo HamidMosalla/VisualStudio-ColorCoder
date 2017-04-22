@@ -1,12 +1,9 @@
 using System.Drawing;
 using System.Runtime.Serialization;
-using System;
-using System.IO;
-using System.Runtime.Serialization.Json;
 
-namespace VisualStudio_ColorCoder
+namespace VisualStudio_ColorCoder.Settings
 {
-    public class Settings
+    public class PresetColors
     {
         [DataMember(Order = 0)]
         public Preset Preset { get; set; } = Preset.NoPreset;

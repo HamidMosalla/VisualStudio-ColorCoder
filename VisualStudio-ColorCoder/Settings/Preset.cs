@@ -1,4 +1,4 @@
-namespace VisualStudio_ColorCoder
+namespace VisualStudio_ColorCoder.Settings
 {
     public enum Preset
     {
