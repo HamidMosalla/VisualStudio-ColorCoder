@@ -53,8 +53,9 @@
   <ItemGroup>
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
-    <Compile Include="Classifications\ColorCoderClassifications.cs" />
+    <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />
     <Compile Include="ColorCoderCore\ColorCoderProviderServices.cs" />
+    <Compile Include="ColorCoderCore\ContentTypes.cs" />
     <Compile Include="ColorCoderCore\CSharpExtensions.cs" />
     <Compile Include="ColorCoderCore\Extensions.cs" />
     <Compile Include="ColorCoderCore\ProviderCache.cs" />

@@ -7,8 +7,8 @@ using Microsoft.VisualStudio.Utilities;
 namespace VisualStudio_ColorCoder.ColorCoderCore
 {
     [Export(typeof(ITaggerProvider))]
-    [ContentType("CSharp")]
-    [ContentType("Basic")]
+    [ContentType(ContentTypes.CSharp)]
+    [ContentType(ContentTypes.VB)]
     [TagType(typeof(IClassificationTag))]
     class ColorCoderTaggerProvider : ITaggerProvider
     {

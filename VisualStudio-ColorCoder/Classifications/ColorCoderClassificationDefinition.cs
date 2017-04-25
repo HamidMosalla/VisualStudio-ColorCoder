@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.Utilities;
 
 namespace VisualStudio_ColorCoder.Classifications
 {
-    class ColorCoderClassifications
+    class ColorCoderClassificationDefinition
     {
         [Export, Name(ColorCoderClassificationName.Interface)]
         internal static ClassificationTypeDefinition InterfaceClassificationType;

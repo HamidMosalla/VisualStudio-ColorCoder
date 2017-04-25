@@ -1,10 +1,4 @@
-﻿//------------------------------------------------------------------------------
-// <copyright file="ColorCoderOptionPackage.cs" company="Company">
-//     Copyright (c) Company.  All rights reserved.
-// </copyright>
-//------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -200,6 +194,9 @@ namespace VisualStudio_ColorCoder
 
         public ColorCoderOptionPackage() { }
 
-        protected override void Initialize() { base.Initialize(); }
+        protected override void Initialize()
+        {
+            base.Initialize();
+        }
     }
 }

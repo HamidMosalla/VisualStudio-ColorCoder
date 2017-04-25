@@ -16,7 +16,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public InterfaceClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Interface;
-            this.ForegroundColor = Colors.DeepPink;
+            this.ForegroundColor = Colors.Red;
         }
     }
 
