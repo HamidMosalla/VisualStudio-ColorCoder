@@ -55,5 +55,8 @@ namespace VisualStudio_ColorCoder.Settings
 
         [DataMember(Order = 16)]
         public Color Parameter { get; set; }
+
+        [DataMember(Order = 17)]
+        public Color Regions { get; set; }
     }
 }
