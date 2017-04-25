@@ -26,7 +26,8 @@ namespace VisualStudio_ColorCoder.Settings
                     Preset = Preset.Minimalist,
                     StaticClass = Color.LightGoldenrodYellow,
                     StaticMethod = Color.Pink,
-                    Struct = Color.Plum
+                    Struct = Color.Plum,
+                    Regions = Color.DeepPink
                 };
             }
 

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
-namespace VisualStudio_ColorCoder
+namespace VisualStudio_ColorCoder.Classifications
 {
     class ColorCoderClassifications
     {
@@ -51,7 +46,8 @@ namespace VisualStudio_ColorCoder
         internal static ClassificationTypeDefinition FieldClassificationType;
 
 
-        [Export, Name(ColorCoderClassificationName.Namespace)]
+        [Export(typeof(ClassificationTypeDefinition))]
+        [Name(ColorCoderClassificationName.Namespace)]
         internal static ClassificationTypeDefinition NamespaceClassificationType;
 
 
