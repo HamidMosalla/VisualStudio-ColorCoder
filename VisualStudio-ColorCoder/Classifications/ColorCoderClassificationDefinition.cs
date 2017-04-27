@@ -45,9 +45,11 @@ namespace VisualStudio_ColorCoder.Classifications
         [Export, Name(ColorCoderClassificationName.Field)]
         internal static ClassificationTypeDefinition FieldClassificationType;
 
+        [Export, Name(ColorCoderClassificationName.Local)]
+        internal static ClassificationTypeDefinition LocalClassificationType;
 
-        [Export(typeof(ClassificationTypeDefinition))]
-        [Name(ColorCoderClassificationName.Namespace)]
+
+        [Export, Name(ColorCoderClassificationName.Namespace)]
         internal static ClassificationTypeDefinition NamespaceClassificationType;
 
 
@@ -63,11 +65,11 @@ namespace VisualStudio_ColorCoder.Classifications
         internal static ClassificationTypeDefinition ExtensionMethodClassificationType;
 
 
-        [Export, Name(ColorCoderClassificationName.AutomaticProperty)]
+        [Export, Name(ColorCoderClassificationName.Property)]
         internal static ClassificationTypeDefinition AutomaticPropertyClassificationType;
 
 
-        [Export, Name(ColorCoderClassificationName.Parameter)]
+        [Export, Name(ColorCoderClassificationName.TypeParameter)]
         internal static ClassificationTypeDefinition ParameterClassificationType;
 
 

@@ -7,26 +7,26 @@ using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Tagging;
 using VisualStudio_ColorCoder.Classifications;
 using Microsoft.CodeAnalysis;
-using CacheState = VisualStudio_ColorCoder.ColorCoderCore.ColorCoderProviderServices.CacheState;
+using CacheState = VisualStudio_ColorCoder.ColorCoderCore.ColorCoderTaggerServices.CacheState;
 
 namespace VisualStudio_ColorCoder.ColorCoderCore
 {
-    internal class ColorCoderProvider : ITagger<IClassificationTag>
+    internal class ColorCoderTagger : ITagger<IClassificationTag>
     {
         private ITextBuffer _buffer;
-        private readonly ColorCoderProviderServices _colorCoderProviderServices;
+        private readonly ColorCoderTaggerServices _colorCoderTaggerServices;
         private readonly ClassificationTypeFactory _classificationTypeFactory;
         private readonly Dictionary<string, IClassificationType> classificationTypeDictionary;
         private ProviderCache _cache;
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
-        public ColorCoderProvider(ITextBuffer buffer, IClassificationTypeRegistryService classificationRegistry)
+        public ColorCoderTagger(ITextBuffer buffer, IClassificationTypeRegistryService classificationRegistry)
         {
             this._buffer = buffer;
             _classificationTypeFactory = new ClassificationTypeFactory(classificationRegistry);
             classificationTypeDictionary = _classificationTypeFactory.CreateClassificationTypes();
-            _colorCoderProviderServices = new ColorCoderProviderServices();
+            _colorCoderTaggerServices = new ColorCoderTaggerServices();
         }
 
         public IEnumerable<ITagSpan<IClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans)
@@ -36,14 +36,14 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
                 return Enumerable.Empty<ITagSpan<IClassificationTag>>();
             }
 
-            var cacheStatus = _colorCoderProviderServices.ManageCache(ref _cache, spans, _buffer);
+            var cacheStatus = _colorCoderTaggerServices.ManageCache(ref _cache, spans, _buffer);
 
             if (cacheStatus == CacheState.NotResolved)
             {
                 return Enumerable.Empty<ITagSpan<IClassificationTag>>();
             }
 
-            return _colorCoderProviderServices.GetClassificationTags(_cache, spans, classificationTypeDictionary);
+            return _colorCoderTaggerServices.GetClassificationTags(_cache, spans, classificationTypeDictionary);
         }
     }
 }

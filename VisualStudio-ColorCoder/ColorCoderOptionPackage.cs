@@ -90,6 +90,10 @@ namespace VisualStudio_ColorCoder
         public Color Enum { get; set; }
 
         [Category(ColorSubCategory)]
+        [DisplayName("Local")]
+        public Color Local { get; set; }
+
+        [Category(ColorSubCategory)]
         [DisplayName("Enum Constant")]
         public Color EnumConstant { get; set; }
 
@@ -126,7 +130,7 @@ namespace VisualStudio_ColorCoder
         public Color AutomaticProperty { get; set; }
 
         [Category(ColorSubCategory)]
-        [DisplayName("Parameter")]
+        [DisplayName("TypeParameter")]
         public Color Parameter { get; set; }
 
 

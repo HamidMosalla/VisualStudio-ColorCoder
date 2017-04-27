@@ -17,7 +17,7 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
 
         public ITagger<T> CreateTagger<T>(ITextBuffer buffer) where T : ITag
         {
-            return (ITagger<T>)new ColorCoderProvider(buffer, ClassificationRegistry);
+            return (ITagger<T>)new ColorCoderTagger(buffer, ClassificationRegistry);
         }
     }
 }
