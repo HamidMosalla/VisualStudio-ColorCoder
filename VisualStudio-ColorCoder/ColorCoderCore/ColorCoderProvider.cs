@@ -7,39 +7,43 @@ using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Tagging;
 using VisualStudio_ColorCoder.Classifications;
 using Microsoft.CodeAnalysis;
+using CacheState = VisualStudio_ColorCoder.ColorCoderCore.ColorCoderProviderServices.CacheState;
 
 namespace VisualStudio_ColorCoder.ColorCoderCore
 {
     internal class ColorCoderProvider : ITagger<IClassificationTag>
     {
         private ITextBuffer _buffer;
-        //private IClassificationTypeRegistryService _classificationRegistry;
-        //private IEnumerable<IClassificationType> _classificationTypes;
-        private readonly IClassificationType _nameSpaceType;
-        private ColorCoderProviderServices colorCoderProviderServices;
+        private readonly ColorCoderProviderServices _colorCoderProviderServices;
+        private readonly ClassificationTypeFactory _classificationTypeFactory;
+        private readonly Dictionary<string, IClassificationType> classificationTypeDictionary;
+        private ProviderCache _cache;
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
-
 
         public ColorCoderProvider(ITextBuffer buffer, IClassificationTypeRegistryService classificationRegistry)
         {
             this._buffer = buffer;
-            _nameSpaceType = classificationRegistry.GetClassificationType(ColorCoderClassificationName.Namespace);
-            colorCoderProviderServices = new ColorCoderProviderServices();
+            _classificationTypeFactory = new ClassificationTypeFactory(classificationRegistry);
+            classificationTypeDictionary = _classificationTypeFactory.CreateClassificationTypes();
+            _colorCoderProviderServices = new ColorCoderProviderServices();
         }
-
 
         public IEnumerable<ITagSpan<IClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans)
         {
-           
-            var snapshot = spans[0].Snapshot;
-            var cache = new ProviderCache();
-            IEnumerable<ClassifiedSpan> identifiers = colorCoderProviderServices.GetIdentifiersInSpans(cache.Workspace, cache.SemanticModel, spans);
-            var node = colorCoderProviderServices.GetExpression(cache.SyntaxRoot.FindNode(identifiers.First().TextSpan));
-            var symbol = cache.SemanticModel.GetSymbolInfo(node).Symbol ?? cache.SemanticModel.GetDeclaredSymbol(node);
+            if (spans.Count == 0)
+            {
+                return Enumerable.Empty<ITagSpan<IClassificationTag>>();
+            }
 
-            yield return identifiers.First().TextSpan.ToTagSpan(snapshot, _nameSpaceType);
+            var cacheStatus = _colorCoderProviderServices.ManageCache(ref _cache, spans, _buffer);
+
+            if (cacheStatus == CacheState.NotResolved)
+            {
+                return Enumerable.Empty<ITagSpan<IClassificationTag>>();
+            }
+
+            return _colorCoderProviderServices.GetClassificationTags(_cache, spans, classificationTypeDictionary);
         }
-
     }
 }

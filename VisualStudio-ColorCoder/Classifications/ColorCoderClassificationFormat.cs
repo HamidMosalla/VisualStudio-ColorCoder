@@ -31,6 +31,8 @@ namespace VisualStudio_ColorCoder.Classifications
         {
             this.DisplayName = "Hott and Holler";
             this.ForegroundColor = Colors.DeepPink;
+            this.IsBold = true;
+            this.FontRenderingSize = 20;
         }
     }
 

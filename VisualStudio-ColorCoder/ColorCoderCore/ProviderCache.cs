@@ -13,8 +13,6 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
         public SyntaxNode SyntaxRoot { get; private set; }
         public ITextSnapshot Snapshot { get; private set; }
 
-        public ProviderCache() { }
-
         public static async Task<ProviderCache> Resolve(ITextBuffer buffer, ITextSnapshot snapshot)
         {
             var workspace = buffer.GetWorkspace();
