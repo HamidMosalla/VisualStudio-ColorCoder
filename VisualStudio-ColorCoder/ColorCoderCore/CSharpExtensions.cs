@@ -19,5 +19,15 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
         {
             return node.Kind() == SyntaxKind.AttributeArgument;
         }
+
+        public static bool IsCSharpAttributeSyntaxKind(this SyntaxNode node)
+        {
+            return node.Kind() == SyntaxKind.Attribute;
+        }
+
+        public static bool IsCSharpConstructorSyntaxKind(this SyntaxNode node)
+        {
+            return node.Kind() == SyntaxKind.ConstructorDeclaration;
+        }
     }
 }

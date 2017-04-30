@@ -115,7 +115,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public ConstructorClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Constructor;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = Colors.DarkOrange;
         }
     }
 
