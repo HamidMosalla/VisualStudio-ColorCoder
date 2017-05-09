@@ -1,11 +1,14 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows;
-using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
+using VisualStudio_ColorCoder.Settings;
 
 namespace VisualStudio_ColorCoder.Classifications
 {
+    public static class ColorLoader
+    {
+        public static PresetColors PresetColors = new SettingIo().Load();
+    }
 
     [Export(typeof(EditorFormatDefinition))]
     [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Interface)]
@@ -17,7 +20,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public InterfaceClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Interface;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Interface;
         }
     }
 
@@ -31,7 +34,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public ClassClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Class;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Class;
         }
     }
 
@@ -45,7 +48,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public AbstractClassClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.AbstractClass;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.AbstractClass;
         }
     }
 
@@ -59,7 +62,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public StaticClassClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.StaticClass;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.StaticClass;
         }
     }
 
@@ -73,7 +76,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public StructClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Struct;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Struct;
         }
     }
 
@@ -87,7 +90,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public EnumClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Enum;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Enum;
         }
     }
 
@@ -101,7 +104,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public EnumConstantClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.EnumConstant;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.EnumConstant;
         }
     }
 
@@ -115,7 +118,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public ConstructorClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Constructor;
-            this.ForegroundColor = Colors.DarkOrange;
+            this.ForegroundColor = ColorLoader.PresetColors.Constructor;
         }
     }
 
@@ -129,7 +132,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public AttributeClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Attribute;
-            this.ForegroundColor = Colors.Gray;
+            this.ForegroundColor = ColorLoader.PresetColors.Attribute;
         }
     }
 
@@ -143,7 +146,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public FieldClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Field;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Field;
         }
     }
 
@@ -157,7 +160,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public LocalClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Local;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Local;
         }
     }
 
@@ -171,7 +174,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public NamespaceClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Namespace;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Namespace;
         }
     }
 
@@ -185,7 +188,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public MethodClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Method;
-            this.ForegroundColor = Colors.Purple;
+            this.ForegroundColor = ColorLoader.PresetColors.Method;
             this.IsBold = true;
             this.FontRenderingSize = 12;
         }
@@ -201,7 +204,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public StaticMethodClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.StaticMethod;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.StaticMethod;
         }
     }
 
@@ -215,7 +218,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public ExtensionMethodClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.ExtensionMethod;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.ExtensionMethod;
         }
     }
 
@@ -229,7 +232,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public PropertyClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Property;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.AutomaticProperty;
         }
     }
 
@@ -243,7 +246,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public TypeParameterClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.TypeParameter;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.TypeParameter;
         }
     }
 
@@ -257,7 +260,7 @@ namespace VisualStudio_ColorCoder.Classifications
         public RegionsClassificationFormat()
         {
             this.DisplayName = ColorCoderClassificationName.Regions;
-            this.ForegroundColor = Colors.Yellow;
+            this.ForegroundColor = ColorLoader.PresetColors.Regions;
         }
     }
 }

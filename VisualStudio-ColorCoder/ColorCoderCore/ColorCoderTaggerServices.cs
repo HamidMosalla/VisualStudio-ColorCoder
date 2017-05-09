@@ -45,7 +45,7 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
 
             if (node.IsCSharpAttributeSyntaxKind())
             {
-                return ((CSharp.Syntax.AttributeSyntax)node);
+                return ((CSharp.Syntax.AttributeSyntax)node).Parent;
             }
 
             if (node.IsVbSimpleArgumentSyntaxKind())
@@ -91,12 +91,12 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
                 return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
             }
 
-            if (node.IsCSharpAttributeSyntaxKind())
-            {
-                classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.TypeParameter, out IClassificationType classificationValue);
+            //if (node.IsCSharpAttributeSyntaxKind())
+            //{
+            //    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Attribute, out IClassificationType classificationValue);
 
-                return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
-            }
+            //    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+            //}
 
             if (symbol?.Kind == SymbolKind.TypeParameter)
             {

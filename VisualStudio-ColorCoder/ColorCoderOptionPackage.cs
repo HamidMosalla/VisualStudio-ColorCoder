@@ -139,7 +139,7 @@ namespace VisualStudio_ColorCoder
             var settings = _settingIo.Load();
 
             //Preset = settings.Preset;
-            Interface = settings.Interface;
+            Interface = Color.FromArgb(settings.Interface.A, settings.Interface.R, settings.Interface.G, settings.Interface.B); // settings.Interface;
             Class = settings.Class;
             AbstractClass = settings.AbstractClass;
             StaticClass = settings.StaticClass;
@@ -154,7 +154,7 @@ namespace VisualStudio_ColorCoder
             StaticMethod = settings.StaticMethod;
             ExtensionMethod = settings.ExtensionMethod;
             AutomaticProperty = settings.AutomaticProperty;
-            Parameter = settings.Parameter;
+            Parameter = settings.TypeParameter;
         }
 
         public override void SaveSettingsToStorage()

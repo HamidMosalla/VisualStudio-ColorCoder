@@ -1,5 +1,7 @@
-using System.Drawing;
+
 using System.Runtime.Serialization;
+using System.Windows.Media;
+
 
 namespace VisualStudio_ColorCoder.Settings
 {
@@ -54,9 +56,12 @@ namespace VisualStudio_ColorCoder.Settings
         public Color AutomaticProperty { get; set; }
 
         [DataMember(Order = 16)]
-        public Color Parameter { get; set; }
+        public Color TypeParameter { get; set; }
 
         [DataMember(Order = 17)]
         public Color Regions { get; set; }
+
+        [DataMember(Order = 18)]
+        public Color Local { get; set; }
     }
 }

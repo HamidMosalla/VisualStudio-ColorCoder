@@ -6,9 +6,6 @@ namespace VisualStudio_ColorCoder.Settings
         Minimalist,
         SuperChargerStyle,
         ScottHanselmansDream,
-        MoreGirlsInTechPlease,
-        BenevolentGangster,
-        CartmansApparel,
-        MrHankey
+        MoreGirlsInTechPlease
     }
 }

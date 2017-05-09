@@ -1,4 +1,4 @@
-using System.Drawing;
+using System.Windows.Media;
 
 namespace VisualStudio_ColorCoder.Settings
 {
@@ -10,24 +10,24 @@ namespace VisualStudio_ColorCoder.Settings
             {
                 return new PresetColors
                 {
-                    Field = Color.Orange,
-                    AbstractClass = Color.Red,
-                    Attribute = Color.PeachPuff,
-                    AutomaticProperty = Color.PaleGoldenrod,
-                    Class = Color.BurlyWood,
-                    Constructor = Color.Orange,
-                    Enum = Color.Orchid,
-                    EnumConstant = Color.OldLace,
-                    ExtensionMethod = Color.Magenta,
-                    Interface = Color.LightBlue,
-                    Method = Color.Purple,
-                    Namespace = Color.Black,
-                    Parameter = Color.Azure,
+                    Field = Colors.Orange,
+                    AbstractClass = Colors.Red,
+                    Attribute = Colors.PeachPuff,
+                    AutomaticProperty = Colors.PaleGoldenrod,
+                    Class = Colors.BurlyWood,
+                    Constructor = Colors.Orange,
+                    Enum = Colors.Orchid,
+                    EnumConstant = Colors.OldLace,
+                    ExtensionMethod = Colors.Magenta,
+                    Interface = Colors.LightBlue,
+                    Method = Colors.Purple,
+                    Namespace = Colors.Black,
+                    TypeParameter = Colors.Azure,
                     Preset = Preset.Minimalist,
-                    StaticClass = Color.LightGoldenrodYellow,
-                    StaticMethod = Color.Pink,
-                    Struct = Color.Plum,
-                    Regions = Color.DeepPink
+                    StaticClass = Colors.LightGoldenrodYellow,
+                    StaticMethod = Colors.Pink,
+                    Struct = Colors.Plum,
+                    Regions = Colors.DeepPink
                 };
             }
 
