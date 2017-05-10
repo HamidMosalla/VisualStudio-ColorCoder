@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Drawing;
+using VisualStudio_ColorCoder.ColorCoderCore;
 using VisualStudio_ColorCoder.Settings;
 
 namespace VisualStudio_ColorCoder
@@ -139,22 +140,22 @@ namespace VisualStudio_ColorCoder
             var settings = _settingIo.Load();
 
             //Preset = settings.Preset;
-            Interface = Color.FromArgb(settings.Interface.A, settings.Interface.R, settings.Interface.G, settings.Interface.B); // settings.Interface;
-            Class = settings.Class;
-            AbstractClass = settings.AbstractClass;
-            StaticClass = settings.StaticClass;
-            Struct = settings.Struct;
-            Enum = settings.Enum;
-            EnumConstant = settings.EnumConstant;
-            Constructor = settings.Constructor;
-            Attribute = settings.Attribute;
-            Field = settings.Field;
-            Namespace = settings.Namespace;
-            Method = settings.Method;
-            StaticMethod = settings.StaticMethod;
-            ExtensionMethod = settings.ExtensionMethod;
-            AutomaticProperty = settings.AutomaticProperty;
-            Parameter = settings.TypeParameter;
+            Interface = settings.Interface.ToDrawingColor();
+            Class = settings.Class.ToDrawingColor();
+            AbstractClass = settings.AbstractClass.ToDrawingColor();
+            StaticClass = settings.StaticClass.ToDrawingColor();
+            Struct = settings.Struct.ToDrawingColor();
+            Enum = settings.Enum.ToDrawingColor();
+            EnumConstant = settings.EnumConstant.ToDrawingColor();
+            Constructor = settings.Constructor.ToDrawingColor();
+            Attribute = settings.Attribute.ToDrawingColor();
+            Field = settings.Field.ToDrawingColor();
+            Namespace = settings.Namespace.ToDrawingColor();
+            Method = settings.Method.ToDrawingColor();
+            StaticMethod = settings.StaticMethod.ToDrawingColor();
+            ExtensionMethod = settings.ExtensionMethod.ToDrawingColor();
+            AutomaticProperty = settings.AutomaticProperty.ToDrawingColor();
+            Parameter = settings.TypeParameter.ToDrawingColor();
         }
 
         public override void SaveSettingsToStorage()
@@ -164,22 +165,22 @@ namespace VisualStudio_ColorCoder
                 //TODO: do something here to keep the preset colors and change only the filled colors
                 //for this you can create to separate setting file on disk and load them separately, first apply the preset and then apply the custom colors
                 //Preset = Preset,
-                Interface = Interface,
-                Class = Class,
-                AbstractClass = AbstractClass,
-                StaticClass = StaticClass,
-                Struct = Struct,
-                Enum = Enum,
-                EnumConstant = EnumConstant,
-                Constructor = Constructor,
-                Attribute = Attribute,
-                Field = Field,
-                Namespace = Namespace,
-                Method = Method,
-                StaticMethod = StaticMethod,
-                ExtensionMethod = ExtensionMethod,
-                AutomaticProperty = AutomaticProperty,
-                Parameter = Parameter,
+                Interface = Interface.ToMediaColor(),
+                Class = Class.ToMediaColor(),
+                AbstractClass = AbstractClass.ToMediaColor(),
+                StaticClass = StaticClass.ToMediaColor(),
+                Struct = Struct.ToMediaColor(),
+                Enum = Enum.ToMediaColor(),
+                EnumConstant = EnumConstant.ToMediaColor(),
+                Constructor = Constructor.ToMediaColor(),
+                Attribute = Attribute.ToMediaColor(),
+                Field = Field.ToMediaColor(),
+                Namespace = Namespace.ToMediaColor(),
+                Method = Method.ToMediaColor(),
+                StaticMethod = StaticMethod.ToMediaColor(),
+                ExtensionMethod = ExtensionMethod.ToMediaColor(),
+                AutomaticProperty = AutomaticProperty.ToMediaColor(),
+                TypeParameter = Parameter.ToMediaColor()
             };
             _settingIo.Save(settings);
         }

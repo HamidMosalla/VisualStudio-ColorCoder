@@ -58,6 +58,7 @@
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />
     <Compile Include="ColorCoderCore\ContentTypes.cs" />
     <Compile Include="ColorCoderCore\CSharpExtensions.cs" />
+    <Compile Include="ColorCoderCore\Extensions.cs" />
     <Compile Include="ColorCoderCore\ProviderCache.cs" />
     <Compile Include="ColorCoderCore\VBExtensions.cs" />
     <Compile Include="ColorCoderOptionPackage.cs">
