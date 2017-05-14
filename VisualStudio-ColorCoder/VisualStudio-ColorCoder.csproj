@@ -50,12 +50,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classifications\ColorClassifier.cs" />
+    <Compile Include="Classifications\ColorClassifierProvider.cs" />
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
     <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTagger.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerServices.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />
+    <Compile Include="ColorCoderCore\ColorMap.cs" />
     <Compile Include="ColorCoderCore\ContentTypes.cs" />
     <Compile Include="ColorCoderCore\CSharpExtensions.cs" />
     <Compile Include="ColorCoderCore\Extensions.cs" />

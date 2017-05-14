@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Json;
+using VisualStudio_ColorCoder.ColorCoderCore;
 
 namespace VisualStudio_ColorCoder.Settings
 {
