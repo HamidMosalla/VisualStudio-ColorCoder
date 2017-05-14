@@ -14,7 +14,7 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
     {
         public static Dictionary<string, Color> GetMap()
         {
-            var settings = new SettingIo().Load();
+            var settings =  State.Settings.Load();
             return new Dictionary<string, Color>
             {
                 {ColorCoderClassificationName.Interface, settings.Interface},

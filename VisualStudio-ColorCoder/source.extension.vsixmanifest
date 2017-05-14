@@ -21,7 +21,7 @@
     <Prerequisite Id="Microsoft.VisualStudio.Component.Roslyn.Compiler" Version="[14.0,16.0)" DisplayName="C# and Visual Basic Roslyn compilers" />
   </Prerequisites>
   <Assets>
-    <!--<Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />-->
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
   </Assets>
 </PackageManifest>

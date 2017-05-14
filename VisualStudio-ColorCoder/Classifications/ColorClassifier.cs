@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using VisualStudio_ColorCoder.ColorCoderCore;
+using VisualStudio_ColorCoder.State;
 
 namespace VisualStudio_ColorCoder.Classifications
 {
@@ -19,7 +20,28 @@ namespace VisualStudio_ColorCoder.Classifications
 
         public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
         {
-            throw new NotImplementedException();
+            LoadSettings();
+            var classifications = new List<ClassificationSpan>();
+
+            //var snapshot = span.Snapshot;
+            //if (snapshot == null || snapshot.Length == 0 || !CanSearch(span) || !HighlightFindResults)
+            //{
+            //    return classifications;
+            //}
+
+            //var text = span.GetText();
+
+            //var filenameSpans = GetMatches(text, FilenameRegex, span.Start, FilenameClassificationType).ToList();
+            //var searchTermSpans = GetMatches(text, _searchTextRegex, span.Start, SearchTermClassificationType).ToList();
+
+            //var toRemove = (from searchSpan in searchTermSpans
+            //                from filenameSpan in filenameSpans
+            //                where filenameSpan.Span.Contains(searchSpan.Span)
+            //                select searchSpan).ToList();
+
+            //classifications.AddRange(filenameSpans);
+            //classifications.AddRange(searchTermSpans.Except(toRemove));
+            return classifications;
         }
 
         public void Initialize(IClassificationTypeRegistryService classificationRegistry, IClassificationFormatMapService formatMapService)
@@ -31,15 +53,15 @@ namespace VisualStudio_ColorCoder.Classifications
                 _classificationRegistry = classificationRegistry;
                 _formatMapService = formatMapService;
 
-                //Settings.SettingsUpdated += (sender, args) =>
-                //{
-                //    _settingsLoaded = false;
-                UpdateFormatMap();
-                //};
+                State.Settings.SettingsUpdated += (sender, args) =>
+                {
+                    _settingsLoaded = false;
+                    UpdateFormatMap();
+                };
             }
             catch (Exception ex)
             {
-                //Log.LogError(ex.ToString());
+                Log.LogError(ex.ToString());
                 throw;
             }
         }
@@ -69,6 +91,14 @@ namespace VisualStudio_ColorCoder.Classifications
             {
                 formatMap.EndBatchUpdate();
             }
+        }
+
+        private void LoadSettings()
+        {
+            if (_settingsLoaded) return;
+            var settings = State.Settings.Load();
+            //HighlightFindResults = settings.HighlightFindResults;
+            _settingsLoaded = true;
         }
 
         public event EventHandler<ClassificationChangedEventArgs> ClassificationChanged;

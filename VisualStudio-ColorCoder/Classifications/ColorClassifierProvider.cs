@@ -18,20 +18,17 @@ namespace VisualStudio_ColorCoder.Classifications
         [Import] internal IClassificationTypeRegistryService ClassificationRegistry;
         [Import] internal IClassificationFormatMapService ClassificationFormatMapService;
 
-        private static ColorClassifier _findResultsClassifier;
+        private static ColorClassifier _colorsClassifierClassifier;
 
         public IClassifier GetClassifier(ITextBuffer textBuffer)
         {
-            if (_findResultsClassifier == null)
+            if (_colorsClassifierClassifier == null)
             {
-                Interlocked.CompareExchange(
-                    ref _findResultsClassifier,
-                    new ColorClassifier(),
-                    null);
+                Interlocked.CompareExchange(ref _colorsClassifierClassifier, new ColorClassifier(), null);
 
-                _findResultsClassifier.Initialize(ClassificationRegistry, ClassificationFormatMapService);
+                _colorsClassifierClassifier.Initialize(ClassificationRegistry, ClassificationFormatMapService);
             }
-            return _findResultsClassifier;
+            return _colorsClassifierClassifier;
         }
 
     }

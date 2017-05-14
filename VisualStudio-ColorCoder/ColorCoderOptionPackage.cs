@@ -14,17 +14,17 @@ using System.Drawing;
 using VisualStudio_ColorCoder.ColorCoderCore;
 using VisualStudio_ColorCoder.Settings;
 
+
 namespace VisualStudio_ColorCoder
 {
     public class PresetOptionGrid : DialogPage
     {
-        private readonly SettingIo settingIo;
         private readonly PresetFactory _presetFactory;
 
         public PresetOptionGrid()
         {
             this._presetFactory = new PresetFactory();
-            this.settingIo = new SettingIo();
+
         }
 
         private const string PresetSubCategory = "Presets";
@@ -37,7 +37,7 @@ namespace VisualStudio_ColorCoder
         public override void LoadSettingsFromStorage()
         {
             //C:\Users\Hamid\AppData\Roaming\VisualStudioColorCoder
-            var settings = settingIo.Load();
+            var settings = State.Settings.Load();
             Preset = settings.Preset;
         }
 
@@ -47,19 +47,17 @@ namespace VisualStudio_ColorCoder
 
             var settings = _presetFactory.CreateInstance(Preset);
 
-            settingIo.Save(settings);
+            State.Settings.Save(settings);
         }
     }
 
     public class ChangeColorOptionGrid : DialogPage
     {
-        private readonly SettingIo _settingIo;
         private PresetFactory _presetFactory;
 
         public ChangeColorOptionGrid()
         {
             this._presetFactory = new PresetFactory();
-            this._settingIo = new SettingIo();
         }
 
         private const string ColorSubCategory = "Colors";
@@ -137,7 +135,7 @@ namespace VisualStudio_ColorCoder
 
         public override void LoadSettingsFromStorage()
         {
-            var settings = _settingIo.Load();
+            var settings = State.Settings.Load();
 
             //Preset = settings.Preset;
             Interface = settings.Interface.ToDrawingColor();
@@ -182,7 +180,7 @@ namespace VisualStudio_ColorCoder
                 AutomaticProperty = AutomaticProperty.ToMediaColor(),
                 TypeParameter = Parameter.ToMediaColor()
             };
-            _settingIo.Save(settings);
+            State.Settings.Save(settings);
         }
     }
 

@@ -1,28 +1,28 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Json;
-using VisualStudio_ColorCoder.ColorCoderCore;
+using VisualStudio_ColorCoder.Settings;
 
-namespace VisualStudio_ColorCoder.Settings
+namespace VisualStudio_ColorCoder.State
 {
-    public class SettingIo
+    public class Settings
     {
-        private readonly string _programDataFolder;
-        private readonly string _settingsFile;
+        private static readonly string _programDataFolder;
+        private static readonly string _settingsFile;
 
-        public event EventHandler SettingsUpdated;
-        private readonly PresetFactory _presetFactory;
+        public static event EventHandler SettingsUpdated;
+        private static readonly  PresetFactory _presetFactory;
 
-        private void OnSettingsUpdated(object sender, EventArgs ea) => SettingsUpdated?.Invoke(sender, ea);
+        public static void OnSettingsUpdated(object sender, EventArgs ea) => SettingsUpdated?.Invoke(sender, ea);
 
-        public SettingIo()
+        static Settings()
         {
-            this._presetFactory = new PresetFactory();
+            _presetFactory = new PresetFactory();
             _programDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "VisualStudioColorCoder");
             _settingsFile = Path.Combine(_programDataFolder, "visualstudiocolorcoder.json");
         }
 
-        public PresetColors Load()
+        public static PresetColors Load()
         {
             Directory.CreateDirectory(_programDataFolder);
 
@@ -36,7 +36,7 @@ namespace VisualStudio_ColorCoder.Settings
             }
         }
 
-        public void Save(PresetColors presetColors)
+        public static void Save(PresetColors presetColors)
         {
             Directory.CreateDirectory(_programDataFolder);
 

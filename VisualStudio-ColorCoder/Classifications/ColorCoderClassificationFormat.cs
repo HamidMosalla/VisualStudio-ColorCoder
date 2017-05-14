@@ -7,7 +7,7 @@ namespace VisualStudio_ColorCoder.Classifications
 {
     public static class ColorLoader
     {
-        public static PresetColors PresetColors = new SettingIo().Load();
+        public static PresetColors PresetColors =  State.Settings.Load();
     }
 
     [Export(typeof(EditorFormatDefinition))]

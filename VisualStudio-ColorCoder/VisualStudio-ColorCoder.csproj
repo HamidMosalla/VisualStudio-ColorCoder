@@ -68,11 +68,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Classifications\ClassificationTypeFactory.cs" />
-    <Compile Include="Settings\Preset.cs" />
+    <Compile Include="State\Log.cs" />
+    <Compile Include="State\Preset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\PresetFactory.cs" />
-    <Compile Include="Settings\SettingIo.cs" />
-    <Compile Include="Settings\PresetColors.cs" />
+    <Compile Include="State\PresetFactory.cs" />
+    <Compile Include="State\Settings.cs" />
+    <Compile Include="State\PresetColors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
