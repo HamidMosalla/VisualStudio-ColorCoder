@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.CodeAnalysis.Classification;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using VisualStudio_ColorCoder.ColorCoderCore;
@@ -15,33 +17,50 @@ namespace VisualStudio_ColorCoder.Classifications
     {
         private int _initialized;
         private bool _settingsLoaded;
-        private IClassificationTypeRegistryService _classificationRegistry;
+        private IClassificationTypeRegistryService _classificationTypeRegistry;
         private IClassificationFormatMapService _formatMapService;
 
         public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
         {
-            LoadSettings();
-            var classifications = new List<ClassificationSpan>();
+            try
+            {
+                var spans = new List<ClassificationSpan>();
+                var snapshot = span.Snapshot;
+                if (snapshot == null || snapshot.Length == 0) return spans;
 
-            //var snapshot = span.Snapshot;
-            //if (snapshot == null || snapshot.Length == 0 || !CanSearch(span) || !HighlightFindResults)
-            //{
-            //    return classifications;
-            //}
+                var start = span.Start.GetContainingLine().LineNumber;
+                var end = (span.End - 1).GetContainingLine().LineNumber;
+                for (var i = start; i <= end; i++)
+                {
+                    var line = snapshot.GetLineFromLineNumber(i);
+                    if (line == null) continue;
+                    var snapshotSpan = new SnapshotSpan(line.Start, line.Length);
+                    var text = line.Snapshot.GetText(snapshotSpan);
+                    if (string.IsNullOrEmpty(text)) continue;
 
-            //var text = span.GetText();
+                    var classificationNames = ColorCoderClassificationName.Namespace;
 
-            //var filenameSpans = GetMatches(text, FilenameRegex, span.Start, FilenameClassificationType).ToList();
-            //var searchTermSpans = GetMatches(text, _searchTextRegex, span.Start, SearchTermClassificationType).ToList();
+                    var type = _classificationTypeRegistry.GetClassificationType(classificationNames);
 
-            //var toRemove = (from searchSpan in searchTermSpans
-            //                from filenameSpan in filenameSpans
-            //                where filenameSpan.Span.Contains(searchSpan.Span)
-            //                select searchSpan).ToList();
-
-            //classifications.AddRange(filenameSpans);
-            //classifications.AddRange(searchTermSpans.Except(toRemove));
-            return classifications;
+                    if (type != null) spans.Add(new ClassificationSpan(line.Extent, type));
+                }
+                return spans;
+            }
+            catch (RegexMatchTimeoutException)
+            {
+                // eat it.
+                return new List<ClassificationSpan>();
+            }
+            catch (NullReferenceException)
+            {
+                // eat it.    
+                return new List<ClassificationSpan>();
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.ToString());
+                throw;
+            }
         }
 
         public void Initialize(IClassificationTypeRegistryService classificationRegistry, IClassificationFormatMapService formatMapService)
@@ -50,7 +69,7 @@ namespace VisualStudio_ColorCoder.Classifications
 
             try
             {
-                _classificationRegistry = classificationRegistry;
+                _classificationTypeRegistry = classificationRegistry;
                 _formatMapService = formatMapService;
 
                 State.Settings.SettingsUpdated += (sender, args) =>
@@ -81,7 +100,7 @@ namespace VisualStudio_ColorCoder.Classifications
                 formatMap.BeginBatchUpdate();
                 foreach (var names in classificationNames)
                 {
-                    var classificationType = _classificationRegistry.GetClassificationType(names);
+                    var classificationType = _classificationTypeRegistry.GetClassificationType(names);
                     var textProperties = formatMap.GetTextProperties(classificationType);
                     var color = colorMap[names];
                     formatMap.SetTextProperties(classificationType, textProperties.SetForeground(color));
