@@ -7,28 +7,95 @@ namespace VisualStudio_ColorCoder.Settings
     {
         public PresetColors CreateInstance(Preset preset)
         {
+            if (preset == Preset.SuperChargerStyle)
+            {
+                return new PresetColors
+                {
+                    Field = Colors.Black,
+                    AbstractClass = Colors.Beige,
+                    Attribute = Colors.DimGray,
+                    AutomaticProperty = Colors.Chartreuse,
+                    Constructor = Colors.DarkOrange,
+                    Enum = Colors.Teal,
+                    EnumConstant = Colors.Olive,
+                    ExtensionMethod = Colors.Magenta,
+                    Interface = Colors.Beige,
+                    Method = Colors.Purple,
+                    Namespace = Colors.Black,
+                    TypeParameter = Colors.Gray,
+                    Preset = Preset.SuperChargerStyle,
+                    StaticClass = Colors.Orchid,
+                    StaticMethod = Colors.MediumSeaGreen,
+                    Struct = Colors.PaleVioletRed
+                };
+            }
+
             if (preset == Preset.Minimalist)
             {
                 return new PresetColors
                 {
-                    Field = Colors.Orange,
-                    AbstractClass = Colors.Red,
-                    Attribute = Colors.PeachPuff,
-                    AutomaticProperty = Colors.PaleGoldenrod,
-                    Class = Colors.BurlyWood,
-                    Constructor = Colors.Orange,
-                    Enum = Colors.Orchid,
-                    EnumConstant = Colors.OldLace,
+                    Field = Colors.Black,
+                    AbstractClass = Colors.Beige,
+                    Attribute = Colors.DimGray,
+                    AutomaticProperty = Colors.Chartreuse,
+                    Constructor = Colors.DarkOrange,
+                    Enum = Colors.Teal,
+                    EnumConstant = Colors.Olive,
                     ExtensionMethod = Colors.Magenta,
-                    Interface = Colors.LightBlue,
+                    Interface = Colors.Beige,
                     Method = Colors.Purple,
                     Namespace = Colors.Black,
-                    TypeParameter = Colors.Azure,
+                    TypeParameter = Colors.Gray,
                     Preset = Preset.Minimalist,
-                    StaticClass = Colors.LightGoldenrodYellow,
+                    StaticClass = Colors.Orchid,
+                    StaticMethod = Colors.MediumSeaGreen,
+                    Struct = Colors.PaleVioletRed
+                };
+            }
+
+            if (preset == Preset.ScottHanselmansDream)
+            {
+                return new PresetColors
+                {
+                    Field = Colors.Black,
+                    AbstractClass = Colors.Beige,
+                    Attribute = Colors.DimGray,
+                    AutomaticProperty = Colors.Chartreuse,
+                    Constructor = Colors.DarkOrange,
+                    Enum = Colors.Teal,
+                    EnumConstant = Colors.Olive,
+                    ExtensionMethod = Colors.Magenta,
+                    Interface = Colors.Beige,
+                    Method = Colors.Purple,
+                    Namespace = Colors.Black,
+                    TypeParameter = Colors.Gray,
+                    Preset = Preset.ScottHanselmansDream,
+                    StaticClass = Colors.Orchid,
+                    StaticMethod = Colors.MediumSeaGreen,
+                    Struct = Colors.PaleVioletRed
+                };
+            }
+
+            if (preset == Preset.MoreGirlsInTechPlease)
+            {
+                return new PresetColors
+                {
+                    Field = Colors.Pink,
+                    AbstractClass = Colors.Pink,
+                    Attribute = Colors.Pink,
+                    AutomaticProperty = Colors.Pink,
+                    Constructor = Colors.Pink,
+                    Enum = Colors.Pink,
+                    EnumConstant = Colors.Pink,
+                    ExtensionMethod = Colors.Pink,
+                    Interface = Colors.Pink,
+                    Method = Colors.Pink,
+                    Namespace = Colors.Pink,
+                    TypeParameter = Colors.Pink,
+                    Preset = Preset.MoreGirlsInTechPlease,
+                    StaticClass = Colors.Pink,
                     StaticMethod = Colors.Pink,
-                    Struct = Colors.Plum,
-                    Regions = Colors.DeepPink
+                    Struct = Colors.Pink,
                 };
             }
 

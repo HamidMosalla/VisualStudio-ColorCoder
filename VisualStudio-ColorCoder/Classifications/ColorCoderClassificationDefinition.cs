@@ -9,11 +9,6 @@ namespace VisualStudio_ColorCoder.Classifications
         [Export, Name(ColorCoderClassificationName.Interface)]
         internal static ClassificationTypeDefinition InterfaceClassificationType;
 
-
-        [Export, Name(ColorCoderClassificationName.Class)]
-        internal static ClassificationTypeDefinition ClassClassificationType;
-
-
         [Export, Name(ColorCoderClassificationName.AbstractClass)]
         internal static ClassificationTypeDefinition AbstractClassClassificationType;
 
@@ -72,8 +67,5 @@ namespace VisualStudio_ColorCoder.Classifications
         [Export, Name(ColorCoderClassificationName.TypeParameter)]
         internal static ClassificationTypeDefinition ParameterClassificationType;
 
-
-        [Export, Name(ColorCoderClassificationName.Regions)]
-        internal static ClassificationTypeDefinition RegionsClassificationType;
     }
 }

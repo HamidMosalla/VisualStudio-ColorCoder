@@ -12,9 +12,6 @@ namespace VisualStudio_ColorCoder.State
         [DataMember(Order = 1)]
         public Color Interface { get; set; }
 
-        [DataMember(Order = 2)]
-        public Color Class { get; set; }
-
         [DataMember(Order = 3)]
         public Color AbstractClass { get; set; }
 
@@ -56,9 +53,6 @@ namespace VisualStudio_ColorCoder.State
 
         [DataMember(Order = 16)]
         public Color TypeParameter { get; set; }
-
-        [DataMember(Order = 17)]
-        public Color Regions { get; set; }
 
         [DataMember(Order = 18)]
         public Color Local { get; set; }

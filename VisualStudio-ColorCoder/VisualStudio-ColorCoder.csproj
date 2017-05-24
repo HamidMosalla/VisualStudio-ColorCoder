@@ -56,7 +56,6 @@
     <Compile Include="ColorCoderCore\ColorCoderTagger.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerServices.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />
-    <Compile Include="ColorCoderCore\ColorMap.cs" />
     <Compile Include="ColorCoderCore\ContentTypes.cs" />
     <Compile Include="ColorCoderCore\CSharpExtensions.cs" />
     <Compile Include="ColorCoderCore\Extensions.cs" />

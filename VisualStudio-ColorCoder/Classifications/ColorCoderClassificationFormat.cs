@@ -1,35 +1,13 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Windows.Media;
+﻿using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
-using VisualStudio_ColorCoder.ColorCoderCore;
-using VisualStudio_ColorCoder.Settings;
 using VisualStudio_ColorCoder.State;
 
 namespace VisualStudio_ColorCoder.Classifications
 {
-    public static class ColorLoader
-    {
-        public static PresetColors PresetColors = State.Settings.Load();
-    }
-
     public static class ClassificationTypeDefinitions
     {
-        private static bool _settingsLoaded;
-        private static Dictionary<string, Color> _colorMap;
-
-        private static System.Windows.Media.Color GetColor(string classificationName)
-        {
-            if (_settingsLoaded == false)
-            {
-                _colorMap = ColorMap.GetMap();
-                _settingsLoaded = true;
-            }
-            Color color;
-            if (!_colorMap.TryGetValue(classificationName, out color));
-            return color;
-        }
+        public static PresetColors Colors = State.Settings.Load();
 
         [Export(typeof(EditorFormatDefinition))]
         [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Interface)]
@@ -41,21 +19,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public InterfaceClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Interface;
-                this.ForegroundColor = ColorLoader.PresetColors.Interface;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Class)]
-        [Name(ColorCoderClassificationName.Class)]
-        [UserVisible(false)]
-        [Order(After = Priority.Default)]
-        public sealed class ClassClassificationFormat : ClassificationFormatDefinition
-        {
-            public ClassClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Class;
-                this.ForegroundColor = ColorLoader.PresetColors.Class;
+                this.ForegroundColor = Colors.Interface;
             }
         }
 
@@ -69,7 +33,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public AbstractClassClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.AbstractClass;
-                this.ForegroundColor = ColorLoader.PresetColors.AbstractClass;
+                this.ForegroundColor = Colors.AbstractClass;
             }
         }
 
@@ -83,7 +47,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public StaticClassClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.StaticClass;
-                this.ForegroundColor = ColorLoader.PresetColors.StaticClass;
+                this.ForegroundColor = Colors.StaticClass;
             }
         }
 
@@ -97,7 +61,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public StructClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Struct;
-                this.ForegroundColor = ColorLoader.PresetColors.Struct;
+                this.ForegroundColor = Colors.Struct;
             }
         }
 
@@ -111,7 +75,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public EnumClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Enum;
-                this.ForegroundColor = ColorLoader.PresetColors.Enum;
+                this.ForegroundColor = Colors.Enum;
             }
         }
 
@@ -125,7 +89,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public EnumConstantClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.EnumConstant;
-                this.ForegroundColor = ColorLoader.PresetColors.EnumConstant;
+                this.ForegroundColor = Colors.EnumConstant;
             }
         }
 
@@ -139,7 +103,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public ConstructorClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Constructor;
-                this.ForegroundColor = ColorLoader.PresetColors.Constructor;
+                this.ForegroundColor = Colors.Constructor;
             }
         }
 
@@ -153,7 +117,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public AttributeClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Attribute;
-                this.ForegroundColor = ColorLoader.PresetColors.Attribute;
+                this.ForegroundColor = Colors.Attribute;
             }
         }
 
@@ -167,7 +131,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public FieldClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Field;
-                this.ForegroundColor = ColorLoader.PresetColors.Field;
+                this.ForegroundColor = Colors.Field;
             }
         }
 
@@ -181,7 +145,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public LocalClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Local;
-                this.ForegroundColor = ColorLoader.PresetColors.Local;
+                this.ForegroundColor = Colors.Local;
             }
         }
 
@@ -195,7 +159,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public NamespaceClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Namespace;
-                this.ForegroundColor = ColorLoader.PresetColors.Namespace;
+                this.ForegroundColor = Colors.Namespace;
             }
         }
 
@@ -209,7 +173,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public MethodClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Method;
-                this.ForegroundColor = ColorLoader.PresetColors.Method;
+                this.ForegroundColor = Colors.Method;
                 this.IsBold = true;
                 this.FontRenderingSize = 12;
             }
@@ -225,7 +189,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public StaticMethodClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.StaticMethod;
-                this.ForegroundColor = ColorLoader.PresetColors.StaticMethod;
+                this.ForegroundColor = Colors.StaticMethod;
             }
         }
 
@@ -239,7 +203,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public ExtensionMethodClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.ExtensionMethod;
-                this.ForegroundColor = ColorLoader.PresetColors.ExtensionMethod;
+                this.ForegroundColor = Colors.ExtensionMethod;
             }
         }
 
@@ -253,7 +217,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public PropertyClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Property;
-                this.ForegroundColor = ColorLoader.PresetColors.AutomaticProperty;
+                this.ForegroundColor = Colors.AutomaticProperty;
             }
         }
 
@@ -267,21 +231,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public TypeParameterClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.TypeParameter;
-                this.ForegroundColor = ColorLoader.PresetColors.TypeParameter;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Regions)]
-        [Name(ColorCoderClassificationName.Regions)]
-        [UserVisible(false)]
-        [Order(After = Priority.Default)]
-        public sealed class RegionsClassificationFormat : ClassificationFormatDefinition
-        {
-            public RegionsClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Regions;
-                this.ForegroundColor = ColorLoader.PresetColors.Regions;
+                this.ForegroundColor = Colors.TypeParameter;
             }
         }
     }

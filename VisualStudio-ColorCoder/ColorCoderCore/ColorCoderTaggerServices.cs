@@ -165,6 +165,11 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
                     classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.EnumConstant, out IClassificationType classificationValue);
                     return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
                 }
+                if (symbol.ContainingType.TypeKind == TypeKind.Interface)
+                {
+                    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Interface, out IClassificationType classificationValue);
+                    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+                }
                 else
                 {
                     classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Field, out IClassificationType classificationValue);

@@ -70,10 +70,6 @@ namespace VisualStudio_ColorCoder
         public Color Interface { get; set; }
 
         [Category(ColorSubCategory)]
-        [DisplayName("Class")]
-        public Color Class { get; set; }
-
-        [Category(ColorSubCategory)]
         [DisplayName("Abstract Class")]
         public Color AbstractClass { get; set; }
 
@@ -140,7 +136,6 @@ namespace VisualStudio_ColorCoder
 
             //Preset = settings.Preset;
             Interface = settings.Interface.ToDrawingColor();
-            Class = settings.Class.ToDrawingColor();
             AbstractClass = settings.AbstractClass.ToDrawingColor();
             StaticClass = settings.StaticClass.ToDrawingColor();
             Struct = settings.Struct.ToDrawingColor();
@@ -155,6 +150,7 @@ namespace VisualStudio_ColorCoder
             ExtensionMethod = settings.ExtensionMethod.ToDrawingColor();
             AutomaticProperty = settings.AutomaticProperty.ToDrawingColor();
             Parameter = settings.TypeParameter.ToDrawingColor();
+            Local = settings.Local.ToDrawingColor();
         }
 
         public override void SaveSettingsToStorage()
@@ -165,7 +161,6 @@ namespace VisualStudio_ColorCoder
                 //for this you can create to separate setting file on disk and load them separately, first apply the preset and then apply the custom colors
                 //Preset = Preset,
                 Interface = Interface.ToMediaColor(),
-                Class = Class.ToMediaColor(),
                 AbstractClass = AbstractClass.ToMediaColor(),
                 StaticClass = StaticClass.ToMediaColor(),
                 Struct = Struct.ToMediaColor(),
@@ -179,7 +174,8 @@ namespace VisualStudio_ColorCoder
                 StaticMethod = StaticMethod.ToMediaColor(),
                 ExtensionMethod = ExtensionMethod.ToMediaColor(),
                 AutomaticProperty = AutomaticProperty.ToMediaColor(),
-                TypeParameter = Parameter.ToMediaColor()
+                TypeParameter = Parameter.ToMediaColor(),
+                Local = Local.ToMediaColor()
             };
             State.Settings.Save(settings);
         }
