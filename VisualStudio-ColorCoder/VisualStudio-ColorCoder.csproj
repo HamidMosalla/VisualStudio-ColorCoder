@@ -50,8 +50,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Classifications\ColorClassifier.cs" />
-    <Compile Include="Classifications\ColorClassifierProvider.cs" />
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
     <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />

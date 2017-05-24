@@ -1,4 +1,5 @@
 using System.Windows.Media;
+using VisualStudio_ColorCoder.State;
 
 namespace VisualStudio_ColorCoder.Settings
 {

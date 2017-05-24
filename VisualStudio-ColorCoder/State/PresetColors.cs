@@ -1,9 +1,8 @@
-
 using System.Runtime.Serialization;
 using System.Windows.Media;
+using VisualStudio_ColorCoder.Settings;
 
-
-namespace VisualStudio_ColorCoder.Settings
+namespace VisualStudio_ColorCoder.State
 {
     public class PresetColors
     {

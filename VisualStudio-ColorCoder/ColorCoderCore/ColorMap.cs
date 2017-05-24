@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Media;
 using VisualStudio_ColorCoder.Classifications;
-using VisualStudio_ColorCoder.Settings;
 
 namespace VisualStudio_ColorCoder.ColorCoderCore
 {

@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 using VisualStudio_ColorCoder.ColorCoderCore;
 using VisualStudio_ColorCoder.Settings;
+using VisualStudio_ColorCoder.State;
 
 namespace VisualStudio_ColorCoder.Classifications
 {
@@ -187,7 +188,7 @@ namespace VisualStudio_ColorCoder.Classifications
         [Export(typeof(EditorFormatDefinition))]
         [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Namespace)]
         [Name(ColorCoderClassificationName.Namespace)]
-        [UserVisible(false)]
+        [UserVisible(true)]
         [Order(After = Priority.Default)]
         public sealed class NamespaceClassificationFormat : ClassificationFormatDefinition
         {

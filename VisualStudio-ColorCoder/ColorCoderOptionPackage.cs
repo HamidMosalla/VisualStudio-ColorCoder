@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Drawing;
 using VisualStudio_ColorCoder.ColorCoderCore;
 using VisualStudio_ColorCoder.Settings;
+using VisualStudio_ColorCoder.State;
 
 
 namespace VisualStudio_ColorCoder

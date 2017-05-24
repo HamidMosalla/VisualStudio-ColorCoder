@@ -27,12 +27,6 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
             _classificationTypeFactory = new ClassificationTypeFactory(classificationRegistry);
             classificationTypeDictionary = _classificationTypeFactory.CreateClassificationTypes();
             _colorCoderTaggerServices = new ColorCoderTaggerServices();
-            TagsChanged += ColorCoderTagger_TagsChanged;
-        }
-
-        private void ColorCoderTagger_TagsChanged(object sender, SnapshotSpanEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<ITagSpan<IClassificationTag>> GetTags(NormalizedSnapshotSpanCollection spans)

@@ -4,23 +4,23 @@ namespace VisualStudio_ColorCoder.Classifications
 {
     class ColorCoderClassificationName
     {
-        public const String Interface             = "color-coder.interface";
-        public const String Class                 = "color-coder.class";
-        public const String AbstractClass         = "color-coder.abstractClass";
-        public const String StaticClass           = "color-coder.staticClass";
-        public const String Struct                = "color-coder.struct";
-        public const String Enum                  = "color-coder.enum";
-        public const String EnumConstant          = "color-coder.enumConstant";
-        public const String Constructor           = "color-coder.constructor";
-        public const String Attribute             = "color-coder.attribute";
-        public const String Field                 = "color-coder.field";
-        public const String Local                 = "color-coder.local";
-        public const String Namespace             = "color-coder.namespace";
-        public const String Method                = "color-coder.method";
-        public const String StaticMethod          = "color-coder.staticMethod";
-        public const String ExtensionMethod       = "color-coder.extensionMethod";
-        public const String Property              = "color-coder.property";
-        public const String TypeParameter         = "color-coder.typeParameter";
-        public const String Regions               = "color-coder.regions";
+        public const String Interface             = "ColorCoder Interface";
+        public const String Class                 = "ColorCoder Class";
+        public const String AbstractClass         = "ColorCoder AbstractClass";
+        public const String StaticClass           = "ColorCoder StaticClass";
+        public const String Struct                = "ColorCoder Struct";
+        public const String Enum                  = "ColorCoder Enum";
+        public const String EnumConstant          = "ColorCoder EnumConstant";
+        public const String Constructor           = "ColorCoder Constructor";
+        public const String Attribute             = "ColorCoder Attribute";
+        public const String Field                 = "ColorCoder Field";
+        public const String Local                 = "ColorCoder Local";
+        public const String Namespace             = "ColorCoder Namespace";
+        public const String Method                = "ColorCoder Method";
+        public const String StaticMethod          = "ColorCoder StaticMethod";
+        public const String ExtensionMethod       = "ColorCoder ExtensionMethod";
+        public const String Property              = "ColorCoder Property";
+        public const String TypeParameter         = "ColorCoder TypeParameter";
+        public const String Regions               = "ColorCoder Regions";
     }
 }
