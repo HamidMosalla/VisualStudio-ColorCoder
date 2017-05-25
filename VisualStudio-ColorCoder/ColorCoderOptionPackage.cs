@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -11,6 +12,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Drawing;
+using VisualStudio_ColorCoder.Classifications;
 using VisualStudio_ColorCoder.ColorCoderCore;
 using VisualStudio_ColorCoder.Settings;
 using VisualStudio_ColorCoder.State;
@@ -18,6 +20,7 @@ using VisualStudio_ColorCoder.State;
 
 namespace VisualStudio_ColorCoder
 {
+    [Guid(Guids.PresetOptionGrid)]
     public class PresetOptionGrid : DialogPage
     {
         private readonly PresetFactory _presetFactory;
@@ -52,13 +55,16 @@ namespace VisualStudio_ColorCoder
         }
     }
 
+    [Guid(Guids.ChangeColorOptionGrid)]
     public class ChangeColorOptionGrid : DialogPage
     {
         private PresetFactory _presetFactory;
+        private ColorStorage colorStorage;
 
         public ChangeColorOptionGrid()
         {
             this._presetFactory = new PresetFactory();
+            
         }
 
         private const string ColorSubCategory = "Colors";
@@ -129,6 +135,50 @@ namespace VisualStudio_ColorCoder
         [DisplayName("TypeParameter")]
         public Color Parameter { get; set; }
 
+        public void Load()
+        {
+            Guid category = new Guid(Guids.ChangeColorOptionGrid);
+
+            uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
+                              | __FCSTORAGEFLAGS.FCSF_NOAUTOCOLORS
+                              | __FCSTORAGEFLAGS.FCSF_READONLY);
+
+            var hr1 = colorStorage.Storage.OpenCategory(ref category, flags);
+            ErrorHandler.ThrowOnFailure(hr1);
+
+            ColorableItemInfo[] colors = new ColorableItemInfo[1];
+            colors[0].crForeground = (uint)ColorTranslator.ToWin32(Namespace);
+            colors[0].bForegroundValid = 1;
+
+            var hrw = colorStorage.Storage.GetItem(ColorCoderClassificationName.Namespace, colors);
+            ErrorHandler.ThrowOnFailure(hrw);
+        }
+
+        public void Save()
+        {
+            Guid category = new Guid(Guids.ChangeColorOptionGrid);
+            uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
+                              | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES);
+            var hr = colorStorage.Storage.OpenCategory(ref category, flags);
+            ErrorHandler.ThrowOnFailure(hr);
+
+            ColorableItemInfo[] colors = new ColorableItemInfo[1];
+            colors[0].crForeground = (uint)ColorTranslator.ToWin32(Namespace);
+            colors[0].bForegroundValid = 1;
+
+            try
+            {
+                var hr1 = colorStorage.Storage.GetItem(ColorCoderClassificationName.Namespace, colors);
+                ErrorHandler.ThrowOnFailure(hr1);
+
+                hr = colorStorage.Storage.SetItem(ColorCoderClassificationName.Namespace, colors);
+                ErrorHandler.ThrowOnFailure(hr);
+            }
+            finally
+            {
+                colorStorage.Storage.CloseCategory();
+            }
+        }
 
         public override void LoadSettingsFromStorage()
         {
@@ -151,6 +201,30 @@ namespace VisualStudio_ColorCoder
             AutomaticProperty = settings.AutomaticProperty.ToDrawingColor();
             Parameter = settings.TypeParameter.ToDrawingColor();
             Local = settings.Local.ToDrawingColor();
+
+            colorStorage = new ColorStorage(this.Site);
+
+            Load();
+        }
+
+        private List<Color> GetColorList()
+        {
+            IVsUIShell2 uiShell2 = (IVsUIShell2)this.GetService(typeof(IVsUIShell));
+           // var something = uiShell2.GetVSSysColorEx()
+
+            IVsUIShell uiShell = (IVsUIShell)this.GetService(typeof(IVsUIShell));
+
+            List<Color> result = new List<Color>();
+
+            foreach (VSSYSCOLOR vsSysColor in System.Enum.GetValues(typeof(VSSYSCOLOR)))
+            {
+                uint win32Color;
+                uiShell.GetVSSysColor(vsSysColor, out win32Color);
+                Color color = ColorTranslator.FromWin32((int)win32Color);
+                result.Add(color);
+            }
+
+            return result;
         }
 
         public override void SaveSettingsToStorage()
@@ -178,20 +252,20 @@ namespace VisualStudio_ColorCoder
                 Local = Local.ToMediaColor()
             };
             State.Settings.Save(settings);
+           
+            Save();
         }
     }
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
-    [Guid(ColorCoderOptionPackage.PackageGuidString)]
+    [Guid(Guids.ColorCoderOptionPackage)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
     //TODO: fix the option page priority
     [ProvideOptionPage(typeof(PresetOptionGrid), "ColorCoder", "Presets", 0, 0, true, Sort = 0)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 0, 0, true, Sort = 1)]
     public sealed class ColorCoderOptionPackage : Package
     {
-        public const string PackageGuidString = "0bf71f6b-990b-49ac-809a-940c37a463f3";
-
         public ColorCoderOptionPackage() { }
 
         protected override void Initialize()

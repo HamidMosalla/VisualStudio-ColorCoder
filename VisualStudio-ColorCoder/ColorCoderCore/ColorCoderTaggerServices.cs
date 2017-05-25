@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,11 +29,13 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
             });
 
             return classifiedSpans.Where(c => comparer.Compare(c.ClassificationType, "identifier") == 0);
+            //return classifiedSpans.Where(c => comparer.Compare(c.ClassificationType, "interface name") == 0);
+            //return classifiedSpans.Where(c => comparer.Compare(c.ClassificationType, "keyword") == 0);
+            //return classifiedSpans.Where(c => comparer.Compare(c.ClassificationType, "punctuation") == 0);
         }
 
         internal SyntaxNode GetExpression(SyntaxNode node)
         {
-
             if (node.IsCSharpArgumentSyntaxKind())
             {
                 return ((CSharp.Syntax.ArgumentSyntax)node).Expression;
@@ -74,29 +77,25 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
             IEnumerable<ClassifiedSpan> classifiedSpans = GetIdentifiersInSpans(cache.Workspace, cache.SemanticModel, spans);
 
             foreach (var classifiedSpan in classifiedSpans)
-            {
+              {
                 var node = GetExpression(cache.SyntaxRoot.FindNode(classifiedSpan.TextSpan));
+                //Debug.WriteLine(node.)
                 var symbol = cache.SemanticModel.GetSymbolInfo(node).Symbol ?? cache.SemanticModel.GetDeclaredSymbol(node);
-
                 yield return GetAppropriateTagSpan(node, classifiedSpan, snapshot, symbol, classificationTypeDictionary);
             }
         }
 
         public ITagSpan<IClassificationTag> GetAppropriateTagSpan(SyntaxNode node, ClassifiedSpan span, ITextSnapshot snapshot, ISymbol symbol, Dictionary<string, IClassificationType> classificationTypeDictionary)
         {
+            //classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Namespace, out IClassificationType cla);
+            //return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(cla));
+
             if (symbol?.Kind == SymbolKind.Namespace)
             {
                 classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Namespace, out IClassificationType classificationValue);
 
                 return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
             }
-
-            //if (node.IsCSharpAttributeSyntaxKind())
-            //{
-            //    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Attribute, out IClassificationType classificationValue);
-
-            //    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
-            //}
 
             if (symbol?.Kind == SymbolKind.TypeParameter)
             {
@@ -158,26 +157,50 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
                 }
             }
 
-            if (symbol?.Kind == SymbolKind.NamedType)
+            if (node.IsInterface())
             {
-                if (symbol.ContainingType.TypeKind == TypeKind.Enum)
-                {
-                    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.EnumConstant, out IClassificationType classificationValue);
-                    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
-                }
-                if (symbol.ContainingType.TypeKind == TypeKind.Interface)
-                {
-                    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Interface, out IClassificationType classificationValue);
-                    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
-                }
-                else
-                {
-                    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Field, out IClassificationType classificationValue);
-                    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
-                }
+                
+                classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Interface, out IClassificationType classificationValue);
+                return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
             }
 
-            return null;
+            if (node.IsCSharpStructSyntaxKind())
+            {
+                classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.StaticClass, out IClassificationType classificationValue);
+                return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+            }
+
+            if (symbol?.Kind == SymbolKind.NamedType)
+            {
+                //if (symbol.IsAbstract)
+                //{
+                //    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.AbstractClass, out IClassificationType classificationValue);
+                //    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+                //}
+
+                //if (symbol.IsStatic)
+                //{
+                //    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.StaticClass, out IClassificationType classificationValue);
+                //    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+                //}
+
+                
+
+                //if (node.IsEnumSyntaxKind())
+                //{
+                //    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.StaticClass, out IClassificationType classificationValue);
+                //    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+                //}
+
+                //if (node.IsCSharpAttributeSyntaxKind())
+                //{
+                //    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Attribute, out IClassificationType classificationValue);
+
+                //    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+                //}
+            }
+
+            return null; //Enumerable.Empty<ITagSpan<IClassificationTag>>;
         }
 
         public CacheState ManageCache(ref ProviderCache cache, NormalizedSnapshotSpanCollection spans, ITextBuffer buffer)

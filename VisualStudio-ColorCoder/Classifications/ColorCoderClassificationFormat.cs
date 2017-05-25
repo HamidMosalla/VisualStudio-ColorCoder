@@ -13,7 +13,7 @@ namespace VisualStudio_ColorCoder.Classifications
         [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Interface)]
         [Name(ColorCoderClassificationName.Interface)]
         [UserVisible(false)]
-        [Order(After = Priority.Default)]
+        [Order(After = Priority.Default, Before = Priority.High)]
         public sealed class InterfaceClassificationFormat : ClassificationFormatDefinition
         {
             public InterfaceClassificationFormat()
