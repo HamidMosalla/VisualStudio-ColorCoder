@@ -12,6 +12,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.Win32;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using VisualStudio_ColorCoder.Classifications;
 using VisualStudio_ColorCoder.ColorCoderCore;
 using VisualStudio_ColorCoder.Settings;
@@ -137,7 +138,7 @@ namespace VisualStudio_ColorCoder
 
         public void Load()
         {
-            Guid category = new Guid(Guids.ChangeColorOptionGrid);
+            Guid category = new Guid(FontsAndColorsCategories.TextEditorCategory);
 
             uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
                               | __FCSTORAGEFLAGS.FCSF_NOAUTOCOLORS
@@ -145,20 +146,26 @@ namespace VisualStudio_ColorCoder
 
             var hr1 = colorStorage.Storage.OpenCategory(ref category, flags);
             ErrorHandler.ThrowOnFailure(hr1);
+            try
+            {
+                ColorableItemInfo[] colors = new ColorableItemInfo[1];
 
-            ColorableItemInfo[] colors = new ColorableItemInfo[1];
-            colors[0].crForeground = (uint)ColorTranslator.ToWin32(Namespace);
-            colors[0].bForegroundValid = 1;
-
-            var hrw = colorStorage.Storage.GetItem(ColorCoderClassificationName.Namespace, colors);
-            ErrorHandler.ThrowOnFailure(hrw);
+                var hrw = colorStorage.Storage.GetItem(ColorCoderClassificationName.Namespace, colors);
+                ErrorHandler.ThrowOnFailure(hrw);
+            }
+            finally
+            {
+                colorStorage.Storage.CloseCategory();
+            }
         }
 
         public void Save()
         {
-            Guid category = new Guid(Guids.ChangeColorOptionGrid);
+            Guid category = new Guid(FontsAndColorsCategories.TextEditorCategory);
+
             uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
                               | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES);
+
             var hr = colorStorage.Storage.OpenCategory(ref category, flags);
             ErrorHandler.ThrowOnFailure(hr);
 
@@ -168,9 +175,6 @@ namespace VisualStudio_ColorCoder
 
             try
             {
-                var hr1 = colorStorage.Storage.GetItem(ColorCoderClassificationName.Namespace, colors);
-                ErrorHandler.ThrowOnFailure(hr1);
-
                 hr = colorStorage.Storage.SetItem(ColorCoderClassificationName.Namespace, colors);
                 ErrorHandler.ThrowOnFailure(hr);
             }
@@ -264,13 +268,45 @@ namespace VisualStudio_ColorCoder
     //TODO: fix the option page priority
     [ProvideOptionPage(typeof(PresetOptionGrid), "ColorCoder", "Presets", 0, 0, true, Sort = 0)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 0, 0, true, Sort = 1)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string)]
+    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string)]
+    [ProvideMenuResource(1000, 1)]
     public sealed class ColorCoderOptionPackage : Package
     {
+        public const String USER_OPTIONS_KEY = "VsfUserOptions";
+        private byte[] userOptions;
+
         public ColorCoderOptionPackage() { }
 
         protected override void Initialize()
         {
             base.Initialize();
+            this.AddOptionKey(USER_OPTIONS_KEY);
+        }
+
+        protected override void OnLoadOptions(string key, Stream stream)
+        {
+            base.OnLoadOptions(key, stream);
+            if (key == USER_OPTIONS_KEY)
+            {
+                byte[] data = new byte[stream.Length];
+                stream.Read(data, 0, data.Length);
+                this.userOptions = data;
+            }
+        }
+
+        protected override void OnSaveOptions(string key, Stream stream)
+        {
+            base.OnSaveOptions(key, stream);
+            if (key == USER_OPTIONS_KEY && userOptions != null)
+            {
+                stream.Write(userOptions, 0, userOptions.Length);
+            }
+        }
+
+        public T GetService<T>()
+        {
+            return (T)GetService(typeof(T));
         }
     }
 }
