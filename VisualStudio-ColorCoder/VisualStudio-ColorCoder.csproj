@@ -53,6 +53,7 @@
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
     <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />
+    <Compile Include="ColorCoderCore\ClassificationList.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTagger.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerServices.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />
@@ -68,11 +69,7 @@
     </Compile>
     <Compile Include="Classifications\ClassificationTypeFactory.cs" />
     <Compile Include="State\Log.cs" />
-    <Compile Include="State\Preset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="State\PresetFactory.cs" />
-    <Compile Include="State\Settings.cs" />
-    <Compile Include="State\PresetColors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

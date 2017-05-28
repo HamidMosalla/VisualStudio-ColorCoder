@@ -1,263 +1,180 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using VisualStudio_ColorCoder.Classifications;
 using VisualStudio_ColorCoder.ColorCoderCore;
-using VisualStudio_ColorCoder.Settings;
-using VisualStudio_ColorCoder.State;
 
 
 namespace VisualStudio_ColorCoder
 {
-    [Guid(Guids.PresetOptionGrid)]
-    public class PresetOptionGrid : DialogPage
-    {
-        private readonly PresetFactory _presetFactory;
-
-        public PresetOptionGrid()
-        {
-            this._presetFactory = new PresetFactory();
-
-        }
-
-        private const string PresetSubCategory = "Presets";
-
-        [Category(PresetSubCategory)]
-        [DisplayName("Preset")]
-        [Description("Select from one of the available sets of Presets")]
-        public Preset Preset { get; set; }
-
-        public override void LoadSettingsFromStorage()
-        {
-            //C:\Users\Hamid\AppData\Roaming\VisualStudioColorCoder
-            var settings = State.Settings.Load();
-            Preset = settings.Preset;
-        }
-
-        public override void SaveSettingsToStorage()
-        {
-            if (Preset == Preset.NoPreset) return;
-
-            var settings = _presetFactory.CreateInstance(Preset);
-
-            State.Settings.Save(settings);
-        }
-    }
-
     [Guid(Guids.ChangeColorOptionGrid)]
     public class ChangeColorOptionGrid : DialogPage
     {
-        private PresetFactory _presetFactory;
-        private ColorStorage colorStorage;
-
-        public ChangeColorOptionGrid()
-        {
-            this._presetFactory = new PresetFactory();
-            
-        }
+        private ClassificationList _colors;
 
         private const string ColorSubCategory = "Colors";
 
-        //public Preset Preset { get; set; }
-
         [Category(ColorSubCategory)]
         [DisplayName("Interface")]
-        public Color Interface { get; set; }
+        public Color Interface
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Interface); }
+            set { _colors.Set(ColorCoderClassificationName.Interface, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Abstract Class")]
-        public Color AbstractClass { get; set; }
+        public Color AbstractClass
+        {
+            get { return _colors.Get(ColorCoderClassificationName.AbstractClass); }
+            set { _colors.Set(ColorCoderClassificationName.AbstractClass, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Static Class")]
-        public Color StaticClass { get; set; }
+        public Color StaticClass
+        {
+            get { return _colors.Get(ColorCoderClassificationName.StaticClass); }
+            set { _colors.Set(ColorCoderClassificationName.StaticClass, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Struct")]
-        public Color Struct { get; set; }
+        public Color Struct
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Struct); }
+            set { _colors.Set(ColorCoderClassificationName.Struct, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Enum")]
-        public Color Enum { get; set; }
+        public Color Enum
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Enum); }
+            set { _colors.Set(ColorCoderClassificationName.Enum, value); }
+        }
 
         [Category(ColorSubCategory)]
-        [DisplayName("Local")]
-        public Color Local { get; set; }
+        [DisplayName("Local Variable")]
+        public Color Local
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Local); }
+            set { _colors.Set(ColorCoderClassificationName.Local, value); }
+        }
 
         [Category(ColorSubCategory)]
-        [DisplayName("Enum Constant")]
-        public Color EnumConstant { get; set; }
+        [DisplayName("Enum Member")]
+        public Color EnumConstant
+        {
+            get { return _colors.Get(ColorCoderClassificationName.EnumConstant); }
+            set { _colors.Set(ColorCoderClassificationName.EnumConstant, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Constructor")]
-        public Color Constructor { get; set; }
+        public Color Constructor
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Constructor); }
+            set { _colors.Set(ColorCoderClassificationName.Constructor, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Attribute")]
-        public Color Attribute { get; set; }
+        public Color Attribute
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Attribute); }
+            set { _colors.Set(ColorCoderClassificationName.Attribute, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Field")]
-        public Color Field { get; set; }
+        public Color Field
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Field); }
+            set { _colors.Set(ColorCoderClassificationName.Field, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Namespace")]
-        public Color Namespace { get; set; }
+        public Color Namespace
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Namespace); }
+            set { _colors.Set(ColorCoderClassificationName.Namespace, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Method")]
-        public Color Method { get; set; }
+        public Color Method
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Method); }
+            set { _colors.Set(ColorCoderClassificationName.Method, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Static Method")]
-        public Color StaticMethod { get; set; }
+        public Color StaticMethod
+        {
+            get { return _colors.Get(ColorCoderClassificationName.StaticMethod); }
+            set { _colors.Set(ColorCoderClassificationName.StaticMethod, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Extension Method")]
-        public Color ExtensionMethod { get; set; }
+        public Color ExtensionMethod
+        {
+            get { return _colors.Get(ColorCoderClassificationName.ExtensionMethod); }
+            set { _colors.Set(ColorCoderClassificationName.ExtensionMethod, value); }
+        }
 
         [Category(ColorSubCategory)]
-        [DisplayName("Automatic Property")]
-        public Color AutomaticProperty { get; set; }
+        [DisplayName("Property")]
+        public Color AutomaticProperty
+        {
+            get { return _colors.Get(ColorCoderClassificationName.Property); }
+            set { _colors.Set(ColorCoderClassificationName.Property, value); }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("TypeParameter")]
-        public Color Parameter { get; set; }
-
-        public void Load()
+        public Color Parameter
         {
-            Guid category = new Guid(FontsAndColorsCategories.TextEditorCategory);
-
-            uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
-                              | __FCSTORAGEFLAGS.FCSF_NOAUTOCOLORS
-                              | __FCSTORAGEFLAGS.FCSF_READONLY);
-
-            var hr1 = colorStorage.Storage.OpenCategory(ref category, flags);
-            ErrorHandler.ThrowOnFailure(hr1);
-            try
-            {
-                ColorableItemInfo[] colors = new ColorableItemInfo[1];
-
-                var hrw = colorStorage.Storage.GetItem(ColorCoderClassificationName.Namespace, colors);
-                ErrorHandler.ThrowOnFailure(hrw);
-            }
-            finally
-            {
-                colorStorage.Storage.CloseCategory();
-            }
-        }
-
-        public void Save()
-        {
-            Guid category = new Guid(FontsAndColorsCategories.TextEditorCategory);
-
-            uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
-                              | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES);
-
-            var hr = colorStorage.Storage.OpenCategory(ref category, flags);
-            ErrorHandler.ThrowOnFailure(hr);
-
-            ColorableItemInfo[] colors = new ColorableItemInfo[1];
-            colors[0].crForeground = (uint)ColorTranslator.ToWin32(Namespace);
-            colors[0].bForegroundValid = 1;
-
-            try
-            {
-                hr = colorStorage.Storage.SetItem(ColorCoderClassificationName.Namespace, colors);
-                ErrorHandler.ThrowOnFailure(hr);
-            }
-            finally
-            {
-                colorStorage.Storage.CloseCategory();
-            }
+            get { return _colors.Get(ColorCoderClassificationName.TypeParameter); }
+            set { _colors.Set(ColorCoderClassificationName.TypeParameter, value); }
         }
 
         public override void LoadSettingsFromStorage()
         {
-            var settings = State.Settings.Load();
+            this._colors = new ClassificationList(new ColorStorage(this.Site));
 
-            //Preset = settings.Preset;
-            Interface = settings.Interface.ToDrawingColor();
-            AbstractClass = settings.AbstractClass.ToDrawingColor();
-            StaticClass = settings.StaticClass.ToDrawingColor();
-            Struct = settings.Struct.ToDrawingColor();
-            Enum = settings.Enum.ToDrawingColor();
-            EnumConstant = settings.EnumConstant.ToDrawingColor();
-            Constructor = settings.Constructor.ToDrawingColor();
-            Attribute = settings.Attribute.ToDrawingColor();
-            Field = settings.Field.ToDrawingColor();
-            Namespace = settings.Namespace.ToDrawingColor();
-            Method = settings.Method.ToDrawingColor();
-            StaticMethod = settings.StaticMethod.ToDrawingColor();
-            ExtensionMethod = settings.ExtensionMethod.ToDrawingColor();
-            AutomaticProperty = settings.AutomaticProperty.ToDrawingColor();
-            Parameter = settings.TypeParameter.ToDrawingColor();
-            Local = settings.Local.ToDrawingColor();
-
-            colorStorage = new ColorStorage(this.Site);
-
-            Load();
-        }
-
-        private List<Color> GetColorList()
-        {
-            IVsUIShell2 uiShell2 = (IVsUIShell2)this.GetService(typeof(IVsUIShell));
-           // var something = uiShell2.GetVSSysColorEx()
-
-            IVsUIShell uiShell = (IVsUIShell)this.GetService(typeof(IVsUIShell));
-
-            List<Color> result = new List<Color>();
-
-            foreach (VSSYSCOLOR vsSysColor in System.Enum.GetValues(typeof(VSSYSCOLOR)))
-            {
-                uint win32Color;
-                uiShell.GetVSSysColor(vsSysColor, out win32Color);
-                Color color = ColorTranslator.FromWin32((int)win32Color);
-                result.Add(color);
-            }
-
-            return result;
+            _colors.Load(
+                ColorCoderClassificationName.AbstractClass,
+                ColorCoderClassificationName.Attribute,
+                ColorCoderClassificationName.Constructor,
+                ColorCoderClassificationName.Enum,
+                ColorCoderClassificationName.EnumConstant,
+                ColorCoderClassificationName.ExtensionMethod,
+                ColorCoderClassificationName.Field,
+                ColorCoderClassificationName.Interface,
+                ColorCoderClassificationName.Local,
+                ColorCoderClassificationName.Method,
+                ColorCoderClassificationName.Namespace,
+                ColorCoderClassificationName.Property,
+                ColorCoderClassificationName.StaticClass,
+                ColorCoderClassificationName.StaticMethod,
+                ColorCoderClassificationName.Struct,
+                ColorCoderClassificationName.TypeParameter
+                );
         }
 
         public override void SaveSettingsToStorage()
         {
-            var settings = new PresetColors
-            {
-                //TODO: do something here to keep the preset colors and change only the filled colors
-                //for this you can create to separate setting file on disk and load them separately, first apply the preset and then apply the custom colors
-                //Preset = Preset,
-                Interface = Interface.ToMediaColor(),
-                AbstractClass = AbstractClass.ToMediaColor(),
-                StaticClass = StaticClass.ToMediaColor(),
-                Struct = Struct.ToMediaColor(),
-                Enum = Enum.ToMediaColor(),
-                EnumConstant = EnumConstant.ToMediaColor(),
-                Constructor = Constructor.ToMediaColor(),
-                Attribute = Attribute.ToMediaColor(),
-                Field = Field.ToMediaColor(),
-                Namespace = Namespace.ToMediaColor(),
-                Method = Method.ToMediaColor(),
-                StaticMethod = StaticMethod.ToMediaColor(),
-                ExtensionMethod = ExtensionMethod.ToMediaColor(),
-                AutomaticProperty = AutomaticProperty.ToMediaColor(),
-                TypeParameter = Parameter.ToMediaColor(),
-                Local = Local.ToMediaColor()
-            };
-            State.Settings.Save(settings);
-           
-            Save();
+            //_colors.Save();
         }
     }
 
@@ -265,48 +182,14 @@ namespace VisualStudio_ColorCoder
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(Guids.ColorCoderOptionPackage)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    //TODO: fix the option page priority
-    [ProvideOptionPage(typeof(PresetOptionGrid), "ColorCoder", "Presets", 0, 0, true, Sort = 0)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 0, 0, true, Sort = 1)]
-    [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string)]
-    [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string)]
-    [ProvideMenuResource(1000, 1)]
     public sealed class ColorCoderOptionPackage : Package
     {
-        public const String USER_OPTIONS_KEY = "VsfUserOptions";
-        private byte[] userOptions;
-
         public ColorCoderOptionPackage() { }
 
         protected override void Initialize()
         {
             base.Initialize();
-            this.AddOptionKey(USER_OPTIONS_KEY);
-        }
-
-        protected override void OnLoadOptions(string key, Stream stream)
-        {
-            base.OnLoadOptions(key, stream);
-            if (key == USER_OPTIONS_KEY)
-            {
-                byte[] data = new byte[stream.Length];
-                stream.Read(data, 0, data.Length);
-                this.userOptions = data;
-            }
-        }
-
-        protected override void OnSaveOptions(string key, Stream stream)
-        {
-            base.OnSaveOptions(key, stream);
-            if (key == USER_OPTIONS_KEY && userOptions != null)
-            {
-                stream.Write(userOptions, 0, userOptions.Length);
-            }
-        }
-
-        public T GetService<T>()
-        {
-            return (T)GetService(typeof(T));
         }
     }
 }
