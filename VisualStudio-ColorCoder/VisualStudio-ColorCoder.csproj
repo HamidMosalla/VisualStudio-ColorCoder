@@ -53,17 +53,17 @@
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
     <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />
-    <Compile Include="ColorCoderCore\ClassificationList.cs" />
+    <Compile Include="ColorCoderCore\ColorManager.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTagger.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerServices.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />
     <Compile Include="ColorCoderCore\ColorStorage.cs" />
-    <Compile Include="ColorCoderCore\ContentTypes.cs" />
-    <Compile Include="ColorCoderCore\CSharpExtensions.cs" />
-    <Compile Include="ColorCoderCore\Extensions.cs" />
-    <Compile Include="ColorCoderCore\Guids.cs" />
+    <Compile Include="Classifications\ContentTypes.cs" />
+    <Compile Include="Extensions\CSharpExtensions.cs" />
+    <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Classifications\Guids.cs" />
     <Compile Include="ColorCoderCore\ProviderCache.cs" />
-    <Compile Include="ColorCoderCore\VBExtensions.cs" />
+    <Compile Include="Extensions\VBExtensions.cs" />
     <Compile Include="ColorCoderOptionPackage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -80,6 +80,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\color-coder.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Assets\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\ColorCoderOptionPackage.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VisualStudio_ColorCoder.ColorCoderCore
+namespace VisualStudio_ColorCoder.Classifications
 {
     public static class Guids
     {

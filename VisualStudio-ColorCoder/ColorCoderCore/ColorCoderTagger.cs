@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.CodeAnalysis.Classification;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Tagging;
 using VisualStudio_ColorCoder.Classifications;
-using Microsoft.CodeAnalysis;
 using CacheState = VisualStudio_ColorCoder.ColorCoderCore.ColorCoderTaggerServices.CacheState;
 
 namespace VisualStudio_ColorCoder.ColorCoderCore

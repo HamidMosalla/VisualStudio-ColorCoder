@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DrawingColor = System.Drawing.Color;
+﻿using DrawingColor = System.Drawing.Color;
 using MediaColor = System.Windows.Media.Color;
 
-namespace VisualStudio_ColorCoder.ColorCoderCore
+namespace VisualStudio_ColorCoder.Extensions
 {
     public static class Extensions
     {

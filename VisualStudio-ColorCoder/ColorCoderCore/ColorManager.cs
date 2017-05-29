@@ -6,18 +6,19 @@ using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using VisualStudio_ColorCoder.Classifications;
+using VisualStudio_ColorCoder.Extensions;
 using Color = System.Drawing.Color;
 
 namespace VisualStudio_ColorCoder.ColorCoderCore
 {
-    public class ClassificationList
+    public class ColorManager
     {
         private readonly ColorStorage _colorStorage;
         private readonly IDictionary<String, ColorableItemInfo[]> _classifications;
         private EnvDTE80.DTE2 dte;
         private FontsAndColorsItems _fontsAndColorsItems;
 
-        public ClassificationList(ColorStorage colorStorage)
+        public ColorManager(ColorStorage colorStorage)
         {
             _colorStorage = colorStorage;
             _classifications = new Dictionary<String, ColorableItemInfo[]>();
