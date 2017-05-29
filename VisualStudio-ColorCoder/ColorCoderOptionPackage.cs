@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 using System.ComponentModel;
 using System.Drawing;
-using System.IO;
 using VisualStudio_ColorCoder.Classifications;
 using VisualStudio_ColorCoder.ColorCoderCore;
 
@@ -21,51 +17,98 @@ namespace VisualStudio_ColorCoder
         private const string ColorSubCategory = "Colors";
 
         [Category(ColorSubCategory)]
+        [DisplayName("Class")]
+        public Color Class
+        {
+            get { return _colors.GetBuiltIn(ColorCoderClassificationName.Class); }
+            set { _colors.SetBuiltIn(ColorCoderClassificationName.Class, value); }
+        }
+
+        [Category(ColorSubCategory)]
+        [DisplayName("Delegate")]
+        public Color Delegate
+        {
+            get { return _colors.GetBuiltIn(ColorCoderClassificationName.Delegate); }
+            set { _colors.SetBuiltIn(ColorCoderClassificationName.Delegate, value); }
+        }
+
+        [Category(ColorSubCategory)]
         [DisplayName("Interface")]
         public Color Interface
         {
-            get { return _colors.Get(ColorCoderClassificationName.Interface); }
-            set { _colors.Set(ColorCoderClassificationName.Interface, value); }
-        }
-
-        [Category(ColorSubCategory)]
-        [DisplayName("Abstract Class")]
-        public Color AbstractClass
-        {
-            get { return _colors.Get(ColorCoderClassificationName.AbstractClass); }
-            set { _colors.Set(ColorCoderClassificationName.AbstractClass, value); }
-        }
-
-        [Category(ColorSubCategory)]
-        [DisplayName("Static Class")]
-        public Color StaticClass
-        {
-            get { return _colors.Get(ColorCoderClassificationName.StaticClass); }
-            set { _colors.Set(ColorCoderClassificationName.StaticClass, value); }
+            get { return _colors.GetBuiltIn(ColorCoderClassificationName.Interface); }
+            set { _colors.SetBuiltIn(ColorCoderClassificationName.Interface, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Struct")]
         public Color Struct
         {
-            get { return _colors.Get(ColorCoderClassificationName.Struct); }
-            set { _colors.Set(ColorCoderClassificationName.Struct, value); }
+            get { return _colors.GetBuiltIn(ColorCoderClassificationName.Struct); }
+            set { _colors.SetBuiltIn(ColorCoderClassificationName.Struct, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Enum")]
         public Color Enum
         {
-            get { return _colors.Get(ColorCoderClassificationName.Enum); }
-            set { _colors.Set(ColorCoderClassificationName.Enum, value); }
+            get { return _colors.GetBuiltIn(ColorCoderClassificationName.Enum); }
+            set { _colors.SetBuiltIn(ColorCoderClassificationName.Enum, value); }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //[Category(ColorSubCategory)]
+        //[DisplayName("Abstract Class")]
+        //public Color AbstractClass
+        //{
+        //    get { return _colors.Get(ColorCoderClassificationName.AbstractClass); }
+        //    set { _colors.Set(ColorCoderClassificationName.AbstractClass, value); }
+        //}
+
+        //[Category(ColorSubCategory)]
+        //[DisplayName("Static Class")]
+        //public Color StaticClass
+        //{
+        //    get { return _colors.Get(ColorCoderClassificationName.StaticClass); }
+        //    set { _colors.Set(ColorCoderClassificationName.StaticClass, value); }
+        //}
+
+        //[Category(ColorSubCategory)]
+        //[DisplayName("Attribute")]
+        //public Color Attribute
+        //{
+        //    get { return _colors.Get(ColorCoderClassificationName.Attribute); }
+        //    set { _colors.Set(ColorCoderClassificationName.Attribute, value); }
+        //}
+
+
+
+
+
+
+
+
+
+
+
 
         [Category(ColorSubCategory)]
         [DisplayName("Local Variable")]
         public Color Local
         {
-            get { return _colors.Get(ColorCoderClassificationName.Local); }
-            set { _colors.Set(ColorCoderClassificationName.Local, value); }
+            get { return _colors.Get(ColorCoderClassificationName.LocalVariable); }
+            set { _colors.Set(ColorCoderClassificationName.LocalVariable, value); }
         }
 
         [Category(ColorSubCategory)]
@@ -82,14 +125,6 @@ namespace VisualStudio_ColorCoder
         {
             get { return _colors.Get(ColorCoderClassificationName.Constructor); }
             set { _colors.Set(ColorCoderClassificationName.Constructor, value); }
-        }
-
-        [Category(ColorSubCategory)]
-        [DisplayName("Attribute")]
-        public Color Attribute
-        {
-            get { return _colors.Get(ColorCoderClassificationName.Attribute); }
-            set { _colors.Set(ColorCoderClassificationName.Attribute, value); }
         }
 
         [Category(ColorSubCategory)]
@@ -153,21 +188,18 @@ namespace VisualStudio_ColorCoder
             this._colors = new ClassificationList(new ColorStorage(this.Site));
 
             _colors.Load(
-                ColorCoderClassificationName.AbstractClass,
-                ColorCoderClassificationName.Attribute,
+                //ColorCoderClassificationName.AbstractClass,
+                //ColorCoderClassificationName.Attribute,
+                //ColorCoderClassificationName.StaticClass,
                 ColorCoderClassificationName.Constructor,
-                ColorCoderClassificationName.Enum,
                 ColorCoderClassificationName.EnumConstant,
                 ColorCoderClassificationName.ExtensionMethod,
                 ColorCoderClassificationName.Field,
-                ColorCoderClassificationName.Interface,
-                ColorCoderClassificationName.Local,
+                ColorCoderClassificationName.LocalVariable,
                 ColorCoderClassificationName.Method,
                 ColorCoderClassificationName.Namespace,
                 ColorCoderClassificationName.Property,
-                ColorCoderClassificationName.StaticClass,
                 ColorCoderClassificationName.StaticMethod,
-                ColorCoderClassificationName.Struct,
                 ColorCoderClassificationName.TypeParameter
                 );
         }

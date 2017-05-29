@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -10,11 +11,15 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
     {
         private readonly ColorStorage _colorStorage;
         private readonly IDictionary<String, ColorableItemInfo[]> _classifications;
+        private EnvDTE80.DTE2 dte;
+        private FontsAndColorsItems _fontsAndColorsItems;
 
         public ClassificationList(ColorStorage colorStorage)
         {
             _colorStorage = colorStorage;
             _classifications = new Dictionary<String, ColorableItemInfo[]>();
+            dte = (EnvDTE80.DTE2)System.Runtime.InteropServices.Marshal.GetActiveObject("VisualStudio.DTE.15.0");
+            _fontsAndColorsItems = dte.Properties["FontsAndColors", "TextEditor"].Item("FontsAndColorsItems").Object as FontsAndColorsItems;
         }
 
         public void Load(params String[] classificationNames)
@@ -48,6 +53,7 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
             }
         }
 
+        //something
         public void Save()
         {
             Guid category = new Guid(Guids.TextEditorCategory);
@@ -106,6 +112,18 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
             {
                 _colorStorage.Storage.CloseCategory();
             }
+        }
+
+        public Color GetBuiltIn(String classificationName)
+        {
+            var colorItem = _fontsAndColorsItems.Item(classificationName);
+            return ColorTranslator.FromWin32((int) colorItem.Foreground);
+        }
+
+        public void SetBuiltIn(String classificationName, Color color)
+        {
+            var colorItem = _fontsAndColorsItems.Item(classificationName);
+            colorItem.Foreground = (uint)ColorTranslator.ToWin32(color);
         }
     }
 }

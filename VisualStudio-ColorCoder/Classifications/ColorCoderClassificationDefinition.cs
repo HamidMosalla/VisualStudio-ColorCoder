@@ -40,7 +40,7 @@ namespace VisualStudio_ColorCoder.Classifications
         [Export, Name(ColorCoderClassificationName.Field)]
         internal static ClassificationTypeDefinition FieldClassificationType;
 
-        [Export, Name(ColorCoderClassificationName.Local)]
+        [Export, Name(ColorCoderClassificationName.LocalVariable)]
         internal static ClassificationTypeDefinition LocalClassificationType;
 
 
