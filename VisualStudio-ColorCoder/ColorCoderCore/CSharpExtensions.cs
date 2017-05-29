@@ -22,7 +22,8 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
 
         public static bool IsCSharpAttributeSyntaxKind(this SyntaxNode node)
         {
-            return node.Kind() == SyntaxKind.Attribute;
+            //return node.Kind() == SyntaxKind.Attribute;
+            return (node.Parent.Kind() == SyntaxKind.IdentifierName && node.Parent.Kind() == SyntaxKind.Attribute);
         }
 
         public static bool IsCSharpConstructorSyntaxKind(this SyntaxNode node)

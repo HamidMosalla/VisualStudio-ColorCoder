@@ -56,33 +56,13 @@ namespace VisualStudio_ColorCoder
             set { _colors.SetBuiltIn(ColorCoderClassificationName.Enum, value); }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        //[Category(ColorSubCategory)]
-        //[DisplayName("Abstract Class")]
-        //public Color AbstractClass
-        //{
-        //    get { return _colors.Get(ColorCoderClassificationName.AbstractClass); }
-        //    set { _colors.Set(ColorCoderClassificationName.AbstractClass, value); }
-        //}
-
-        //[Category(ColorSubCategory)]
-        //[DisplayName("Static Class")]
-        //public Color StaticClass
-        //{
-        //    get { return _colors.Get(ColorCoderClassificationName.StaticClass); }
-        //    set { _colors.Set(ColorCoderClassificationName.StaticClass, value); }
-        //}
+        [Category(ColorSubCategory)]
+        [DisplayName("Generic Type Parameter")]
+        public Color GenericTypeParameter
+        {
+            get { return _colors.GetBuiltIn(ColorCoderClassificationName.GenericTypeParameter); }
+            set { _colors.SetBuiltIn(ColorCoderClassificationName.GenericTypeParameter, value); }
+        }
 
         //[Category(ColorSubCategory)]
         //[DisplayName("Attribute")]
@@ -91,17 +71,6 @@ namespace VisualStudio_ColorCoder
         //    get { return _colors.Get(ColorCoderClassificationName.Attribute); }
         //    set { _colors.Set(ColorCoderClassificationName.Attribute, value); }
         //}
-
-
-
-
-
-
-
-
-
-
-
 
         [Category(ColorSubCategory)]
         [DisplayName("Local Variable")]
@@ -113,10 +82,10 @@ namespace VisualStudio_ColorCoder
 
         [Category(ColorSubCategory)]
         [DisplayName("Enum Member")]
-        public Color EnumConstant
+        public Color EnumMember
         {
-            get { return _colors.Get(ColorCoderClassificationName.EnumConstant); }
-            set { _colors.Set(ColorCoderClassificationName.EnumConstant, value); }
+            get { return _colors.Get(ColorCoderClassificationName.EnumMember); }
+            set { _colors.Set(ColorCoderClassificationName.EnumMember, value); }
         }
 
         [Category(ColorSubCategory)]
@@ -176,11 +145,11 @@ namespace VisualStudio_ColorCoder
         }
 
         [Category(ColorSubCategory)]
-        [DisplayName("TypeParameter")]
+        [DisplayName("Parameter")]
         public Color Parameter
         {
-            get { return _colors.Get(ColorCoderClassificationName.TypeParameter); }
-            set { _colors.Set(ColorCoderClassificationName.TypeParameter, value); }
+            get { return _colors.Get(ColorCoderClassificationName.Parameter); }
+            set { _colors.Set(ColorCoderClassificationName.Parameter, value); }
         }
 
         public override void LoadSettingsFromStorage()
@@ -188,11 +157,9 @@ namespace VisualStudio_ColorCoder
             this._colors = new ClassificationList(new ColorStorage(this.Site));
 
             _colors.Load(
-                //ColorCoderClassificationName.AbstractClass,
                 //ColorCoderClassificationName.Attribute,
-                //ColorCoderClassificationName.StaticClass,
                 ColorCoderClassificationName.Constructor,
-                ColorCoderClassificationName.EnumConstant,
+                ColorCoderClassificationName.EnumMember,
                 ColorCoderClassificationName.ExtensionMethod,
                 ColorCoderClassificationName.Field,
                 ColorCoderClassificationName.LocalVariable,
@@ -200,7 +167,7 @@ namespace VisualStudio_ColorCoder
                 ColorCoderClassificationName.Namespace,
                 ColorCoderClassificationName.Property,
                 ColorCoderClassificationName.StaticMethod,
-                ColorCoderClassificationName.TypeParameter
+                ColorCoderClassificationName.Parameter
                 );
         }
 

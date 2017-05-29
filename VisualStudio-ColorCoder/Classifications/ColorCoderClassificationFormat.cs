@@ -8,44 +8,16 @@ namespace VisualStudio_ColorCoder.Classifications
 {
     public static class ClassificationTypeDefinitions
     {
-        //[Export(typeof(EditorFormatDefinition))]
-        //[ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.AbstractClass)]
-        //[Name(ColorCoderClassificationName.AbstractClass)]
-        //[UserVisible(true)]
-        //[Order(After = Priority.Default)]
-        //public sealed class AbstractClassClassificationFormat : ClassificationFormatDefinition
-        //{
-        //    public AbstractClassClassificationFormat()
-        //    {
-        //        this.DisplayName = ColorCoderClassificationName.AbstractClass;
-        //        this.ForegroundColor = Colors.Black;
-        //    }
-        //}
-
-        //[Export(typeof(EditorFormatDefinition))]
-        //[ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.StaticClass)]
-        //[Name(ColorCoderClassificationName.StaticClass)]
-        //[UserVisible(true)]
-        //[Order(After = Priority.Default)]
-        //public sealed class StaticClassClassificationFormat : ClassificationFormatDefinition
-        //{
-        //    public StaticClassClassificationFormat()
-        //    {
-        //        this.DisplayName = ColorCoderClassificationName.StaticClass;
-        //        this.ForegroundColor = Colors.Black;
-        //    }
-        //}
-
         [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.EnumConstant)]
-        [Name(ColorCoderClassificationName.EnumConstant)]
+        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.EnumMember)]
+        [Name(ColorCoderClassificationName.EnumMember)]
         [UserVisible(true)]
         [Order(After = Priority.Default)]
         public sealed class EnumConstantClassificationFormat : ClassificationFormatDefinition
         {
             public EnumConstantClassificationFormat()
             {
-                this.DisplayName = ColorCoderClassificationName.EnumConstant;
+                this.DisplayName = ColorCoderClassificationName.EnumMember;
                 this.ForegroundColor = Colors.Olive;
             }
         }
@@ -60,7 +32,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public ConstructorClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Constructor;
-                this.ForegroundColor = Colors.DarkOrange;
+                this.ForegroundColor = Colors.OrangeRed;
                 this.IsBold = true;
             }
         }
@@ -89,7 +61,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public FieldClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Field;
-                this.ForegroundColor = Colors.DarkKhaki;
+                this.ForegroundColor = Colors.DarkGoldenrod;
             }
         }
 
@@ -133,7 +105,7 @@ namespace VisualStudio_ColorCoder.Classifications
                 this.DisplayName = ColorCoderClassificationName.Method;
                 this.ForegroundColor = Colors.Purple;
                 this.IsBold = true;
-                this.FontRenderingSize = 14;
+                this.FontRenderingSize = 12;
             }
         }
 
@@ -180,15 +152,15 @@ namespace VisualStudio_ColorCoder.Classifications
         }
 
         [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.TypeParameter)]
-        [Name(ColorCoderClassificationName.TypeParameter)]
+        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Parameter)]
+        [Name(ColorCoderClassificationName.Parameter)]
         [UserVisible(true)]
         [Order(After = Priority.Default)]
-        public sealed class TypeParameterClassificationFormat : ClassificationFormatDefinition
+        public sealed class ParameterClassificationFormat : ClassificationFormatDefinition
         {
-            public TypeParameterClassificationFormat()
+            public ParameterClassificationFormat()
             {
-                this.DisplayName = ColorCoderClassificationName.TypeParameter;
+                this.DisplayName = ColorCoderClassificationName.Parameter;
                 this.ForegroundColor = Colors.Gray;
             }
         }

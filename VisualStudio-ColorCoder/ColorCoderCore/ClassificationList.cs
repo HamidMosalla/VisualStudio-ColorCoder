@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Media;
 using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
+using VisualStudio_ColorCoder.Classifications;
+using Color = System.Drawing.Color;
 
 namespace VisualStudio_ColorCoder.ColorCoderCore
 {
@@ -20,6 +23,7 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
             _classifications = new Dictionary<String, ColorableItemInfo[]>();
             dte = (EnvDTE80.DTE2)System.Runtime.InteropServices.Marshal.GetActiveObject("VisualStudio.DTE.15.0");
             _fontsAndColorsItems = dte.Properties["FontsAndColors", "TextEditor"].Item("FontsAndColorsItems").Object as FontsAndColorsItems;
+            SetDefaultBuiltInColors();
         }
 
         public void Load(params String[] classificationNames)
@@ -124,6 +128,21 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
         {
             var colorItem = _fontsAndColorsItems.Item(classificationName);
             colorItem.Foreground = (uint)ColorTranslator.ToWin32(color);
+        }
+
+        public void SetDefaultBuiltInColors()
+        {
+            var Interface = _fontsAndColorsItems.Item(ColorCoderClassificationName.Interface);
+            var Struct = _fontsAndColorsItems.Item(ColorCoderClassificationName.Struct);
+            var Enum = _fontsAndColorsItems.Item(ColorCoderClassificationName.Enum);
+            var Delegate = _fontsAndColorsItems.Item(ColorCoderClassificationName.Delegate);
+            var genericTypeParameter = _fontsAndColorsItems.Item(ColorCoderClassificationName.GenericTypeParameter);
+
+            Interface.Foreground = (uint)ColorTranslator.ToWin32(Colors.DarkSlateBlue.ToDrawingColor());
+            Struct.Foreground = (uint)ColorTranslator.ToWin32(Colors.Orchid.ToDrawingColor());
+            Enum.Foreground = (uint)ColorTranslator.ToWin32(Colors.Teal.ToDrawingColor());
+            Delegate.Foreground = (uint)ColorTranslator.ToWin32(Colors.DarkKhaki.ToDrawingColor());
+            genericTypeParameter.Foreground = (uint)ColorTranslator.ToWin32(Colors.DeepSkyBlue.ToDrawingColor());
         }
     }
 }

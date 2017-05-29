@@ -9,14 +9,6 @@ namespace VisualStudio_ColorCoder.Classifications
         [Export, Name(ColorCoderClassificationName.Interface)]
         internal static ClassificationTypeDefinition InterfaceClassificationType;
 
-        [Export, Name(ColorCoderClassificationName.AbstractClass)]
-        internal static ClassificationTypeDefinition AbstractClassClassificationType;
-
-
-        [Export, Name(ColorCoderClassificationName.StaticClass)]
-        internal static ClassificationTypeDefinition StaticClassClassificationType;
-
-
         [Export, Name(ColorCoderClassificationName.Struct)]
         internal static ClassificationTypeDefinition StructClassificationType;
 
@@ -25,7 +17,7 @@ namespace VisualStudio_ColorCoder.Classifications
         internal static ClassificationTypeDefinition EnumClassificationType;
 
 
-        [Export, Name(ColorCoderClassificationName.EnumConstant)]
+        [Export, Name(ColorCoderClassificationName.EnumMember)]
         internal static ClassificationTypeDefinition EnumConstantClassificationType;
 
 
@@ -61,10 +53,10 @@ namespace VisualStudio_ColorCoder.Classifications
 
 
         [Export, Name(ColorCoderClassificationName.Property)]
-        internal static ClassificationTypeDefinition AutomaticPropertyClassificationType;
+        internal static ClassificationTypeDefinition PropertyClassificationType;
 
 
-        [Export, Name(ColorCoderClassificationName.TypeParameter)]
+        [Export, Name(ColorCoderClassificationName.Parameter)]
         internal static ClassificationTypeDefinition ParameterClassificationType;
 
     }
