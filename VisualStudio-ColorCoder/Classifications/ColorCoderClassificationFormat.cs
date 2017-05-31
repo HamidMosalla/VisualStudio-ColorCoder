@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
@@ -61,7 +62,7 @@ namespace VisualStudio_ColorCoder.Classifications
             public FieldClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Field;
-                this.ForegroundColor = Colors.DarkGoldenrod;
+                this.ForegroundColor = Colors.DarkOrange;
             }
         }
 
@@ -104,6 +105,10 @@ namespace VisualStudio_ColorCoder.Classifications
             {
                 this.DisplayName = ColorCoderClassificationName.Method;
                 this.ForegroundColor = Colors.Purple;
+                //this.FontTypeface = new Typeface(new FontFamily("Lucida Console"),
+                //    FontStyles.Normal,
+                //    FontWeights.Bold,
+                //    FontStretches.Condensed);
                 this.IsBold = true;
                 this.FontRenderingSize = 12;
             }

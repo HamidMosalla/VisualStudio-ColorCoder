@@ -141,7 +141,7 @@ namespace VisualStudio_ColorCoder.ColorCoderCore
 
             Interface.Foreground = (uint)ColorTranslator.ToWin32(Colors.DarkSlateBlue.ToDrawingColor());
             Struct.Foreground = (uint)ColorTranslator.ToWin32(Colors.Orchid.ToDrawingColor());
-            Enum.Foreground = (uint)ColorTranslator.ToWin32(Colors.Teal.ToDrawingColor());
+            Enum.Foreground = (uint)ColorTranslator.ToWin32(Colors.SeaGreen.ToDrawingColor());
             Delegate.Foreground = (uint)ColorTranslator.ToWin32(Colors.DarkKhaki.ToDrawingColor());
             genericTypeParameter.Foreground = (uint)ColorTranslator.ToWin32(Colors.DeepSkyBlue.ToDrawingColor());
         }
