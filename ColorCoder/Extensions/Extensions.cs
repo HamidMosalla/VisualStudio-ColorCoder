@@ -1,7 +1,7 @@
 ﻿using DrawingColor = System.Drawing.Color;
 using MediaColor = System.Windows.Media.Color;
 
-namespace VisualStudio_ColorCoder.Extensions
+namespace ColorCoder.Extensions
 {
     public static class Extensions
     {

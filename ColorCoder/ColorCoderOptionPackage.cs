@@ -1,13 +1,28 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.Shell;
+﻿//------------------------------------------------------------------------------
+// <copyright file="ColorCoderOptionPackage.cs" company="Company">
+//     Copyright (c) Company.  All rights reserved.
+// </copyright>
+//------------------------------------------------------------------------------
+
+using System;
 using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
+using System.Globalization;
+using System.Runtime.InteropServices;
+using ColorCoder.Classifications;
+using ColorCoder.ColorCoderCore;
+using Microsoft.VisualStudio;
+using Microsoft.VisualStudio.OLE.Interop;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.Win32;
 using VisualStudio_ColorCoder.Classifications;
 using VisualStudio_ColorCoder.ColorCoderCore;
 
-
-namespace VisualStudio_ColorCoder
+namespace ColorCoder
 {
     [Guid(Guids.ChangeColorOptionGrid)]
     public class ChangeColorOptionGrid : DialogPage
@@ -168,7 +183,7 @@ namespace VisualStudio_ColorCoder
                 ColorCoderClassificationName.Property,
                 ColorCoderClassificationName.StaticMethod,
                 ColorCoderClassificationName.Parameter
-                );
+            );
         }
 
         public override void SaveSettingsToStorage()
@@ -177,15 +192,16 @@ namespace VisualStudio_ColorCoder
         }
     }
 
-    [PackageRegistration(UseManagedResourcesOnly = true)]
-    [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)]
     [Guid(Guids.ColorCoderOptionPackage)]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 0, 0, true, Sort = 1)]
+    [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\14.0")]
+    [PackageRegistration(UseManagedResourcesOnly = true)]
+    [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 1000, 1001, true)]
+    [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/colorcoder", "1.0")] 
+    
     public sealed class ColorCoderOptionPackage : Package
     {
         public ColorCoderOptionPackage() { }
-
+       
         protected override void Initialize()
         {
             base.Initialize();

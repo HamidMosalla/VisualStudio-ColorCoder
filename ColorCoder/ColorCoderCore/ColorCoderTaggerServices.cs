@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ColorCoder.ColorCoderCore;
+using ColorCoder.Extensions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Classification;
 using CSharp = Microsoft.CodeAnalysis.CSharp;
@@ -10,7 +12,6 @@ using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Tagging;
 using VisualStudio_ColorCoder.Classifications;
-using VisualStudio_ColorCoder.Extensions;
 
 namespace VisualStudio_ColorCoder.ColorCoderCore
 {

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Media;
+using ColorCoder.Classifications;
+using ColorCoder.Extensions;
 using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using VisualStudio_ColorCoder.Classifications;
-using VisualStudio_ColorCoder.Extensions;
+using VisualStudio_ColorCoder.ColorCoderCore;
 using Color = System.Drawing.Color;
 
-namespace VisualStudio_ColorCoder.ColorCoderCore
+namespace ColorCoder.ColorCoderCore
 {
     public class ColorManager
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.VisualBasic;
 
-namespace VisualStudio_ColorCoder.Extensions
+namespace ColorCoder.Extensions
 {
    public static class VbExtensions
     {

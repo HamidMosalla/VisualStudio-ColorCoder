@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.VisualStudio.Text;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
+using Microsoft.VisualStudio.Text;
 
-namespace VisualStudio_ColorCoder.ColorCoderCore
+namespace ColorCoder.ColorCoderCore
 {
     public class ProviderCache
     {

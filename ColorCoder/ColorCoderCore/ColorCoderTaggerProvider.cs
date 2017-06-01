@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.Composition;
+using ColorCoder.ColorCoderCore;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Tagging;

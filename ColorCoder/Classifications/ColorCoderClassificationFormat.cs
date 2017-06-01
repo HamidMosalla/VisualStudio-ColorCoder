@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
-using VisualStudio_ColorCoder.State;
+using VisualStudio_ColorCoder.Classifications;
 
-namespace VisualStudio_ColorCoder.Classifications
+namespace ColorCoder.Classifications
 {
     public static class ClassificationTypeDefinitions
     {

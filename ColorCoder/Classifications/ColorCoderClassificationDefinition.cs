@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
+using VisualStudio_ColorCoder.Classifications;
 
-namespace VisualStudio_ColorCoder.Classifications
+namespace ColorCoder.Classifications
 {
     class ColorCoderClassificationDefinition
     {
