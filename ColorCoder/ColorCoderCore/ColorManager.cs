@@ -20,13 +20,12 @@ namespace ColorCoder.ColorCoderCore
         private EnvDTE80.DTE2 dte;
         private FontsAndColorsItems _fontsAndColorsItems;
 
-        public ColorManager(ColorStorage colorStorage)
+        public ColorManager(ColorStorage colorStorage, EnvDTE80.DTE2 _dte)
         {
             _colorStorage = colorStorage;
             _classifications = new Dictionary<String, ColorableItemInfo[]>();
-            dte = (EnvDTE80.DTE2)System.Runtime.InteropServices.Marshal.GetActiveObject("VisualStudio.DTE.15.0");
+            dte = _dte;
             _fontsAndColorsItems = dte.Properties["FontsAndColors", "TextEditor"].Item("FontsAndColorsItems").Object as FontsAndColorsItems;
-            SetDefaultBuiltInColors();
         }
 
         public void Load(params String[] classificationNames)
@@ -124,7 +123,7 @@ namespace ColorCoder.ColorCoderCore
         public Color GetBuiltIn(String classificationName)
         {
             var colorItem = _fontsAndColorsItems.Item(classificationName);
-            return ColorTranslator.FromWin32((int) colorItem.Foreground);
+            return ColorTranslator.FromWin32((int)colorItem.Foreground);
         }
 
         public void SetBuiltIn(String classificationName, Color color)

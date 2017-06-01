@@ -28,6 +28,7 @@ namespace ColorCoder
     public class ChangeColorOptionGrid : DialogPage
     {
         private ColorManager _colorManager;
+        private bool defaultColorLoaded;
 
         private const string ColorSubCategory = "Colors";
 
@@ -169,7 +170,15 @@ namespace ColorCoder
 
         public override void LoadSettingsFromStorage()
         {
-            this._colorManager = new ColorManager(new ColorStorage(this.Site));
+            var dte = (EnvDTE80.DTE2)ColorCoderOptionPackage.GetGlobalService(typeof(SDTE));
+
+            this._colorManager = new ColorManager(new ColorStorage(this.Site), dte);
+
+            if (!defaultColorLoaded)
+            {
+                defaultColorLoaded = true;
+                _colorManager.SetDefaultBuiltInColors();
+            }
 
             _colorManager.Load(
                 //ColorCoderClassificationName.Attribute,
@@ -196,12 +205,12 @@ namespace ColorCoder
     [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\14.0")]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 1000, 1001, true)]
-    [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/colorcoder", "1.0")] 
-    
+    [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/colorcoder", "1.0")]
+
     public sealed class ColorCoderOptionPackage : Package
     {
         public ColorCoderOptionPackage() { }
-       
+
         protected override void Initialize()
         {
             base.Initialize();
