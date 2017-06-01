@@ -17,15 +17,15 @@ namespace ColorCoder.ColorCoderCore
     {
         private readonly ColorStorage _colorStorage;
         private readonly IDictionary<String, ColorableItemInfo[]> _classifications;
-        private EnvDTE80.DTE2 dte;
+        private EnvDTE80.DTE2 _dte;
         private FontsAndColorsItems _fontsAndColorsItems;
 
-        public ColorManager(ColorStorage colorStorage, EnvDTE80.DTE2 _dte)
+        public ColorManager(ColorStorage colorStorage, EnvDTE80.DTE2 dte)
         {
             _colorStorage = colorStorage;
             _classifications = new Dictionary<String, ColorableItemInfo[]>();
-            dte = _dte;
-            _fontsAndColorsItems = dte.Properties["FontsAndColors", "TextEditor"].Item("FontsAndColorsItems").Object as FontsAndColorsItems;
+            _dte = dte;
+            _fontsAndColorsItems = _dte.Properties["FontsAndColors", "TextEditor"].Item("FontsAndColorsItems").Object as FontsAndColorsItems;
         }
 
         public void Load(params String[] classificationNames)
