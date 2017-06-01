@@ -4,23 +4,13 @@
 // </copyright>
 //------------------------------------------------------------------------------
 
-using System;
 using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using ColorCoder.Classifications;
 using ColorCoder.ColorCoderCore;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.Win32;
-using VisualStudio_ColorCoder.Classifications;
-using VisualStudio_ColorCoder.ColorCoderCore;
 
 namespace ColorCoder
 {

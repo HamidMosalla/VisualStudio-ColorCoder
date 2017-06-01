@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Reflection;
 using Microsoft.VisualStudio.Text.Classification;
-using VisualStudio_ColorCoder.Classifications;
 
 namespace ColorCoder.Classifications
 {

@@ -7,8 +7,6 @@ using ColorCoder.Extensions;
 using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
-using VisualStudio_ColorCoder.Classifications;
-using VisualStudio_ColorCoder.ColorCoderCore;
 using Color = System.Drawing.Color;
 
 namespace ColorCoder.ColorCoderCore

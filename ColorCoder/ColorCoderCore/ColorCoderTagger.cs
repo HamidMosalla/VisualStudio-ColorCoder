@@ -5,8 +5,7 @@ using ColorCoder.Classifications;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Text.Tagging;
-using VisualStudio_ColorCoder.ColorCoderCore;
-using CacheState = VisualStudio_ColorCoder.ColorCoderCore.ColorCoderTaggerServices.CacheState;
+using CacheState = ColorCoder.ColorCoderCore.ColorCoderTaggerServices.CacheState;
 
 namespace ColorCoder.ColorCoderCore
 {

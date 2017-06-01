@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VisualStudio_ColorCoder.Classifications {
+namespace ColorCoder.Classifications {
   public static class ContentTypes {
     public const String Any = "any";
     public const String Text = "text";

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VisualStudio_ColorCoder.Classifications
+namespace ColorCoder.Classifications
 {
     class ColorCoderClassificationName
     {
