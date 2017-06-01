@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace VisualStudio_ColorCoder.ColorCoderCore {
+namespace ColorCoder.ColorCoderCore {
   public class ColorStorage {
     public IVsUIShell2 Shell { get; private set; }
     public IVsFontAndColorStorage Storage { get; private set; }
