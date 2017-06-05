@@ -160,7 +160,7 @@ namespace ColorCoder
 
         public override void LoadSettingsFromStorage()
         {
-            var dte = (EnvDTE80.DTE2)ColorCoderOptionPackage.GetGlobalService(typeof(SDTE));
+            var dte = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
 
             this._colorManager = new ColorManager(new ColorStorage(this.Site), dte);
 
@@ -196,13 +196,5 @@ namespace ColorCoder
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 1000, 1001, true)]
     [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/colorcoder", "1.0")]
-    public sealed class ColorCoderOptionPackage : Package
-    {
-        public ColorCoderOptionPackage() { }
-
-        protected override void Initialize()
-        {
-            base.Initialize();
-        }
-    }
+    public sealed class ColorCoderOptionPackage : Package { }
 }

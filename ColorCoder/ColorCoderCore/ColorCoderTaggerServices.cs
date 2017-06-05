@@ -54,18 +54,6 @@ namespace ColorCoder.ColorCoderCore
             return node;
         }
 
-        private bool IsSpecialType(ISymbol symbol)
-        {
-            var type = (INamedTypeSymbol)symbol;
-            return type.SpecialType != SpecialType.None;
-        }
-
-        private bool IsExtensionMethod(ISymbol symbol)
-        {
-            var method = (IMethodSymbol)symbol;
-            return method.IsExtensionMethod;
-        }
-
         internal IEnumerable<ITagSpan<IClassificationTag>> GetClassificationTags(ProviderCache cache, NormalizedSnapshotSpanCollection spans, Dictionary<string, IClassificationType> classificationTypeDictionary)
         {
             var snapshot = spans[0].Snapshot;
@@ -117,7 +105,7 @@ namespace ColorCoder.ColorCoderCore
 
             if (symbol?.Kind == SymbolKind.Method)
             {
-                if (IsExtensionMethod(symbol))
+                if (symbol.IsExtensionMethod())
                 {
                     classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.ExtensionMethod, out IClassificationType classificationValue);
                     return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
@@ -163,28 +151,23 @@ namespace ColorCoder.ColorCoderCore
 
         public CacheState ManageCache(ref ProviderCache cache, NormalizedSnapshotSpanCollection spans, ITextBuffer buffer)
         {
-            if (cache == null || cache.Snapshot != spans[0].Snapshot)
+            if (cache != null && cache.Snapshot == spans[0].Snapshot) return CacheState.Resolved;
+
+            var task = ProviderCache.Resolve(buffer, spans[0].Snapshot);
+
+            try
             {
-                var task = ProviderCache.Resolve(buffer, spans[0].Snapshot);
-                try
-                {
-                    task.Wait();
-                }
-                catch (Exception)
-                {
-                    return CacheState.NotResolved;
-                }
-
-                cache = task.Result;
-
-                if (cache == null)
-                {
-                    return CacheState.NotResolved;
-                }
-
-                return CacheState.Resolved;
+                task.Wait();
             }
-            return CacheState.Resolved;
+            catch (Exception ex)
+            {
+                Log.LogError(ex.ToString());
+                return CacheState.NotResolved;
+            }
+
+            cache = task.Result;
+
+            return cache == null ? CacheState.NotResolved : CacheState.Resolved;
         }
 
         public enum CacheState
