@@ -5,27 +5,67 @@ using Microsoft.VisualStudio.Text.Classification;
 
 namespace ColorCoder.Classifications
 {
-    class ClassificationTypeFactory
+    public sealed class ClassificationTypeFactory
     {
-        private Dictionary<string, IClassificationType> classificationTypes;
+        private static ClassificationTypeFactory instance = null;
+        private static readonly object Padlock = new object();
+        private static IClassificationTypeRegistryService _classificationRegistry;
+        private Dictionary<string, IClassificationType> _classificationTypes;
 
-        public ClassificationTypeFactory(IClassificationTypeRegistryService classificationRegistry)
+        ClassificationTypeFactory() { }
+
+        public static ClassificationTypeFactory Instance
         {
-            classificationTypes = new Dictionary<string, IClassificationType>();
-
-            var classificationNames = new ColorCoderClassificationName().GetType()
-                                            .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
-                                            .Where(fi => fi.IsLiteral && !fi.IsInitOnly)
-                                            .Select(fi => fi.GetRawConstantValue()).ToList();
-
-            foreach (var classificationName in classificationNames)
+            get
             {
-                classificationTypes.Add(classificationName.ToString(), classificationRegistry.GetClassificationType(classificationName.ToString()));
+                lock (Padlock)
+                {
+                    return instance ?? (instance = new ClassificationTypeFactory
+                    {
+                        _classificationTypes = GetClassificationTypes()
+                    });
+                }
             }
         }
 
-        public Dictionary<string, IClassificationType> CreateClassificationTypes()
+        public static IClassificationTypeRegistryService ClassificationRegistry
         {
+            set
+            {
+                if (instance == null)
+                {
+                    _classificationRegistry = value;
+                }
+            }
+        }
+
+        public Dictionary<string, IClassificationType> ClassificationTypes
+        {
+            get
+            {
+                if (instance != null)
+                {
+                    return _classificationTypes;
+                }
+
+                return new Dictionary<string, IClassificationType>();
+            }
+        }
+
+        private static Dictionary<string, IClassificationType> GetClassificationTypes()
+        {
+            var classificationTypes = new Dictionary<string, IClassificationType>();
+
+            var classificationNames = new ColorCoderClassificationName().GetType()
+                .GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                .Where(fi => fi.IsLiteral && !fi.IsInitOnly)
+                .Select(fi => fi.GetRawConstantValue()).ToList();
+
+            foreach (var classificationName in classificationNames)
+            {
+                classificationTypes.Add(classificationName.ToString(), _classificationRegistry.GetClassificationType(classificationName.ToString()));
+            }
+
             return classificationTypes;
         }
     }

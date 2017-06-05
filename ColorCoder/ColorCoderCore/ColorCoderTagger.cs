@@ -13,8 +13,7 @@ namespace ColorCoder.ColorCoderCore
     {
         private ITextBuffer _buffer;
         private readonly ColorCoderTaggerServices _colorCoderTaggerServices;
-        private readonly ClassificationTypeFactory _classificationTypeFactory;
-        private readonly Dictionary<string, IClassificationType> classificationTypeDictionary;
+        private readonly Dictionary<string, IClassificationType> _classificationTypeDictionary;
         private ProviderCache _cache;
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
@@ -22,8 +21,8 @@ namespace ColorCoder.ColorCoderCore
         public ColorCoderTagger(ITextBuffer buffer, IClassificationTypeRegistryService classificationRegistry)
         {
             this._buffer = buffer;
-            _classificationTypeFactory = new ClassificationTypeFactory(classificationRegistry);
-            classificationTypeDictionary = _classificationTypeFactory.CreateClassificationTypes();
+            ClassificationTypeFactory.ClassificationRegistry = classificationRegistry;
+            _classificationTypeDictionary = ClassificationTypeFactory.Instance.ClassificationTypes;
             _colorCoderTaggerServices = new ColorCoderTaggerServices();
         }
 
@@ -41,7 +40,7 @@ namespace ColorCoder.ColorCoderCore
                 return Enumerable.Empty<ITagSpan<IClassificationTag>>();
             }
 
-            return _colorCoderTaggerServices.GetClassificationTags(_cache, spans, classificationTypeDictionary);
+            return _colorCoderTaggerServices.GetClassificationTags(_cache, spans, _classificationTypeDictionary);
         }
     }
 }
