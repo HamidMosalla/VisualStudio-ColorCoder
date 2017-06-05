@@ -57,7 +57,6 @@ namespace ColorCoder.ColorCoderCore
             }
         }
 
-        //something
         public void Save()
         {
             Guid category = new Guid(Guids.TextEditorCategory);

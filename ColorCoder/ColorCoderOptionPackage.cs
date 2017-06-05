@@ -196,7 +196,6 @@ namespace ColorCoder
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 1000, 1001, true)]
     [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/colorcoder", "1.0")]
-
     public sealed class ColorCoderOptionPackage : Package
     {
         public ColorCoderOptionPackage() { }
