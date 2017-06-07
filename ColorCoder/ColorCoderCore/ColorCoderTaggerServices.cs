@@ -60,7 +60,7 @@ namespace ColorCoder.ColorCoderCore
             IEnumerable<ClassifiedSpan> classifiedSpans = GetIdentifiersInSpans(cache.Workspace, cache.SemanticModel, spans);
 
             foreach (var classifiedSpan in classifiedSpans)
-              {
+            {
                 var node = GetExpression(cache.SyntaxRoot.FindNode(classifiedSpan.TextSpan));
                 var symbol = cache.SemanticModel.GetSymbolInfo(node).Symbol ?? cache.SemanticModel.GetDeclaredSymbol(node);
                 yield return GetTagSpan(node, classifiedSpan, snapshot, symbol, classificationTypeDictionary);
@@ -146,7 +146,7 @@ namespace ColorCoder.ColorCoderCore
             //    }
             //}
 
-            return null; //Enumerable.Empty<ITagSpan<IClassificationTag>>;
+            return null;
         }
 
         public CacheState ManageCache(ref ProviderCache cache, NormalizedSnapshotSpanCollection spans, ITextBuffer buffer)
