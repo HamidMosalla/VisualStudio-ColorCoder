@@ -18,7 +18,7 @@ namespace ColorCoder.ColorCoderCore
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
-        //why it is called tree times
+        //why it is called tree times?
         public ColorCoderTagger(ITextBuffer buffer, IClassificationTypeRegistryService classificationRegistry)
         {
             this._buffer = buffer;
