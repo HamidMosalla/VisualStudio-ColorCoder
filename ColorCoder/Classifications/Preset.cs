@@ -3,6 +3,7 @@
     public enum Preset
     {
         NoPreset,
+        VisualStudioDefault,
         ColorCoderDefault,
         ColorCoderExtreme
     }

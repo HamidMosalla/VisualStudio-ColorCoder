@@ -214,6 +214,12 @@ namespace ColorCoder
             {
                 _colorManager.SetDefaultBuiltInColors();
             }
+
+            if (Preset == Preset.VisualStudioDefault)
+            {
+                _colorManager.RestoreBuiltInColorsToDefault();
+                _colorManager.RestoreColorCoderToDefault();
+            }
         }
     }
 

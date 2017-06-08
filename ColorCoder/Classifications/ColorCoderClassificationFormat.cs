@@ -17,7 +17,6 @@ namespace ColorCoder.Classifications
             public EnumConstantClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.EnumMember;
-                this.ForegroundColor = Colors.Olive;
             }
         }
 
@@ -31,7 +30,6 @@ namespace ColorCoder.Classifications
             public ConstructorClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Constructor;
-                this.ForegroundColor = Colors.OrangeRed;
                 this.IsBold = true;
             }
         }
@@ -60,7 +58,6 @@ namespace ColorCoder.Classifications
             public FieldClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Field;
-                this.ForegroundColor = Colors.DarkOrange;
             }
         }
 
@@ -74,7 +71,6 @@ namespace ColorCoder.Classifications
             public LocalClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.LocalVariable;
-                this.ForegroundColor = Colors.Black;
             }
         }
 
@@ -88,7 +84,6 @@ namespace ColorCoder.Classifications
             public NamespaceClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Namespace;
-                this.ForegroundColor = Colors.Black;
             }
         }
 
@@ -102,7 +97,6 @@ namespace ColorCoder.Classifications
             public MethodClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Method;
-                this.ForegroundColor = Colors.Purple;
                 //this.FontTypeface = new Typeface(new FontFamily("Lucida Console"),
                 //    FontStyles.Normal,
                 //    FontWeights.Bold,
@@ -122,7 +116,6 @@ namespace ColorCoder.Classifications
             public StaticMethodClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.StaticMethod;
-                this.ForegroundColor = Colors.LimeGreen;
             }
         }
 
@@ -136,7 +129,6 @@ namespace ColorCoder.Classifications
             public ExtensionMethodClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.ExtensionMethod;
-                this.ForegroundColor = Colors.Magenta;
             }
         }
 
@@ -150,7 +142,6 @@ namespace ColorCoder.Classifications
             public PropertyClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Property;
-                this.ForegroundColor = Colors.Chocolate;
             }
         }
 
@@ -164,7 +155,6 @@ namespace ColorCoder.Classifications
             public ParameterClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Parameter;
-                this.ForegroundColor = Colors.Gray;
             }
         }
     }
