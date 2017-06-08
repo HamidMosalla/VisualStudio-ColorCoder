@@ -57,7 +57,7 @@ namespace ColorCoder.ColorCoderCore
             }
         }
 
-        public void Save()
+        public void Save(IDictionary<String, ColorableItemInfo[]> classifications)
         {
             Guid category = new Guid(Guids.TextEditorCategory);
 
@@ -69,7 +69,7 @@ namespace ColorCoder.ColorCoderCore
 
             try
             {
-                foreach (var classification in _classifications)
+                foreach (var classification in classifications)
                 {
                     hr = _colorStorage.Storage.SetItem(classification.Key, classification.Value);
                     ErrorHandler.ThrowOnFailure(hr);
@@ -142,6 +142,24 @@ namespace ColorCoder.ColorCoderCore
             Enum.Foreground = (uint)ColorTranslator.ToWin32(Colors.SeaGreen.ToDrawingColor());
             Delegate.Foreground = (uint)ColorTranslator.ToWin32(Colors.DarkKhaki.ToDrawingColor());
             genericTypeParameter.Foreground = (uint)ColorTranslator.ToWin32(Colors.DeepSkyBlue.ToDrawingColor());
+        }
+
+        public IDictionary<String, ColorableItemInfo[]> GetColorableItemInfoDictionary()
+        {
+            var classifications = new Dictionary<String, ColorableItemInfo[]>();
+
+            classifications.Add(ColorCoderClassificationName.Constructor, Color.OrangeRed.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.EnumMember, Color.Olive.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.ExtensionMethod, Color.Magenta.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Field, Color.DarkOrange.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.LocalVariable, Color.Black.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Method, Color.Purple.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Namespace, Color.Black.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Property, Color.Chocolate.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.StaticMethod, Color.LimeGreen.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Parameter, Color.Gray.ToColorableItemInfo());
+
+            return classifications;
         }
     }
 }

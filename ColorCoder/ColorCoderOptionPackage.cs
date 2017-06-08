@@ -12,7 +12,6 @@ namespace ColorCoder
     public class ChangeColorOptionGrid : DialogPage
     {
         private ColorManager _colorManager;
-        private bool defaultColorLoaded;
 
         private const string ColorSubCategory = "Colors";
 
@@ -166,12 +165,6 @@ namespace ColorCoder
 
             this._colorManager = new ColorManager(new ColorStorage(this.Site), dte);
 
-            if (!defaultColorLoaded)
-            {
-                defaultColorLoaded = true;
-                _colorManager.SetDefaultBuiltInColors();
-            }
-
             _colorManager.Load(
                 //ColorCoderClassificationName.Attribute,
                 ColorCoderClassificationName.Constructor,
@@ -187,9 +180,40 @@ namespace ColorCoder
             );
         }
 
+        public override void SaveSettingsToStorage() {  }
+    }
+
+    [Guid(Guids.PresetOptionGrid)]
+    public class PresetOptionGrid : DialogPage
+    {
+        private ColorManager _colorManager;
+
+        private const string PresetSubCategory = "Presets";
+
+        [Category(PresetSubCategory)]
+        [DisplayName("Preset")]
+        [Description("Select from one of the available sets of Presets")]
+        public Preset Preset { get; set; }
+
+        public override void LoadSettingsFromStorage()
+        {
+            var dte = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
+
+            this._colorManager = new ColorManager(new ColorStorage(this.Site), dte);
+        }
+
         public override void SaveSettingsToStorage()
         {
-            //_colorManager.Save();
+            if (Preset == Preset.NoPreset) return;
+
+            var colors = _colorManager.GetColorableItemInfoDictionary();
+
+            _colorManager.Save(colors);
+
+            if (Preset == Preset.ColorCoderExtreme)
+            {
+                _colorManager.SetDefaultBuiltInColors();
+            }
         }
     }
 
@@ -197,6 +221,7 @@ namespace ColorCoder
     [DefaultRegistryRoot("Software\\Microsoft\\VisualStudio\\14.0")]
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "General", 1000, 1001, true)]
+    [ProvideOptionPage(typeof(PresetOptionGrid), "ColorCoder", "Presets", 1000, 1001, true)]
     [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/colorcoder", "1.0")]
     public sealed class ColorCoderOptionPackage : Package { }
 }

@@ -57,6 +57,7 @@
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
     <Compile Include="Classifications\ContentTypes.cs" />
     <Compile Include="Classifications\Guids.cs" />
+    <Compile Include="Classifications\Preset.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTagger.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerServices.cs" />
@@ -191,6 +192,7 @@
       <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
