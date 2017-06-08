@@ -16,12 +16,12 @@ namespace ColorCoder.Classifications
         public const String Property              = "ColorCoder Property";
         public const String Parameter             = "ColorCoder Parameter";
 
-        public const String Module = "module name";
-        public const String Interface = "interface name";
-        public const String Class = "class name";
-        public const String Struct = "struct name";
-        public const String Enum = "enum name";
-        public const String Delegate = "delegate name";
-        public const String GenericTypeParameter = "type parameter name";
+        public const String Module                = "module name";
+        public const String Interface             = "interface name";
+        public const String Class                 = "class name";
+        public const String Struct                = "struct name";
+        public const String Enum                  = "enum name";
+        public const String Delegate              = "delegate name";
+        public const String GenericTypeParameter  = "type parameter name";
     }
 }

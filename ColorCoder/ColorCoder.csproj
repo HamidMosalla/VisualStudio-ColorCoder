@@ -89,7 +89,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Resources\ColorCoderCSharp.png" />
     <Content Include="Resources\ColorCoderOptionPackage.ico" />
+    <Content Include="Resources\ColorCoderOptionPage.png" />
+    <Content Include="Resources\ColorCoderVB.png" />
     <Content Include="Resources\License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
