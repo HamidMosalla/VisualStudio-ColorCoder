@@ -58,6 +58,8 @@
     <Compile Include="Classifications\ContentTypes.cs" />
     <Compile Include="Classifications\Guids.cs" />
     <Compile Include="Classifications\Preset.cs" />
+    <Compile Include="Classifications\PresetData.cs" />
+    <Compile Include="ColorCoderCore\Settings.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTagger.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerServices.cs" />
@@ -194,6 +196,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>

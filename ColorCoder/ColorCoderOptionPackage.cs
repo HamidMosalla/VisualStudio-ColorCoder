@@ -180,7 +180,7 @@ namespace ColorCoder
             );
         }
 
-        public override void SaveSettingsToStorage() {  }
+        public override void SaveSettingsToStorage() { }
     }
 
     [Guid(Guids.PresetOptionGrid)]
@@ -200,25 +200,34 @@ namespace ColorCoder
             var dte = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
 
             this._colorManager = new ColorManager(new ColorStorage(this.Site), dte);
+
+            Preset = Settings.Load().Preset;
         }
 
         public override void SaveSettingsToStorage()
         {
+            Settings.Save(new PresetData { Preset = Preset });
+
             if (Preset == Preset.NoPreset) return;
-
-            var colors = _colorManager.GetColorableItemInfoDictionary();
-
-            _colorManager.Save(colors);
-
-            if (Preset == Preset.ColorCoderExtreme)
-            {
-                _colorManager.SetDefaultBuiltInColors();
-            }
 
             if (Preset == Preset.VisualStudioDefault)
             {
                 _colorManager.RestoreBuiltInColorsToDefault();
                 _colorManager.RestoreColorCoderToDefault();
+            }
+
+            if (Preset == Preset.ColorCoderDefault)
+            {
+                _colorManager.RestoreBuiltInColorsToDefault();
+                var colors = _colorManager.GetColorableItemInfoDictionary();
+                _colorManager.Save(colors);
+            }
+
+            if (Preset == Preset.ColorCoderExtreme)
+            {
+                var colors = _colorManager.GetColorableItemInfoDictionary();
+                _colorManager.Save(colors);
+                _colorManager.SetDefaultBuiltInColors();
             }
         }
     }
