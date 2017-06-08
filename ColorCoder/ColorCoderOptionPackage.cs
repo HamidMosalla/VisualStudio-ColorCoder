@@ -64,6 +64,14 @@ namespace ColorCoder
             set { _colorManager.SetBuiltIn(ColorCoderClassificationName.GenericTypeParameter, value); }
         }
 
+        [Category(ColorSubCategory)]
+        [DisplayName("Module(VB Only)")]
+        public Color Module
+        {
+            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.Module); }
+            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.Module, value); }
+        }
+
         //[Category(ColorSubCategory)]
         //[DisplayName("Attribute")]
         //public Color Attribute
@@ -89,7 +97,7 @@ namespace ColorCoder
         }
 
         [Category(ColorSubCategory)]
-        [DisplayName("Constructor")]
+        [DisplayName("Constructor (C# Only)")]
         public Color Constructor
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Constructor); }
