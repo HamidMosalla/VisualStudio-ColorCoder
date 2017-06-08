@@ -1,8 +1,10 @@
 # Color Coder
-Color Coder is an extension for Visual Studio 2015 and 2017, it helps you reduce the cognitive load of reading code by coloring various programming constructs, these are:
+Color Coder is an extension for Visual Studio 2015 and 2017. 
+It helps you reduce the cognitive load of reading codes by coloring various programming constructs.
+ These are:
       
 * EnumMember          
-* Constructor         
+* Constructor (C# Only)       
 * Field               
 * LocalVariable       
 * Namespace           
@@ -11,7 +13,7 @@ Color Coder is an extension for Visual Studio 2015 and 2017, it helps you reduce
 * ExtensionMethod     
 * Property            
 * Parameter           
-* Module              
+* Module (VB Only)              
 * Interface           
 * Class               
 * Struct              
@@ -19,11 +21,11 @@ Color Coder is an extension for Visual Studio 2015 and 2017, it helps you reduce
 * Delegate            
 * GenericTypeParameter
 
-With Color Coder your code will code like something like this for C#:
+Code colors in C#:
 
 ![Color Coder C Sharp](ColorCoder/Resources/ColorCoderCSharp.png)
 
-And VB.Net:
+Code colors in VB.Net:
 
 ![Color Coder V B](ColorCoder/Resources/ColorCoderVB.png)
 

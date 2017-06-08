@@ -5,6 +5,7 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7235FCD6-2DC6-4EFD-8E6A-ED643B4B82BD}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\Desktop\.gitignore = ..\..\Desktop\.gitignore
 		README.md = README.md
 	EndProjectSection
 EndProject
