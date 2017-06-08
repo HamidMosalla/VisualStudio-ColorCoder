@@ -32,3 +32,7 @@ Code colors in VB.Net:
 You can change the colors through Visual Studio's options page:
 
 ![Color Coder Option Page](ColorCoder/Resources/ColorCoderOptionPage.png)
+
+You can also select form a set of predefined colors or restore the colors to visual studio defaults:
+
+![Color Coder Option Page Preset](ColorCoder/Resources/ColorCoderOptionPagePreset.png)
