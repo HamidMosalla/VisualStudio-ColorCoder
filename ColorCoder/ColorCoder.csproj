@@ -88,15 +88,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\color-coder.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
     <Content Include="Resources\ColorCoderCSharp.png" />
     <Content Include="Resources\ColorCoderOptionPackage.ico" />
     <Content Include="Resources\ColorCoderOptionPage.png" />
     <Content Include="Resources\ColorCoderOptionPagePreset.png" />
     <Content Include="Resources\ColorCoderVB.png" />
+    <Content Include="Resources\ColorWheel-Icon.png" />
+    <Content Include="Resources\ColorWheel.png" />
     <Content Include="Resources\License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

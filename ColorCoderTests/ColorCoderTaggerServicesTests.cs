@@ -8,7 +8,7 @@ using Xunit;
 
 namespace ColorCoderTests
 {
-    public class Class1
+    public class ColorCoderTaggerServicesTests
     {
 
         [Fact]
