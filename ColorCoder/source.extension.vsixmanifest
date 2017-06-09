@@ -5,8 +5,8 @@
     <DisplayName>Color Coder</DisplayName>
     <Description xml:space="preserve">Color Coder is a Visual Studio extension that helps you change the color of  different programming constructs, such as class, interface, extension method etc.</Description>
     <License>Resources\License.txt</License>
-    <Icon>Resources\ColorWheel-Icon.png</Icon>
-    <PreviewImage>Resources\ColorWheel.png</PreviewImage>
+    <Icon>Resources\Icon.png</Icon>
+    <PreviewImage>Resources\Preview.png</PreviewImage>
     <Tags>syntax highlighter, colors, coloring, tagging</Tags>
   </Metadata>
   <Installation>
