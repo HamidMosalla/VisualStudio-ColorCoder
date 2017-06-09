@@ -1,4 +1,6 @@
 # Color Coder
+[![Build status](https://ci.appveyor.com/api/projects/status/vkftm32rfsm8rsv9?svg=true)](https://ci.appveyor.com/project/HamidMosalla/visualstudio-colorcoder)
+
 Color Coder is an extension for Visual Studio 2015 and 2017. 
 It helps you reduce the cognitive load of reading codes by coloring various programming constructs.
  These are:
