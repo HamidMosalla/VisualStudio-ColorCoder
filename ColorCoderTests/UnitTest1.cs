@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Xunit;
 
 namespace ColorCoderTests
@@ -6,11 +6,9 @@ namespace ColorCoderTests
     public class UnitTest1
     {
         [Fact]
-        public void FirstTest()
+        public void Test1()
         {
-
-            Assert.True(1== 1);
-
+            Assert.True(1 == 1);
         }
     }
 }
