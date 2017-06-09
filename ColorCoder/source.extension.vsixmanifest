@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="ColorCoder.Hamid Mosalla.c60146c8-c6f8-40c7-95e7-a50ccdcf6223" Version="1.0" Language="en-US" Publisher="Hamid Mosalla" />
+    <Identity Id="hamidmosalla" Version="1.0" Language="en-US" Publisher="Hamid Mosalla" />
     <DisplayName>Color Coder</DisplayName>
     <Description xml:space="preserve">Color Coder is a Visual Studio extension that helps you better customize different programming constructs.</Description>
     <License>Resources\License.txt</License>
@@ -26,3 +26,4 @@
     <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
   </Assets>
 </PackageManifest>
+<!--c60146c8-c6f8-40c7-95e7-a50ccdcf6223-->
