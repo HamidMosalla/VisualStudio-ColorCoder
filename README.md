@@ -38,3 +38,16 @@ You can change the colors through Visual Studio's options page:
 You can also select form a set of predefined colors or restore the colors to visual studio defaults:
 
 ![Color Coder Option Page Preset](ColorCoder/Resources/ColorCoderOptionPagePreset.png)
+
+# RoadMap
+
+- [ ] Ability to change the color of Attributes
+
+# Changelog
+
+Details of changes to each version of Color Coder.
+
+## 1.0
+
+**2017-06-16**
+- [ ] Initial release
