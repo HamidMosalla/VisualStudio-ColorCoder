@@ -17,16 +17,14 @@ namespace ColorCoder.ColorCoderCore
         {
             var workspace = buffer.GetWorkspace();
             var document = snapshot.GetOpenDocumentInCurrentContextWithChanges();
-            if (document == null)
-            {
-                // Razor cshtml returns a null document for some reason.
-                return null;
-            }
+
+            if (document == null) { return null; }
 
             // the ConfigureAwait() calls are important,
             // otherwise we'll deadlock VS
             var semanticModel = await document.GetSemanticModelAsync().ConfigureAwait(false);
             var syntaxRoot = await document.GetSyntaxRootAsync().ConfigureAwait(false);
+
             return new ProviderCache
             {
                 Workspace = workspace,
