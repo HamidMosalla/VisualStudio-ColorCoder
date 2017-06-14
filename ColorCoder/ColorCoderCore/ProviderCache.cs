@@ -18,10 +18,8 @@ namespace ColorCoder.ColorCoderCore
             var workspace = buffer.GetWorkspace();
             var document = snapshot.GetOpenDocumentInCurrentContextWithChanges();
 
-            if (document == null) { return null; }
-
-            // the ConfigureAwait() calls are important,
-            // otherwise we'll deadlock VS
+            if (document == null) return null;
+            
             var semanticModel = await document.GetSemanticModelAsync().ConfigureAwait(false);
             var syntaxRoot = await document.GetSyntaxRootAsync().ConfigureAwait(false);
 

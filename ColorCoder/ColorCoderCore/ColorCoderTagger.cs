@@ -9,7 +9,7 @@ using CacheState = ColorCoder.ColorCoderCore.ColorCoderTaggerServices.CacheState
 
 namespace ColorCoder.ColorCoderCore
 {
-    internal class ColorCoderTagger : ITagger<IClassificationTag>
+    public class ColorCoderTagger : ITagger<IClassificationTag>
     {
         private ITextBuffer _buffer;
         private readonly ColorCoderTaggerServices _colorCoderTaggerServices;
