@@ -237,6 +237,6 @@ namespace ColorCoder
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [ProvideOptionPage(typeof(ChangeColorOptionGrid), "ColorCoder", "Colors", 1000, 1001, true)]
     [ProvideOptionPage(typeof(PresetOptionGrid), "ColorCoder", "Presets", 1000, 1001, true)]
-    [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/colorcoder", Vsix.Version, IconResourceID = 400)]
+    [InstalledProductRegistration("ColorCoder", "Color Coder provides semantic coloring for C# and VB - http://hamidmosalla.com/color-coder/", Vsix.Version, IconResourceID = 400)]
     public sealed class ColorCoderOptionPackage : Package { }
 }

@@ -3,7 +3,8 @@
   <Metadata>
     <Identity Id="c60146c8-c6f8-40c7-95e7-a50ccdcf6223" Version="1.0" Language="en-US" Publisher="Hamid Mosalla" />
     <DisplayName>Color Coder</DisplayName>
-    <Description xml:space="preserve">Color Coder is a Visual Studio extension that helps you change the color of  different programming constructs, such as class, interface, extension method etc.</Description>
+    <Description xml:space="preserve">Provides the ability to change the color of important programming constructs in C# and VB.</Description>
+    <MoreInfo>https://github.com/HamidMosalla/VisualStudio-ColorCoder</MoreInfo>
     <License>Resources\License.txt</License>
     <Icon>Resources\Icon.png</Icon>
     <PreviewImage>Resources\Preview.png</PreviewImage>
