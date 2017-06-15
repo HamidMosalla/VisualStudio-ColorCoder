@@ -37,6 +37,8 @@ You can also select form a set of predefined colors or restore the colors to vis
 
 ![Color Coder Option Page Preset](ColorCoder/Resources/ColorCoderOptionPagePreset.png)
 
+([More Info](http://hamidmosalla.com/color-coder))
+
 # RoadMap
 
 - [ ] Ability to change the color of Attributes
