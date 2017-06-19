@@ -12,7 +12,7 @@ namespace ColorCoder
         public const string Description = @"Provides the ability to change the color of important programming constructs in C# and VB.";
         public const string Language = "en-US";
         public const string Version = "1.0";
-        public const string Author = "Hamid Mosalla";
+        public const string Author = "HamidMosalla";
         public const string Tags = "syntax highlighter, colors, coloring, tagging";
     }
 }

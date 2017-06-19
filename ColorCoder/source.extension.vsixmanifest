@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="c60146c8-c6f8-40c7-95e7-a50ccdcf6223" Version="1.0" Language="en-US" Publisher="Hamid Mosalla" />
+    <Identity Id="c60146c8-c6f8-40c7-95e7-a50ccdcf6223" Version="1.0" Language="en-US" Publisher="HamidMosalla" />
     <DisplayName>Color Coder</DisplayName>
     <Description xml:space="preserve">Provides the ability to change the color of important programming constructs in C# and VB.</Description>
     <MoreInfo>https://github.com/HamidMosalla/VisualStudio-ColorCoder</MoreInfo>
