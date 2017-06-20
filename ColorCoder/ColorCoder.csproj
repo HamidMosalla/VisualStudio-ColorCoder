@@ -96,7 +96,6 @@
     <Content Include="Resources\ColorCoderCSharp.png" />
     <Content Include="Resources\ColorCoderOptionPage.png" />
     <Content Include="Resources\ColorCoderOptionPagePreset.png" />
-    <Content Include="Resources\ColorCoderVB.png" />
     <Content Include="Resources\Icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>

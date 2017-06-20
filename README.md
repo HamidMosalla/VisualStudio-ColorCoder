@@ -21,17 +21,11 @@ Color Coder is an extension for Visual Studio 2015 and 2017. It can help you cha
 * Delegate            
 * GenericTypeParameter
 
-When you first install Color Coder, it doesn't touch the colors, you should go to its option page to change the colors. But if we were to change every possible color (which is not a good idea IMHO), it would look like something like this:
-
-In C#:
+When you initially install Color Coder, it doesn't change the colors, you should go to its option page to change it, you can see an example of its use on methods and constructors down below:
 
 ![Color Coder C Sharp](ColorCoder/Resources/ColorCoderCSharp.png)
 
-In VB.Net:
-
-![Color Coder V B](ColorCoder/Resources/ColorCoderVB.png)
-
-You can change the colors through Visual Studio's options page:
+You can change the colors through Color Coder's options page:
 
 ![Color Coder Option Page](ColorCoder/Resources/ColorCoderOptionPage.png)
 
