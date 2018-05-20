@@ -30,27 +30,6 @@ namespace ColorCoder.ColorCoderCore
 
     class ColorCoderTaggerServices
     {
-        //private static readonly HashSet<String> SupportedClassificationTypeNames = new HashSet<string>
-        //{
-        //    ClassificationTypeNames.ClassName,
-        //    ClassificationTypeNames.StructName,
-        //    ColorCoderClassificationTypeNames.FieldName,
-        //    ColorCoderClassificationTypeNames.PropertyName,
-        //    ClassificationTypeNames.InterfaceName,
-        //    ClassificationTypeNames.DelegateName,
-        //    ClassificationTypeNames.EnumName,
-        //    ColorCoderClassificationTypeNames.EnumMemberName,
-        //    ClassificationTypeNames.Keyword,
-        //    ClassificationTypeNames.Identifier,
-        //    ColorCoderClassificationTypeNames.EventName,
-        //    ColorCoderClassificationTypeNames.LocalName,
-        //    ColorCoderClassificationTypeNames.ParameterName,
-        //    ColorCoderClassificationTypeNames.ExtensionMethodName,
-        //    ColorCoderClassificationTypeNames.ConstantName,
-        //    ClassificationTypeNames.TypeParameterName,
-        //    ColorCoderClassificationTypeNames.MethodName
-        //};
-
         private static readonly HashSet<String> SupportedClassificationTypeNames = new HashSet<string>
         {
             ColorCoderClassificationTypeNames.FieldName,

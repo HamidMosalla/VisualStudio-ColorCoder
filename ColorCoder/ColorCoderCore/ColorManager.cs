@@ -116,26 +116,26 @@ namespace ColorCoder.ColorCoderCore
 
         public IDictionary<String, ColorableItemInfo[]> GetColorableItemInfoDictionary()
         {
-            var classifications = new Dictionary<String, ColorableItemInfo[]>();
-
-            classifications.Add(ColorCoderClassificationName.Constructor, Color.OrangeRed.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.EnumMember, Color.Olive.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.ExtensionMethod, Color.Magenta.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Field, Color.DarkOrange.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.LocalVariable, Color.Black.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Method, Color.Purple.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Namespace, Color.Black.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Property, Color.Chocolate.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.StaticMethod, Color.LimeGreen.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Parameter, Color.Gray.ToColorableItemInfo());
-
-            classifications.Add(ColorCoderClassificationName.Class, Color.FromArgb(43, 145, 175).ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Interface, Color.DarkSlateBlue.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Module, Color.Black.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Struct, Color.Orchid.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Enum, Color.SeaGreen.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.Delegate, Color.DarkKhaki.ToColorableItemInfo());
-            classifications.Add(ColorCoderClassificationName.GenericTypeParameter, Color.DeepSkyBlue.ToColorableItemInfo());
+            var classifications = new Dictionary<String, ColorableItemInfo[]>
+            {
+                {ColorCoderClassificationName.Constructor, Color.OrangeRed.ToColorableItemInfo()},
+                {ColorCoderClassificationName.EnumMember, Color.Olive.ToColorableItemInfo()},
+                {ColorCoderClassificationName.ExtensionMethod, Color.Magenta.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Field, Color.DarkOrange.ToColorableItemInfo()},
+                {ColorCoderClassificationName.LocalVariable, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Method, Color.Purple.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Namespace, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Property, Color.Chocolate.ToColorableItemInfo()},
+                {ColorCoderClassificationName.StaticMethod, Color.LimeGreen.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Parameter, Color.Gray.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Class, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Interface, Color.DarkSlateBlue.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Module, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Struct, Color.Orchid.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Enum, Color.SeaGreen.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Delegate, Color.DarkKhaki.ToColorableItemInfo()},
+                {ColorCoderClassificationName.GenericTypeParameter, Color.DeepSkyBlue.ToColorableItemInfo()}
+            };
 
             return classifications;
         }

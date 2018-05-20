@@ -52,6 +52,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Classifications\ClassificationTypeFactory.cs" />
+    <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
     <Compile Include="Classifications\ContentTypes.cs" />

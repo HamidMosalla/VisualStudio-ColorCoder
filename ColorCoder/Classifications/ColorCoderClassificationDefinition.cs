@@ -30,7 +30,7 @@ namespace ColorCoder.Classifications
 
 
         [Export, Name(ColorCoderClassificationName.EnumMember)]
-        internal static ClassificationTypeDefinition EnumConstantClassificationType;
+        internal static ClassificationTypeDefinition EnumMemberClassificationType;
 
 
         [Export, Name(ColorCoderClassificationName.Constructor)]

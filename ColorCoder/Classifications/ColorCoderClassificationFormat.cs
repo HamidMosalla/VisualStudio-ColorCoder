@@ -8,19 +8,6 @@ namespace ColorCoder.Classifications
     public static class ClassificationTypeDefinitions
     {
         [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.EnumMember)]
-        [Name(ColorCoderClassificationName.EnumMember)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class EnumConstantClassificationFormat : ClassificationFormatDefinition
-        {
-            public EnumConstantClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.EnumMember;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
         [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Constructor)]
         [Name(ColorCoderClassificationName.Constructor)]
         [UserVisible(true)]
@@ -220,6 +207,19 @@ namespace ColorCoder.Classifications
             public EnumClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Enum;
+            }
+        }
+
+        [Export(typeof(EditorFormatDefinition))]
+        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.EnumMember)]
+        [Name(ColorCoderClassificationName.EnumMember)]
+        [UserVisible(true)]
+        [Order(After = Priority.Default)]
+        public sealed class EnumMemberClassificationFormat : ClassificationFormatDefinition
+        {
+            public EnumMemberClassificationFormat()
+            {
+                this.DisplayName = ColorCoderClassificationName.EnumMember;
             }
         }
 
