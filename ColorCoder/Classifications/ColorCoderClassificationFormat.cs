@@ -88,8 +88,8 @@ namespace ColorCoder.Classifications
                 //    FontStyles.Normal,
                 //    FontWeights.Bold,
                 //    FontStretches.Condensed);
-                this.IsBold = true;
-                this.FontRenderingSize = 12;
+                //this.IsBold = true;
+                //this.FontRenderingSize = 12;
             }
         }
 
