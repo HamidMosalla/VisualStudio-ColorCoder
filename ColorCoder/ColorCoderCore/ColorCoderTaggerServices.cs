@@ -61,7 +61,9 @@ namespace ColorCoder.ColorCoderCore
             ColorCoderClassificationTypeNames.ParameterName,
             ColorCoderClassificationTypeNames.ExtensionMethodName,
             ColorCoderClassificationTypeNames.ConstantName,
-            ColorCoderClassificationTypeNames.MethodName
+            ColorCoderClassificationTypeNames.MethodName,
+
+            ClassificationTypeNames.Identifier,
         };
 
         internal IEnumerable<ClassifiedSpan> GetIdentifiersInSpans(Workspace workspace, SemanticModel model, NormalizedSnapshotSpanCollection spans)
@@ -183,6 +185,12 @@ namespace ColorCoder.ColorCoderCore
                     return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
                 }
             }
+
+            //if (span.ClassificationType == ClassificationTypeNames.StructName)
+            //{
+            //    classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Struct, out IClassificationType classificationValue);
+            //    return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+            //}
 
             //if (symbol?.Kind == SymbolKind.NamedType)
             //{
