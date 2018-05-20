@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ColorCoder.Classifications
+namespace ColorCoder.Types
 {
     public static class Guids
     {

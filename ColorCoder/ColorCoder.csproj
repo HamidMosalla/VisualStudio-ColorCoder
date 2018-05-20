@@ -55,10 +55,12 @@
     <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
-    <Compile Include="Classifications\ContentTypes.cs" />
-    <Compile Include="Classifications\Guids.cs" />
+    <Compile Include="Types\CacheState.cs" />
+    <Compile Include="Types\ContentTypes.cs" />
+    <Compile Include="Types\Guids.cs" />
     <Compile Include="Classifications\Preset.cs" />
     <Compile Include="Classifications\PresetData.cs" />
+    <Compile Include="Classifications\ColorCoderClassificationTypeNames.cs" />
     <Compile Include="ColorCoderCore\Settings.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTagger.cs" />
     <Compile Include="ColorCoderCore\ColorCoderTaggerProvider.cs" />

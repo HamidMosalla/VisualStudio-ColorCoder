@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Media;
 using ColorCoder.Classifications;
 using ColorCoder.Extensions;
+using ColorCoder.Types;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Color = System.Drawing.Color;

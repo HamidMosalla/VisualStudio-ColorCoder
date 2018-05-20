@@ -4,7 +4,6 @@
     {
         NoPreset,
         VisualStudioDefault,
-        ColorCoderDefault,
-        ColorCoderExtreme
+        ColorCoderDefault
     }
 }

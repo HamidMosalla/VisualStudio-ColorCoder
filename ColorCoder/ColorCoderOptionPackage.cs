@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using ColorCoder.Classifications;
 using ColorCoder.ColorCoderCore;
+using ColorCoder.Types;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -219,12 +220,6 @@ namespace ColorCoder
             }
 
             if (Preset == Preset.ColorCoderDefault)
-            {
-                var colors = _colorManager.GetColorableItemInfoDictionary();
-                _colorManager.Save(colors);
-            }
-
-            if (Preset == Preset.ColorCoderExtreme)
             {
                 var colors = _colorManager.GetColorableItemInfoDictionary();
                 _colorManager.Save(colors);
