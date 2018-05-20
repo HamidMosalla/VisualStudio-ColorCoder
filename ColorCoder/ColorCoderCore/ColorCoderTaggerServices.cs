@@ -14,8 +14,56 @@ using VB = Microsoft.CodeAnalysis.VisualBasic;
 
 namespace ColorCoder.ColorCoderCore
 {
+    static class ColorCoderClassificationTypeNames
+    {
+        public const string PropertyName = "property name";
+        public const string EventName = "event name";
+        public const string ExtensionMethodName = "extension method name";
+        public const string MethodName = "method name";
+        public const string ParameterName = "parameter name";
+        public const string LocalName = "local name";
+        public const string FieldName = "field name";
+        public const string EnumMemberName = "enum member name";
+        public const string ConstantName = "constant name";
+    }
+
+
     class ColorCoderTaggerServices
     {
+        //private static readonly HashSet<String> SupportedClassificationTypeNames = new HashSet<string>
+        //{
+        //    ClassificationTypeNames.ClassName,
+        //    ClassificationTypeNames.StructName,
+        //    ColorCoderClassificationTypeNames.FieldName,
+        //    ColorCoderClassificationTypeNames.PropertyName,
+        //    ClassificationTypeNames.InterfaceName,
+        //    ClassificationTypeNames.DelegateName,
+        //    ClassificationTypeNames.EnumName,
+        //    ColorCoderClassificationTypeNames.EnumMemberName,
+        //    ClassificationTypeNames.Keyword,
+        //    ClassificationTypeNames.Identifier,
+        //    ColorCoderClassificationTypeNames.EventName,
+        //    ColorCoderClassificationTypeNames.LocalName,
+        //    ColorCoderClassificationTypeNames.ParameterName,
+        //    ColorCoderClassificationTypeNames.ExtensionMethodName,
+        //    ColorCoderClassificationTypeNames.ConstantName,
+        //    ClassificationTypeNames.TypeParameterName,
+        //    ColorCoderClassificationTypeNames.MethodName
+        //};
+
+        private static readonly HashSet<String> SupportedClassificationTypeNames = new HashSet<string>
+        {
+            ColorCoderClassificationTypeNames.FieldName,
+            ColorCoderClassificationTypeNames.PropertyName,
+            ColorCoderClassificationTypeNames.EnumMemberName,
+            ColorCoderClassificationTypeNames.EventName,
+            ColorCoderClassificationTypeNames.LocalName,
+            ColorCoderClassificationTypeNames.ParameterName,
+            ColorCoderClassificationTypeNames.ExtensionMethodName,
+            ColorCoderClassificationTypeNames.ConstantName,
+            ColorCoderClassificationTypeNames.MethodName
+        };
+
         internal IEnumerable<ClassifiedSpan> GetIdentifiersInSpans(Workspace workspace, SemanticModel model, NormalizedSnapshotSpanCollection spans)
         {
             var comparer = StringComparer.InvariantCultureIgnoreCase;
@@ -26,7 +74,7 @@ namespace ColorCoder.ColorCoderCore
                 return Classifier.GetClassifiedSpans(model, textSpan, workspace);
             });
 
-            return classifiedSpans.Where(c => comparer.Compare(c.ClassificationType, "identifier") == 0);
+            return classifiedSpans.Where(span => SupportedClassificationTypeNames.Contains(span.ClassificationType, comparer));
         }
 
         internal SyntaxNode GetExpression(SyntaxNode node)
@@ -153,7 +201,7 @@ namespace ColorCoder.ColorCoderCore
         {
             if (cache != null && cache.Snapshot == spans[0].Snapshot) return CacheState.Resolved;
 
-            var task = ProviderCache.Resolve(buffer, spans[0].Snapshot);
+            var task = ProviderCache.ResolveAsync(buffer, spans[0].Snapshot);
 
             try
             {

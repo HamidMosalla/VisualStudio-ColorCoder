@@ -36,6 +36,7 @@ namespace ColorCoder.ColorCoderCore
                                  | __FCSTORAGEFLAGS.FCSF_NOAUTOCOLORS
                                  | __FCSTORAGEFLAGS.FCSF_READONLY);
 
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             var hr = _colorStorage.Storage.OpenCategory(ref category, flags);
             ErrorHandler.ThrowOnFailure(hr);
 
@@ -64,6 +65,7 @@ namespace ColorCoder.ColorCoderCore
             uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
                               | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES);
 
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             var hr = _colorStorage.Storage.OpenCategory(ref category, flags);
             ErrorHandler.ThrowOnFailure(hr);
 
@@ -83,8 +85,7 @@ namespace ColorCoder.ColorCoderCore
 
         public Color Get(String classificationName)
         {
-            ColorableItemInfo[] entry;
-            if (_classifications.TryGetValue(classificationName, out entry))
+            if (_classifications.TryGetValue(classificationName, out var entry))
             {
                 return ColorTranslator.FromWin32((int)entry[0].crForeground);
             }
@@ -98,6 +99,7 @@ namespace ColorCoder.ColorCoderCore
             uint flags = (uint)(__FCSTORAGEFLAGS.FCSF_LOADDEFAULTS
                               | __FCSTORAGEFLAGS.FCSF_PROPAGATECHANGES);
 
+            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
             var hr = _colorStorage.Storage.OpenCategory(ref category, flags);
             ErrorHandler.ThrowOnFailure(hr);
 
