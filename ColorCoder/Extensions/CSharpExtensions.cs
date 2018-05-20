@@ -26,6 +26,13 @@ namespace ColorCoder.Extensions
             return node.Kind() == SyntaxKind.ConstructorDeclaration;
         }
 
+        public static bool IsConstructor(IMethodSymbol methodSymbol)
+        {
+            return methodSymbol.MethodKind == MethodKind.Constructor ||
+                   methodSymbol.MethodKind == MethodKind.StaticConstructor ||
+                   methodSymbol.MethodKind == MethodKind.SharedConstructor;
+        }
+
         public static bool IsCSharpAbstractSyntaxKind(this SyntaxNode node)
         {
             return node.Kind() == SyntaxKind.Attribute;

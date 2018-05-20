@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Media;
 using ColorCoder.Classifications;
 using ColorCoder.Extensions;
-using EnvDTE;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Color = System.Drawing.Color;
@@ -15,15 +14,11 @@ namespace ColorCoder.ColorCoderCore
     {
         private readonly ColorStorage _colorStorage;
         private readonly IDictionary<String, ColorableItemInfo[]> _classifications;
-        private EnvDTE80.DTE2 _dte;
-        private FontsAndColorsItems _fontsAndColorsItems;
 
-        public ColorManager(ColorStorage colorStorage, EnvDTE80.DTE2 dte)
+        public ColorManager(ColorStorage colorStorage)
         {
             _colorStorage = colorStorage;
             _classifications = new Dictionary<String, ColorableItemInfo[]>();
-            _dte = dte;
-            _fontsAndColorsItems = _dte.Properties["FontsAndColors", "TextEditor"].Item("FontsAndColorsItems").Object as FontsAndColorsItems;
         }
 
         public void Load(params String[] classificationNames)
@@ -119,35 +114,6 @@ namespace ColorCoder.ColorCoderCore
             }
         }
 
-        public Color GetBuiltIn(String classificationName)
-        {
-            var colorItem = _fontsAndColorsItems.Item(classificationName);
-            return ColorTranslator.FromWin32((int)colorItem.Foreground);
-        }
-
-        public void SetBuiltIn(String classificationName, Color color)
-        {
-            var colorItem = _fontsAndColorsItems.Item(classificationName);
-            colorItem.Foreground = (uint)ColorTranslator.ToWin32(color);
-        }
-
-        public void SetDefaultBuiltInColors()
-        {
-            var Interface = _fontsAndColorsItems.Item(ColorCoderClassificationName.Interface);
-            var module = _fontsAndColorsItems.Item(ColorCoderClassificationName.Module);
-            var Struct = _fontsAndColorsItems.Item(ColorCoderClassificationName.Struct);
-            var Enum = _fontsAndColorsItems.Item(ColorCoderClassificationName.Enum);
-            var Delegate = _fontsAndColorsItems.Item(ColorCoderClassificationName.Delegate);
-            var genericTypeParameter = _fontsAndColorsItems.Item(ColorCoderClassificationName.GenericTypeParameter);
-
-            Interface.Foreground = (uint)ColorTranslator.ToWin32(Colors.DarkSlateBlue.ToDrawingColor());
-            module.Foreground = (uint)ColorTranslator.ToWin32(Colors.Black.ToDrawingColor());
-            Struct.Foreground = (uint)ColorTranslator.ToWin32(Colors.Orchid.ToDrawingColor());
-            Enum.Foreground = (uint)ColorTranslator.ToWin32(Colors.SeaGreen.ToDrawingColor());
-            Delegate.Foreground = (uint)ColorTranslator.ToWin32(Colors.DarkKhaki.ToDrawingColor());
-            genericTypeParameter.Foreground = (uint)ColorTranslator.ToWin32(Colors.DeepSkyBlue.ToDrawingColor());
-        }
-
         public IDictionary<String, ColorableItemInfo[]> GetColorableItemInfoDictionary()
         {
             var classifications = new Dictionary<String, ColorableItemInfo[]>();
@@ -163,27 +129,15 @@ namespace ColorCoder.ColorCoderCore
             classifications.Add(ColorCoderClassificationName.StaticMethod, Color.LimeGreen.ToColorableItemInfo());
             classifications.Add(ColorCoderClassificationName.Parameter, Color.Gray.ToColorableItemInfo());
 
+            classifications.Add(ColorCoderClassificationName.Class, Color.FromArgb(43, 145, 175).ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Interface, Color.DarkSlateBlue.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Module, Color.Black.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Struct, Color.Orchid.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Enum, Color.SeaGreen.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.Delegate, Color.DarkKhaki.ToColorableItemInfo());
+            classifications.Add(ColorCoderClassificationName.GenericTypeParameter, Color.DeepSkyBlue.ToColorableItemInfo());
+
             return classifications;
-        }
-
-        public void RestoreBuiltInColorsToDefault()
-        {
-            var Class = _fontsAndColorsItems.Item(ColorCoderClassificationName.Class);
-            var Interface = _fontsAndColorsItems.Item(ColorCoderClassificationName.Interface);
-            var module = _fontsAndColorsItems.Item(ColorCoderClassificationName.Module);
-            var Struct = _fontsAndColorsItems.Item(ColorCoderClassificationName.Struct);
-            var Enum = _fontsAndColorsItems.Item(ColorCoderClassificationName.Enum);
-            var Delegate = _fontsAndColorsItems.Item(ColorCoderClassificationName.Delegate);
-            var genericTypeParameter = _fontsAndColorsItems.Item(ColorCoderClassificationName.GenericTypeParameter);
-
-            var defaultBuiltInColors = Color.FromArgb(43, 145, 175);
-            Class.Foreground = (uint)ColorTranslator.ToWin32(defaultBuiltInColors);
-            Interface.Foreground = (uint)ColorTranslator.ToWin32(defaultBuiltInColors);
-            module.Foreground = (uint)ColorTranslator.ToWin32(defaultBuiltInColors);
-            Struct.Foreground = (uint)ColorTranslator.ToWin32(defaultBuiltInColors);
-            Enum.Foreground = (uint)ColorTranslator.ToWin32(defaultBuiltInColors);
-            Delegate.Foreground = (uint)ColorTranslator.ToWin32(defaultBuiltInColors);
-            genericTypeParameter.Foreground = (uint)ColorTranslator.ToWin32(defaultBuiltInColors);
         }
 
         public void RestoreColorCoderToDefault()

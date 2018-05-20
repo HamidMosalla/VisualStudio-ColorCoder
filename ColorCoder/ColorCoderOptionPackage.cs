@@ -19,56 +19,56 @@ namespace ColorCoder
         [DisplayName("Class")]
         public Color Class
         {
-            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.Class); }
-            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.Class, value); }
+            get { return _colorManager.Get(ColorCoderClassificationName.Class); }
+            set { _colorManager.Set(ColorCoderClassificationName.Class, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Delegate")]
         public Color Delegate
         {
-            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.Delegate); }
-            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.Delegate, value); }
+            get { return _colorManager.Get(ColorCoderClassificationName.Delegate); }
+            set { _colorManager.Set(ColorCoderClassificationName.Delegate, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Interface")]
         public Color Interface
         {
-            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.Interface); }
-            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.Interface, value); }
+            get { return _colorManager.Get(ColorCoderClassificationName.Interface); }
+            set { _colorManager.Set(ColorCoderClassificationName.Interface, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Struct")]
         public Color Struct
         {
-            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.Struct); }
-            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.Struct, value); }
+            get { return _colorManager.Get(ColorCoderClassificationName.Struct); }
+            set { _colorManager.Set(ColorCoderClassificationName.Struct, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Enum")]
         public Color Enum
         {
-            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.Enum); }
-            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.Enum, value); }
+            get { return _colorManager.Get(ColorCoderClassificationName.Enum); }
+            set { _colorManager.Set(ColorCoderClassificationName.Enum, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Generic Type Parameter")]
         public Color GenericTypeParameter
         {
-            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.GenericTypeParameter); }
-            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.GenericTypeParameter, value); }
+            get { return _colorManager.Get(ColorCoderClassificationName.GenericTypeParameter); }
+            set { _colorManager.Set(ColorCoderClassificationName.GenericTypeParameter, value); }
         }
 
         [Category(ColorSubCategory)]
         [DisplayName("Module(VB Only)")]
         public Color Module
         {
-            get { return _colorManager.GetBuiltIn(ColorCoderClassificationName.Module); }
-            set { _colorManager.SetBuiltIn(ColorCoderClassificationName.Module, value); }
+            get { return _colorManager.Get(ColorCoderClassificationName.Module); }
+            set { _colorManager.Set(ColorCoderClassificationName.Module, value); }
         }
 
         //[Category(ColorSubCategory)]
@@ -161,9 +161,7 @@ namespace ColorCoder
 
         public override void LoadSettingsFromStorage()
         {
-            var dte = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
-
-            this._colorManager = new ColorManager(new ColorStorage(this.Site), dte);
+            this._colorManager = new ColorManager(new ColorStorage(this.Site));
 
             _colorManager.Load(
                 //ColorCoderClassificationName.Attribute,
@@ -176,7 +174,14 @@ namespace ColorCoder
                 ColorCoderClassificationName.Namespace,
                 ColorCoderClassificationName.Property,
                 ColorCoderClassificationName.StaticMethod,
-                ColorCoderClassificationName.Parameter
+                ColorCoderClassificationName.Parameter,
+                ColorCoderClassificationName.Class,
+                ColorCoderClassificationName.Interface,
+                ColorCoderClassificationName.Module,
+                ColorCoderClassificationName.Struct,
+                ColorCoderClassificationName.Enum,
+                ColorCoderClassificationName.Delegate,
+                ColorCoderClassificationName.GenericTypeParameter
             );
         }
 
@@ -197,9 +202,7 @@ namespace ColorCoder
 
         public override void LoadSettingsFromStorage()
         {
-            var dte = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
-
-            this._colorManager = new ColorManager(new ColorStorage(this.Site), dte);
+            this._colorManager = new ColorManager(new ColorStorage(this.Site));
 
             Preset = Settings.Load().Preset;
         }
@@ -212,13 +215,11 @@ namespace ColorCoder
 
             if (Preset == Preset.VisualStudioDefault)
             {
-                _colorManager.RestoreBuiltInColorsToDefault();
                 _colorManager.RestoreColorCoderToDefault();
             }
 
             if (Preset == Preset.ColorCoderDefault)
             {
-                _colorManager.RestoreBuiltInColorsToDefault();
                 var colors = _colorManager.GetColorableItemInfoDictionary();
                 _colorManager.Save(colors);
             }
@@ -227,7 +228,6 @@ namespace ColorCoder
             {
                 var colors = _colorManager.GetColorableItemInfoDictionary();
                 _colorManager.Save(colors);
-                _colorManager.SetDefaultBuiltInColors();
             }
         }
     }

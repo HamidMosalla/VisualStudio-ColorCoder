@@ -9,12 +9,24 @@ namespace ColorCoder.Classifications
         [Export, Name(ColorCoderClassificationName.Interface)]
         internal static ClassificationTypeDefinition InterfaceClassificationType;
 
+        [Export, Name(ColorCoderClassificationName.Class)]
+        internal static ClassificationTypeDefinition ClassClassificationType;
+
+        [Export, Name(ColorCoderClassificationName.Module)]
+        internal static ClassificationTypeDefinition ModuleClassificationType;
+
         [Export, Name(ColorCoderClassificationName.Struct)]
         internal static ClassificationTypeDefinition StructClassificationType;
 
 
         [Export, Name(ColorCoderClassificationName.Enum)]
         internal static ClassificationTypeDefinition EnumClassificationType;
+
+        [Export, Name(ColorCoderClassificationName.Delegate)]
+        internal static ClassificationTypeDefinition DelegateClassificationType;
+
+        [Export, Name(ColorCoderClassificationName.GenericTypeParameter)]
+        internal static ClassificationTypeDefinition GenericTypeParameterClassificationType;
 
 
         [Export, Name(ColorCoderClassificationName.EnumMember)]
