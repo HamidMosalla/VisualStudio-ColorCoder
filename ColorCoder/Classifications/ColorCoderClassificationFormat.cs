@@ -146,71 +146,6 @@ namespace ColorCoder.Classifications
         }
 
         [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Class)]
-        [Name(ColorCoderClassificationName.Class)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class ClassClassificationFormat : ClassificationFormatDefinition
-        {
-            public ClassClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Class;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Interface)]
-        [Name(ColorCoderClassificationName.Interface)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class InterfaceClassificationFormat : ClassificationFormatDefinition
-        {
-            public InterfaceClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Interface;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Module)]
-        [Name(ColorCoderClassificationName.Module)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class ModuleClassificationFormat : ClassificationFormatDefinition
-        {
-            public ModuleClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Module;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Struct)]
-        [Name(ColorCoderClassificationName.Struct)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class StructClassificationFormat : ClassificationFormatDefinition
-        {
-            public StructClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Struct;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Enum)]
-        [Name(ColorCoderClassificationName.Enum)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class EnumClassificationFormat : ClassificationFormatDefinition
-        {
-            public EnumClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Enum;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
         [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.EnumMember)]
         [Name(ColorCoderClassificationName.EnumMember)]
         [UserVisible(true)]
@@ -223,30 +158,15 @@ namespace ColorCoder.Classifications
             }
         }
 
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Delegate)]
-        [Name(ColorCoderClassificationName.Delegate)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class DelegateClassificationFormat : ClassificationFormatDefinition
-        {
-            public DelegateClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Delegate;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.GenericTypeParameter)]
-        [Name(ColorCoderClassificationName.GenericTypeParameter)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class GenericTypeParameterClassificationFormat : ClassificationFormatDefinition
-        {
-            public GenericTypeParameterClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.GenericTypeParameter;
-            }
-        }
+        /*
+         * Note: EditorFormatDefinition is not necessary for these, since there's default format definition for them
+         class name
+         delegate name
+         enum name
+         interface name
+         module name
+         struct name
+         type parameter name
+         */
     }
 }
