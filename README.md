@@ -35,15 +35,13 @@ You can also change the colors by selecting from a set of predefined options or 
 
 ([More Info](http://hamidmosalla.com/color-coder))
 
-# RoadMap
 
-- [ ] Ability to change the color of Attributes
+#Release Notes
 
-# Changelog
+##Version 1 (**2017-06-16**)
+- Initial release
 
-Details of changes to each version of Color Coder.
-
-## 1.0
-
-**2017-06-16**
-- [ ] Initial release
+##Version 1.0.1 (**5/21/2018**)
+- Fix compatibility issues with Visual Studio 2017 (Version 15.7)
+- Remove the preexisting font size for methods
+- Performance improvements
