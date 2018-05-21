@@ -36,12 +36,12 @@ You can also change the colors by selecting from a set of predefined options or 
 ([More Info](http://hamidmosalla.com/color-coder))
 
 
-#Release Notes
+# Release Notes
 
-##Version 1 (**2017-06-16**)
+## Version 1 (**2017-06-16**)
 - Initial release
 
-##Version 1.0.1 (**5/21/2018**)
+## Version 1.0.1 (**5/21/2018**)
 - Fix compatibility issues with Visual Studio 2017 (Version 15.7)
 - Remove the preexisting font size for methods
 - Performance improvements
