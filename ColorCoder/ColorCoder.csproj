@@ -55,6 +55,7 @@
     <Compile Include="Classifications\ColorCoderClassificationDefinition.cs" />
     <Compile Include="Classifications\ColorCoderClassificationFormat.cs" />
     <Compile Include="Classifications\ColorCoderClassificationName.cs" />
+    <Compile Include="ColorCoderCore\IsolatedTetstCacse.cs" />
     <Compile Include="Types\CacheState.cs" />
     <Compile Include="Types\ContentTypes.cs" />
     <Compile Include="Types\Guids.cs" />

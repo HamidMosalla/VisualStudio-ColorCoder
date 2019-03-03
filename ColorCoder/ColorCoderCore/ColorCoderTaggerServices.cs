@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using ColorCoder.Classifications;
 using ColorCoder.Extensions;
@@ -100,6 +101,12 @@ namespace ColorCoder.ColorCoderCore
             if (node.IsCSharpConstructorSyntaxKind())
             {
                 classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Constructor, out IClassificationType classificationValue);
+                return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+            }
+
+            if (symbol?.Kind == SymbolKind.TypeParameter)
+            {
+                classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Method, out IClassificationType classificationValue);
                 return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
             }
 
