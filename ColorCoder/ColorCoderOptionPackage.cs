@@ -216,7 +216,8 @@ namespace ColorCoder
 
             if (Preset == Preset.VisualStudioDefault)
             {
-                _colorManager.RestoreColorCoderToDefault();
+                var defaultColors = _colorManager.GetDefaultColorsBySelectedThemes();
+                _colorManager.Save(defaultColors);
             }
 
             if (Preset == Preset.ColorCoderDefault)

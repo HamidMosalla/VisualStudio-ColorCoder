@@ -8,6 +8,7 @@ using ColorCoder.Types;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Color = System.Drawing.Color;
+using Microsoft.VisualStudio.PlatformUI;
 
 namespace ColorCoder.ColorCoderCore
 {
@@ -15,6 +16,8 @@ namespace ColorCoder.ColorCoderCore
     {
         private readonly ColorStorage _colorStorage;
         private readonly IDictionary<String, ColorableItemInfo[]> _classifications;
+        private const string BLUETHEMECOLOR = "fff7f9fe";
+        private const string DARKTHEMECOLOR = "ff252526";
 
         public ColorManager(ColorStorage colorStorage)
         {
@@ -141,16 +144,63 @@ namespace ColorCoder.ColorCoderCore
             return classifications;
         }
 
-        public void RestoreColorCoderToDefault()
+        private IDictionary<String, ColorableItemInfo[]> GetBlueThemeDefaultColors()
         {
-            var colorableItemInfoDictionary = GetColorableItemInfoDictionary();
-
-            foreach (var item in colorableItemInfoDictionary)
+            return new Dictionary<String, ColorableItemInfo[]>
             {
-                item.Value[0].crForeground = (uint)ColorTranslator.ToWin32(Color.Black);
-            }
+                {ColorCoderClassificationName.Constructor, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.EnumMember, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.ExtensionMethod, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Field, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.LocalVariable, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Method, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Namespace, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Property, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.StaticMethod, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Parameter, Color.Black.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Class, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Interface, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Module, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Struct, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Enum, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Delegate, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
+                {ColorCoderClassificationName.GenericTypeParameter, Color.FromArgb(43, 145, 175).ToColorableItemInfo()}
+            };
+        }
 
-            Save(colorableItemInfoDictionary);
+        private IDictionary<String, ColorableItemInfo[]> GetDarkThemeDefaultColors()
+        {
+            return new Dictionary<String, ColorableItemInfo[]>
+            {
+                {ColorCoderClassificationName.Constructor, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.EnumMember, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.ExtensionMethod, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Field, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.LocalVariable, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Method, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Namespace, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Property, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.StaticMethod, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Parameter, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Class, Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Interface, Color.FromArgb(184, 215, 163).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Module,  Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Struct,  Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Enum, Color.FromArgb(184, 215, 163).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Delegate,  Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
+                {ColorCoderClassificationName.GenericTypeParameter, Color.FromArgb(184, 215, 163).ToColorableItemInfo()}
+            };
+        }
+
+        public IDictionary<String, ColorableItemInfo[]>  GetDefaultColorsBySelectedThemes()
+        {
+            var defaultBackground = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
+
+            if (defaultBackground.Name == BLUETHEMECOLOR) return GetBlueThemeDefaultColors();
+
+            if (defaultBackground.Name == DARKTHEMECOLOR) return GetDarkThemeDefaultColors();
+
+            return GetBlueThemeDefaultColors();
         }
     }
 }
