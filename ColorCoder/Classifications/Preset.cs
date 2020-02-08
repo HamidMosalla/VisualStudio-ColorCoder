@@ -4,6 +4,7 @@
     {
         NoPreset,
         VisualStudioDefault,
-        ColorCoderDefault
+        ColorCoderBlueThemeDefault,
+        ColorCoderDarkThemeDefault
     }
 }

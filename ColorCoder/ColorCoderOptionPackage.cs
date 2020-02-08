@@ -220,9 +220,15 @@ namespace ColorCoder
                 _colorManager.Save(defaultColors);
             }
 
-            if (Preset == Preset.ColorCoderDefault)
+            if (Preset == Preset.ColorCoderBlueThemeDefault)
             {
-                var colors = _colorManager.GetColorableItemInfoDictionary();
+                var colors = _colorManager.GetBlueThemeColorCoderDefaultColors();
+                _colorManager.Save(colors);
+            }
+
+            if (Preset == Preset.ColorCoderDarkThemeDefault)
+            {
+                var colors = _colorManager.GetDarkThemeColorCoderDefaultColors();
                 _colorManager.Save(colors);
             }
         }

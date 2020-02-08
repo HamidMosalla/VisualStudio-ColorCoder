@@ -118,7 +118,7 @@ namespace ColorCoder.ColorCoderCore
             }
         }
 
-        public IDictionary<String, ColorableItemInfo[]> GetColorableItemInfoDictionary()
+        public IDictionary<String, ColorableItemInfo[]> GetBlueThemeColorCoderDefaultColors()
         {
             var classifications = new Dictionary<String, ColorableItemInfo[]>
             {
@@ -139,6 +139,32 @@ namespace ColorCoder.ColorCoderCore
                 {ColorCoderClassificationName.Enum, Color.SeaGreen.ToColorableItemInfo()},
                 {ColorCoderClassificationName.Delegate, Color.DarkKhaki.ToColorableItemInfo()},
                 {ColorCoderClassificationName.GenericTypeParameter, Color.DeepSkyBlue.ToColorableItemInfo()}
+            };
+
+            return classifications;
+        }
+
+        public IDictionary<String, ColorableItemInfo[]> GetDarkThemeColorCoderDefaultColors()
+        {
+            var classifications = new Dictionary<String, ColorableItemInfo[]>
+            {
+                {ColorCoderClassificationName.Constructor, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.EnumMember, Color.DarkOliveGreen.ToColorableItemInfo()},
+                {ColorCoderClassificationName.ExtensionMethod, Color.Violet.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Field, Color.CornflowerBlue.ToColorableItemInfo()},
+                {ColorCoderClassificationName.LocalVariable, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Method, Color.DeepPink.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Namespace, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Property, Color.Salmon.ToColorableItemInfo()},
+                {ColorCoderClassificationName.StaticMethod, Color.LawnGreen.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Parameter, Color.Gainsboro.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Class, Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Interface, Color.PaleTurquoise.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Module, Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Struct, Color.Yellow.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Enum, Color.FromArgb(184, 215, 163).ToColorableItemInfo()},
+                {ColorCoderClassificationName.Delegate, Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
+                {ColorCoderClassificationName.GenericTypeParameter, Color.FromArgb(184, 215, 163).ToColorableItemInfo()}
             };
 
             return classifications;
