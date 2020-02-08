@@ -45,3 +45,8 @@ You can also change the colors by selecting from a set of predefined options or 
 - Fix compatibility issues with Visual Studio 2017 (Version 15.7)
 - Remove the preexisting font size for methods
 - Performance improvements
+
+## Version 1.0.2 (**4/12/2019**)
+- Make Color Coder compatible with Visual Studio 2019
+- Fix coloring issue related to the generic methods that returns the type parameter
+
