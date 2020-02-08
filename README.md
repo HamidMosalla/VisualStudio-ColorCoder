@@ -50,3 +50,6 @@ You can also change the colors by selecting from a set of predefined options or 
 - Make Color Coder compatible with Visual Studio 2019
 - Fix coloring issue related to the generic methods that returns the type parameter
 
+## Version 1.1.0 (**08/02/2020**)
+- Fix the default color issue for the dark theme
+- Add a new preset for the dark theme
