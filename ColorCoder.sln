@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7235FCD6-2DC6-4EFD-8E6A-ED643B4B82BD}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCoder", "ColorCoder\ColorCoder.csproj", "{EF80D74C-3756-43F7-88C0-8017167E7EF4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCoderTests", "ColorCoderTests\ColorCoderTests.csproj", "{9401DD74-E7C7-4F61-93EA-844B014D60CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +21,11 @@ Global
 		{EF80D74C-3756-43F7-88C0-8017167E7EF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF80D74C-3756-43F7-88C0-8017167E7EF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF80D74C-3756-43F7-88C0-8017167E7EF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9401DD74-E7C7-4F61-93EA-844B014D60CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9401DD74-E7C7-4F61-93EA-844B014D60CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9401DD74-E7C7-4F61-93EA-844B014D60CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9401DD74-E7C7-4F61-93EA-844B014D60CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88B9B307-CFC3-4DC3-BFEB-D2B652351903}
 	EndGlobalSection
 EndGlobal
