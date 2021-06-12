@@ -206,6 +206,7 @@ namespace ColorCoder.ColorCoderCore
 
             try
             {
+                // TODO: can we make this async?
                 task.Wait();
             }
             catch (Exception ex)
@@ -214,6 +215,7 @@ namespace ColorCoder.ColorCoderCore
                 return CacheState.NotResolved;
             }
 
+            // TODO: can we make this async?
             cache = task.Result;
 
             return cache == null ? CacheState.NotResolved : CacheState.Resolved;
