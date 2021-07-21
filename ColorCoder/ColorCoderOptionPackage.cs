@@ -100,13 +100,17 @@ namespace ColorCoder
             }
         }
 
-        //[Category(ColorSubCategory)]
-        //[DisplayName("Attribute")]
-        //public Color Attribute
-        //{
-        //    get { return _colorManager.Get(ColorCoderClassificationName.Attribute); }
-        //    set { _colorManager.Set(ColorCoderClassificationName.Attribute, value); }
-        //}
+        [Category(ColorSubCategory)]
+        [DisplayName("Attribute")]
+        public Color Attribute
+        {
+            get { return _colorManager.Get(ColorCoderClassificationName.Attribute); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Attribute, value);
+            }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Local Variable")]
@@ -235,7 +239,7 @@ namespace ColorCoder
             this._colorManager = new ColorManager(new ColorStorage(this.Site));
 
             _colorManager.Load(
-                //ColorCoderClassificationName.Attribute,
+                ColorCoderClassificationName.Attribute,
                 ColorCoderClassificationName.Constructor,
                 ColorCoderClassificationName.EnumMember,
                 ColorCoderClassificationName.ExtensionMethod,

@@ -6,7 +6,9 @@ namespace ColorCoder.Classifications
     class ColorCoderClassificationName
     {
         public const String Constructor = "ColorCoder Constructor";
-       
+        public const String Attribute = "ColorCoder Attribute";
+
+
         public const String Property = ClassificationTypeNames.PropertyName;
         public const String Parameter = ClassificationTypeNames.ParameterName;
         public const String Namespace = ClassificationTypeNames.NamespaceName;

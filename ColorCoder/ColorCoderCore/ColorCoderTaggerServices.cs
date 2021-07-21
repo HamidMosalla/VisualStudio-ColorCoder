@@ -77,6 +77,13 @@ namespace ColorCoder.ColorCoderCore
                 return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
             }
 
+            if (node.IsCSharpAttributeSyntaxKind())
+            {
+                classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Attribute, out IClassificationType classificationValue);
+
+                return new TagSpan<IClassificationTag>(new SnapshotSpan(snapshot, span.TextSpan.Start, span.TextSpan.Length), new ClassificationTag(classificationValue));
+            }
+
             return null;
         }
 

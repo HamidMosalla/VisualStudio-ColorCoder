@@ -24,21 +24,24 @@ namespace ColorCoder.Classifications
             ModuleName,
             DelegateName,
             EnumName,
-            TypeParameterName
+            TypeParameterName,
+            ConstructorName,
+            AttributeName
         };
 
-        public const string PropertyName = "property name";
-        public const string EventName = "event name";
-        public const string ExtensionMethodName = "extension method name";
-        public const string MethodName = "method name";
-        public const string ParameterName = "parameter name";
-        public const string LocalName = "local name";
-        public const string FieldName = "field name";
-        public const string EnumMemberName = "enum member name";
-        public const string ConstantName = "constant name";
-
+        public const string PropertyName = ClassificationTypeNames.PropertyName;
+        public const string EventName = ClassificationTypeNames.EventName;
+        public const string ExtensionMethodName = ClassificationTypeNames.ExtensionMethodName;
+        public const string MethodName = ClassificationTypeNames.MethodName;
+        public const string ParameterName = ClassificationTypeNames.ParameterName;
+        public const string LocalName = ClassificationTypeNames.LocalName;
+        public const string FieldName = ClassificationTypeNames.FieldName;
+        public const string EnumMemberName = ClassificationTypeNames.EnumMemberName;
+        public const string ConstantName = ClassificationTypeNames.ConstantName;
         public const string Identifier = ClassificationTypeNames.Identifier;
         public const string ClassName = ClassificationTypeNames.ClassName;
+        public const string ConstructorName = ColorCoderClassificationName.Constructor;
+        public const string AttributeName = ColorCoderClassificationName.Attribute;
         public const string StructName = ClassificationTypeNames.StructName;
         public const string InterfaceName = ClassificationTypeNames.InterfaceName;
         public const string ModuleName = ClassificationTypeNames.ModuleName;

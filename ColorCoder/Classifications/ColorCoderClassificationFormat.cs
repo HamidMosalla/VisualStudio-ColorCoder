@@ -12,12 +12,26 @@ namespace ColorCoder.Classifications
         [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Constructor)]
         [Name(ColorCoderClassificationName.Constructor)]
         [UserVisible(true)]
-        [Order(After = Priority.Default)]
+        [Order(After = Priority.High)]
         public sealed class ConstructorClassificationFormat : ClassificationFormatDefinition
         {
             public ConstructorClassificationFormat()
             {
                 this.DisplayName = ColorCoderClassificationName.Constructor;
+                this.IsBold = true;
+            }
+        }
+
+        [Export(typeof(EditorFormatDefinition))]
+        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Attribute)]
+        [Name(ColorCoderClassificationName.Attribute)]
+        [UserVisible(true)]
+        [Order(After = Priority.High)]
+        public sealed class AttributeClassificationFormat : ClassificationFormatDefinition
+        {
+            public AttributeClassificationFormat()
+            {
+                this.DisplayName = ColorCoderClassificationName.Attribute;
                 this.IsBold = true;
             }
         }
