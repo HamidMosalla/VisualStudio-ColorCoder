@@ -284,7 +284,7 @@ namespace ColorCoder
 
             if (Preset == Preset.NoPreset) return;
 
-            Microsoft.VisualStudio.Shell.ThreadHelper.ThrowIfNotOnUIThread();
+            ThreadHelper.ThrowIfNotOnUIThread();
 
             if (Preset == Preset.VisualStudioDefault)
             {

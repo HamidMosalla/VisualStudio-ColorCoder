@@ -37,10 +37,6 @@ namespace ColorCoder.Classifications
         internal static ClassificationTypeDefinition ConstructorClassificationType;
 
 
-        [Export, Name(ColorCoderClassificationName.Attribute)]
-        internal static ClassificationTypeDefinition AttributeClassificationType;
-
-
         [Export, Name(ColorCoderClassificationName.Field)]
         internal static ClassificationTypeDefinition FieldClassificationType;
 
