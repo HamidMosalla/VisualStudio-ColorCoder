@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Media;
 using Microsoft.VisualStudio.Text.Classification;
 using Microsoft.VisualStudio.Utilities;
 
@@ -7,11 +6,13 @@ namespace ColorCoder.Classifications
 {
     public static class ClassificationTypeDefinitions
     {
+        // Note: EditorFormatDefinition is not necessary for built in types listed in ClassificationTypeNames class
+
         [Export(typeof(EditorFormatDefinition))]
         [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Constructor)]
         [Name(ColorCoderClassificationName.Constructor)]
         [UserVisible(true)]
-        [Order(After = Priority.Default)]
+        [Order(After = Priority.High)]
         public sealed class ConstructorClassificationFormat : ClassificationFormatDefinition
         {
             public ConstructorClassificationFormat()
@@ -21,152 +22,18 @@ namespace ColorCoder.Classifications
             }
         }
 
-        //[Export(typeof(EditorFormatDefinition))]
-        //[ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Attribute)]
-        //[Name(ColorCoderClassificationName.Attribute)]
-        //[UserVisible(true)]
-        //[Order(After = Priority.Default)]
-        //public sealed class AttributeClassificationFormat : ClassificationFormatDefinition
-        //{
-        //    public AttributeClassificationFormat()
-        //    {
-        //        this.DisplayName = ColorCoderClassificationName.Attribute;
-        //        this.ForegroundColor = Colors.Black;
-        //    }
-        //}
-
         [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Field)]
-        [Name(ColorCoderClassificationName.Field)]
+        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Attribute)]
+        [Name(ColorCoderClassificationName.Attribute)]
         [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class FieldClassificationFormat : ClassificationFormatDefinition
+        [Order(After = Priority.High)]
+        public sealed class AttributeClassificationFormat : ClassificationFormatDefinition
         {
-            public FieldClassificationFormat()
+            public AttributeClassificationFormat()
             {
-                this.DisplayName = ColorCoderClassificationName.Field;
+                this.DisplayName = ColorCoderClassificationName.Attribute;
+                this.IsBold = true;
             }
         }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.LocalVariable)]
-        [Name(ColorCoderClassificationName.LocalVariable)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class LocalClassificationFormat : ClassificationFormatDefinition
-        {
-            public LocalClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.LocalVariable;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Namespace)]
-        [Name(ColorCoderClassificationName.Namespace)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class NamespaceClassificationFormat : ClassificationFormatDefinition
-        {
-            public NamespaceClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Namespace;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Method)]
-        [Name(ColorCoderClassificationName.Method)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class MethodClassificationFormat : ClassificationFormatDefinition
-        {
-            public MethodClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Method;
-                //this.FontTypeface = new Typeface(new FontFamily("Lucida Console"),
-                //    FontStyles.Normal,
-                //    FontWeights.Bold,
-                //    FontStretches.Condensed);
-                //this.IsBold = true;
-                //this.FontRenderingSize = 12;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.StaticMethod)]
-        [Name(ColorCoderClassificationName.StaticMethod)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class StaticMethodClassificationFormat : ClassificationFormatDefinition
-        {
-            public StaticMethodClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.StaticMethod;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.ExtensionMethod)]
-        [Name(ColorCoderClassificationName.ExtensionMethod)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class ExtensionMethodClassificationFormat : ClassificationFormatDefinition
-        {
-            public ExtensionMethodClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.ExtensionMethod;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Property)]
-        [Name(ColorCoderClassificationName.Property)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class PropertyClassificationFormat : ClassificationFormatDefinition
-        {
-            public PropertyClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Property;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.Parameter)]
-        [Name(ColorCoderClassificationName.Parameter)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class ParameterClassificationFormat : ClassificationFormatDefinition
-        {
-            public ParameterClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.Parameter;
-            }
-        }
-
-        [Export(typeof(EditorFormatDefinition))]
-        [ClassificationType(ClassificationTypeNames = ColorCoderClassificationName.EnumMember)]
-        [Name(ColorCoderClassificationName.EnumMember)]
-        [UserVisible(true)]
-        [Order(After = Priority.Default)]
-        public sealed class EnumMemberClassificationFormat : ClassificationFormatDefinition
-        {
-            public EnumMemberClassificationFormat()
-            {
-                this.DisplayName = ColorCoderClassificationName.EnumMember;
-            }
-        }
-
-        /*
-         * Note: EditorFormatDefinition is not necessary for these, since there's default format definition for them
-         class name
-         delegate name
-         enum name
-         interface name
-         module name
-         struct name
-         type parameter name
-         */
     }
 }

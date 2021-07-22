@@ -21,7 +21,11 @@ namespace ColorCoder
         public Color Class
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Class); }
-            set { _colorManager.Set(ColorCoderClassificationName.Class, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Class, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -29,7 +33,11 @@ namespace ColorCoder
         public Color Delegate
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Delegate); }
-            set { _colorManager.Set(ColorCoderClassificationName.Delegate, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Delegate, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -37,7 +45,11 @@ namespace ColorCoder
         public Color Interface
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Interface); }
-            set { _colorManager.Set(ColorCoderClassificationName.Interface, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Interface, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -45,7 +57,11 @@ namespace ColorCoder
         public Color Struct
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Struct); }
-            set { _colorManager.Set(ColorCoderClassificationName.Struct, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Struct, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -53,7 +69,11 @@ namespace ColorCoder
         public Color Enum
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Enum); }
-            set { _colorManager.Set(ColorCoderClassificationName.Enum, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Enum, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -61,7 +81,11 @@ namespace ColorCoder
         public Color GenericTypeParameter
         {
             get { return _colorManager.Get(ColorCoderClassificationName.GenericTypeParameter); }
-            set { _colorManager.Set(ColorCoderClassificationName.GenericTypeParameter, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.GenericTypeParameter, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -69,23 +93,35 @@ namespace ColorCoder
         public Color Module
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Module); }
-            set { _colorManager.Set(ColorCoderClassificationName.Module, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Module, value);
+            }
         }
 
-        //[Category(ColorSubCategory)]
-        //[DisplayName("Attribute")]
-        //public Color Attribute
-        //{
-        //    get { return _colorManager.Get(ColorCoderClassificationName.Attribute); }
-        //    set { _colorManager.Set(ColorCoderClassificationName.Attribute, value); }
-        //}
+        [Category(ColorSubCategory)]
+        [DisplayName("Attribute")]
+        public Color Attribute
+        {
+            get { return _colorManager.Get(ColorCoderClassificationName.Attribute); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Attribute, value);
+            }
+        }
 
         [Category(ColorSubCategory)]
         [DisplayName("Local Variable")]
         public Color Local
         {
             get { return _colorManager.Get(ColorCoderClassificationName.LocalVariable); }
-            set { _colorManager.Set(ColorCoderClassificationName.LocalVariable, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.LocalVariable, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -93,7 +129,11 @@ namespace ColorCoder
         public Color EnumMember
         {
             get { return _colorManager.Get(ColorCoderClassificationName.EnumMember); }
-            set { _colorManager.Set(ColorCoderClassificationName.EnumMember, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.EnumMember, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -101,7 +141,11 @@ namespace ColorCoder
         public Color Constructor
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Constructor); }
-            set { _colorManager.Set(ColorCoderClassificationName.Constructor, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Constructor, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -109,7 +153,11 @@ namespace ColorCoder
         public Color Field
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Field); }
-            set { _colorManager.Set(ColorCoderClassificationName.Field, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Field, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -117,7 +165,11 @@ namespace ColorCoder
         public Color Namespace
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Namespace); }
-            set { _colorManager.Set(ColorCoderClassificationName.Namespace, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Namespace, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -125,7 +177,11 @@ namespace ColorCoder
         public Color Method
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Method); }
-            set { _colorManager.Set(ColorCoderClassificationName.Method, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Method, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -133,7 +189,11 @@ namespace ColorCoder
         public Color StaticMethod
         {
             get { return _colorManager.Get(ColorCoderClassificationName.StaticMethod); }
-            set { _colorManager.Set(ColorCoderClassificationName.StaticMethod, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.StaticMethod, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -141,7 +201,11 @@ namespace ColorCoder
         public Color ExtensionMethod
         {
             get { return _colorManager.Get(ColorCoderClassificationName.ExtensionMethod); }
-            set { _colorManager.Set(ColorCoderClassificationName.ExtensionMethod, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.ExtensionMethod, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -149,7 +213,11 @@ namespace ColorCoder
         public Color AutomaticProperty
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Property); }
-            set { _colorManager.Set(ColorCoderClassificationName.Property, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Property, value);
+            }
         }
 
         [Category(ColorSubCategory)]
@@ -157,15 +225,21 @@ namespace ColorCoder
         public Color Parameter
         {
             get { return _colorManager.Get(ColorCoderClassificationName.Parameter); }
-            set { _colorManager.Set(ColorCoderClassificationName.Parameter, value); }
+            set
+            {
+                ThreadHelper.ThrowIfNotOnUIThread();
+                _colorManager.Set(ColorCoderClassificationName.Parameter, value);
+            }
         }
 
         public override void LoadSettingsFromStorage()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             this._colorManager = new ColorManager(new ColorStorage(this.Site));
 
             _colorManager.Load(
-                //ColorCoderClassificationName.Attribute,
+                ColorCoderClassificationName.Attribute,
                 ColorCoderClassificationName.Constructor,
                 ColorCoderClassificationName.EnumMember,
                 ColorCoderClassificationName.ExtensionMethod,
@@ -214,9 +288,12 @@ namespace ColorCoder
 
             if (Preset == Preset.NoPreset) return;
 
+            ThreadHelper.ThrowIfNotOnUIThread();
+
             if (Preset == Preset.VisualStudioDefault)
             {
                 var defaultColors = _colorManager.GetDefaultColorsBySelectedThemes();
+               
                 _colorManager.Save(defaultColors);
             }
 

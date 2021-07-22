@@ -17,8 +17,7 @@ namespace ColorCoder.Extensions
 
         public static bool IsCSharpAttributeSyntaxKind(this SyntaxNode node)
         {
-            //return node.Kind() == SyntaxKind.Attribute;
-            return (node.Parent.Kind() == SyntaxKind.IdentifierName && node.Parent.Kind() == SyntaxKind.Attribute);
+            return node.Kind() == SyntaxKind.Attribute || node.Kind() == SyntaxKind.AttributeList;
         }
 
         public static bool IsCSharpConstructorSyntaxKind(this SyntaxNode node)

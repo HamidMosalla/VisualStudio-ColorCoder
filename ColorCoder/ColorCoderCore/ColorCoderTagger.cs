@@ -11,7 +11,7 @@ namespace ColorCoder.ColorCoderCore
 {
     public class ColorCoderTagger : ITagger<IClassificationTag>
     {
-        private ITextBuffer _buffer;
+        private readonly ITextBuffer _buffer;
         private readonly ColorCoderTaggerServices _colorCoderTaggerServices;
         private readonly Dictionary<string, IClassificationType> _classificationTypeDictionary;
         private ProviderCache _cache;
