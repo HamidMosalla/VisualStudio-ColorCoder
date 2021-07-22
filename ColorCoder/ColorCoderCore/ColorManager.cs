@@ -106,20 +106,6 @@ namespace ColorCoder.ColorCoderCore
             colors[0].crForeground = (uint)ColorTranslator.ToWin32(color);
             colors[0].bForegroundValid = 1;
 
-
-            // TODO:Hamid: remove this
-            //if (classificationName == ColorCoderClassificationName.Constructor)
-            //{
-            //    colors[0].crBackground = (uint)ColorTranslator.ToWin32(color);
-            //    colors[0].bBackgroundValid = 1;
-            //}
-
-            //if (classificationName == ColorCoderClassificationName.Attribute)
-            //{
-            //    colors[0].crBackground = (uint)ColorTranslator.ToWin32(color);
-            //    colors[0].bBackgroundValid = 1;
-            //}
-
             _classifications[classificationName] = colors;
 
             try
@@ -202,7 +188,7 @@ namespace ColorCoder.ColorCoderCore
                 {ColorCoderClassificationName.StaticMethod, Color.Black.ToColorableItemInfo()},
                 {ColorCoderClassificationName.Parameter, Color.Black.ToColorableItemInfo()},
                 {ColorCoderClassificationName.Class, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
-                {ColorCoderClassificationName.Attribute,Color.Gray.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Attribute,Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
                 {ColorCoderClassificationName.Interface, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
                 {ColorCoderClassificationName.Module, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
                 {ColorCoderClassificationName.Struct, Color.FromArgb(43, 145, 175).ToColorableItemInfo()},
@@ -227,7 +213,7 @@ namespace ColorCoder.ColorCoderCore
                 {ColorCoderClassificationName.StaticMethod, Color.Gainsboro.ToColorableItemInfo()},
                 {ColorCoderClassificationName.Parameter, Color.Gainsboro.ToColorableItemInfo()},
                 {ColorCoderClassificationName.Class, Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
-                {ColorCoderClassificationName.Attribute,Color.Gray.ToColorableItemInfo()},
+                {ColorCoderClassificationName.Attribute,Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
                 {ColorCoderClassificationName.Interface, Color.FromArgb(184, 215, 163).ToColorableItemInfo()},
                 {ColorCoderClassificationName.Module,  Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
                 {ColorCoderClassificationName.Struct,  Color.FromArgb(78, 201, 176).ToColorableItemInfo()},
@@ -237,7 +223,7 @@ namespace ColorCoder.ColorCoderCore
             };
         }
 
-        public IDictionary<String, ColorableItemInfo[]>  GetDefaultColorsBySelectedThemes()
+        public IDictionary<String, ColorableItemInfo[]> GetDefaultColorsBySelectedThemes()
         {
             var defaultBackground = VSColorTheme.GetThemedColor(EnvironmentColors.ToolWindowBackgroundColorKey);
 

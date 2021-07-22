@@ -69,8 +69,6 @@ namespace ColorCoder.ColorCoderCore
 
         public ITagSpan<IClassificationTag> GetTagSpan(SyntaxNode node, ClassifiedSpan span, ITextSnapshot snapshot, ISymbol symbol, Dictionary<string, IClassificationType> classificationTypeDictionary)
         {
-            // if (span.ClassificationType == ClassificationTypeNames.Identifier) { }
-
             if (node.IsCSharpConstructorSyntaxKind())
             {
                 classificationTypeDictionary.TryGetValue(ColorCoderClassificationName.Constructor, out IClassificationType classificationValue);
