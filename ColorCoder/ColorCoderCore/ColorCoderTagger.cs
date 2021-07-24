@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ColorCoder.Classifications;
 using ColorCoder.Types;
@@ -18,7 +19,6 @@ namespace ColorCoder.ColorCoderCore
 
         public event EventHandler<SnapshotSpanEventArgs> TagsChanged;
 
-        //why it is called three times?
         public ColorCoderTagger(ITextBuffer buffer, IClassificationTypeRegistryService classificationRegistry)
         {
             this._buffer = buffer;
