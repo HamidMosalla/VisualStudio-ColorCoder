@@ -407,7 +407,8 @@
   <Import Project="..\packages\Microsoft.CodeAnalysis.BannedApiAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.BannedApiAnalyzers.targets" Condition="Exists('..\packages\Microsoft.CodeAnalysis.BannedApiAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.BannedApiAnalyzers.targets')" />
   <Import Project="..\packages\Microsoft.VisualStudio.SDK.Analyzers.16.10.1\build\Microsoft.VisualStudio.SDK.Analyzers.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SDK.Analyzers.16.10.1\build\Microsoft.VisualStudio.SDK.Analyzers.targets')" />
   <PropertyGroup>
-    <PreBuildEvent>nuget restore</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
