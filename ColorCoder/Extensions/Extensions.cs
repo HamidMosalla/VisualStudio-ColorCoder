@@ -13,11 +13,6 @@ namespace ColorCoder.Extensions
             return DrawingColor.FromArgb(mediaColor.A, mediaColor.R, mediaColor.G, mediaColor.B);
         }
 
-        public static MediaColor ToMediaColor(this DrawingColor drawingColor)
-        {
-            return MediaColor.FromArgb(drawingColor.A, drawingColor.R, drawingColor.G, drawingColor.B);
-        }
-
         public static ColorableItemInfo[] ToColorableItemInfo(this DrawingColor drawingColor)
         {
             ColorableItemInfo[] colorableItemInfo = new ColorableItemInfo[1];
