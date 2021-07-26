@@ -16,6 +16,7 @@ Color Coder is a lightweight extension for Visual Studio 2015, 2017 and 2019. It
 * Module (VB Only)              
 * Interface           
 * Class               
+* Attribute 
 * Struct              
 * Enum                
 * Delegate            
