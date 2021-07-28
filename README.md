@@ -54,3 +54,7 @@ You can also change the colors by selecting from a set of predefined options or 
 ## Version 1.1.0 (**08/02/2020**)
 - Fix the default color issue for the dark theme
 - Add a new preset for the dark theme
+
+## Version 2.0.0 (**07/26/2021**)
+- Fix the compatibility issue with Visual Studio 2019 v16.5 onward (This is a breaking change, that means extension does not work with previous versions)
+- This version also adds the possibility to change the color of Attributes
