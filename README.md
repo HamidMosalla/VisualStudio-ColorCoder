@@ -1,7 +1,7 @@
 # Color Coder
 [![Build status](https://ci.appveyor.com/api/projects/status/vkftm32rfsm8rsv9?svg=true)](https://ci.appveyor.com/project/HamidMosalla/visualstudio-colorcoder)
 
-Color Coder is a lightweight extension for Visual Studio 2015, 2017 and 2019. It can help you change the color of various programming constructs, such as:
+Color Coder is a lightweight extension for Visual Studio 2019 and 2022. It can help you change the color of various programming constructs, such as:
       
 * EnumMember          
 * Constructor (C# Only)       
