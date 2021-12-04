@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Text;
-using Microsoft.VisualStudio.Text;
-
-namespace ColorCoder.ColorCoderCore
+﻿namespace ColorCoder.ColorCoderCore
 {
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.Text;
+    using Microsoft.VisualStudio.Text;
+    using System.Threading.Tasks;
+
     public class ProviderCache
     {
         public Workspace Workspace { get; private set; }

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.CodeAnalysis.Classification;
+﻿using Microsoft.CodeAnalysis.Classification;
+using System;
 
 namespace ColorCoder.Classifications
 {
