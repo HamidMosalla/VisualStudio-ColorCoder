@@ -5,7 +5,6 @@ using ColorCoder.Classifications;
 using ColorCoder.ColorCoderCore;
 using ColorCoder.Types;
 using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
 
 namespace ColorCoder
 {
