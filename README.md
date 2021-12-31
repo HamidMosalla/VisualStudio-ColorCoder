@@ -58,3 +58,8 @@ You can also change the colors by selecting from a set of predefined options or 
 ## Version 2.0.0 (**07/26/2021**)
 - Fix the compatibility issue with Visual Studio 2019 v16.5 onward (This is a breaking change, that means extension does not work with previous versions)
 - This version also adds the possibility to change the color of Attributes
+
+## Version 2.0.2 (01/01/2022)
+- Add support for visual studio 2022
+- Add option to change the color of attributes
+- Remove support for previous versions (they still available in the github repo release section)
