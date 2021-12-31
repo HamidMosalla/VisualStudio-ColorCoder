@@ -62,4 +62,4 @@ You can also change the colors by selecting from a set of predefined options or 
 ## Version 2.0.2 (01/01/2022)
 - Add support for visual studio 2022
 - Add option to change the color of attributes
-- Remove support for previous versions (they still available in the github repo release section)
+- Remove support for previous versions (vsix files are still available in the github repo release section)
